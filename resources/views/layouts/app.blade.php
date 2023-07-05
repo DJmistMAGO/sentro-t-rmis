@@ -21,12 +21,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {{-- @if (env('IS_DEMO'))
-        <x-demo-metas></x-demo-metas>
-    @endif --}}
-
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="shortcut icon" href="{{ asset('images/st1.png') }}" type="image/x-icon">
     <title>
         Sentro Trading Record Inventory Management System
     </title>
@@ -39,6 +35,7 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 </head>
 
@@ -74,6 +71,25 @@
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
+    </script>
+    <script>
+        function updateDateTime() {
+            var currentDate = new Date();
+
+            // format currentDate as F d, Y h:i:s A
+            var formattedDateTime = currentDate.toLocaleString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            });
+
+            document.getElementById("currentDateTime").innerHTML = formattedDateTime;
+        }
+        setInterval(updateDateTime, 1000);
     </script>
 
     <!-- Github buttons -->
