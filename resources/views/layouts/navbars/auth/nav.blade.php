@@ -23,8 +23,7 @@
                 </div>
             </div> --}}
             <ul class="navbar-nav  justify-content-end">
-                {{-- insert a li for current date and time with seconds --}}
-                <li class="nav-item d-flex align-items-center me-3">
+                <li class="nav-item d-flex align-items-center me-5">
                     <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                         <i class="fa fa-calendar me-sm-1"></i>
                         <span id="currentDateTime" class="d-sm-inline d-none"></span>
@@ -32,7 +31,7 @@
                 </li>
                 <li class="nav-item d-flex align-items-center">
                     <a href="{{ url('/logout') }}" class="nav-link text-body font-weight-bold px-0">
-                        <i class="fa fa-user me-sm-1"></i>
+                        <i class="fa fa-power-off me-sm-1"></i>
                         <span class="d-sm-inline d-none">Sign Out</span>
                     </a>
                 </li>
