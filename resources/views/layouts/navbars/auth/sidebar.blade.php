@@ -1,17 +1,15 @@
 @push('links')
     <style>
-
         /* .sidenav .nav-link-text {
-            color: #ffffff !important;
-        } */
-
+                                color: #ffffff !important;
+                            } */
         .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
             background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
         }
 
         /* .navbar-vertical .navbar-nav>.nav-item .nav-link.active .nav-link-text {
-            color: #434343 !important;
-        } */
+                                color: #434343 !important;
+                            } */
     </style>
 @endpush
 
@@ -30,7 +28,7 @@
     <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard') ? 'active bg-gradient-warning' : '' }}"
+                <a class="nav-link {{ Request::is('dashboard') ? 'active bg-gradient-info' : '' }}"
                     href="{{ url('dashboard') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
@@ -60,55 +58,61 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Examples</h6>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ Request::is(['product', 'product/create']) ? 'active bg-gradient-warning' : '' }} "
+                <a class="nav-link {{ Request::is(['product', 'product/create']) ? 'active bg-gradient-info' : '' }} "
                     href="{{ route('product.index') }}">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-warning text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ Request::is(['product', 'product/create']) ? 'text-white' : 'text-dark' }} " aria-hidden="true"></i>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ Request::is(['product', 'product/create']) ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Product</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is(['product-purchased']) ? 'active bg-gradient-warning' : '' }} "
+                <a class="nav-link {{ Request::is(['product-purchased']) ? 'active bg-gradient-info' : '' }} "
                     href="{{ route('product-pruchased.index') }}">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-warning text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ Request::is(['product-purchased']) ? 'text-white' : 'text-dark' }} " aria-hidden="true"></i>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ Request::is(['product-purchased']) ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Product Purchased</span>
                 </a>
             </li>
             <li class="nav-item pb-2">
-                <a class="nav-link {{ Request::is('user-management') ? 'active bg-gradient-warning' : '' }}"
+                <a class="nav-link {{ Request::is('user-management') ? 'active bg-gradient-info' : '' }}"
                     href="{{ url('user-management') }}">
                     <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-warning text-center me-2 d-flex align-items-center justify-content-center">
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1rem;"
                             class="fas fa-landmark fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('user-management') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Stocks</span>
                 </a>
-            </li> --}}
+            </li>
 
             {{-- <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('tables') ? 'active bg-gradient-warning' : '' }}"
+                <a class="nav-link {{ Request::is('tables') ? 'active bg-gradient-info' : '' }}"
                     href="{{ url('tables') }}">
                     <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-warning text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-truck opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('tables') ? 'text-white' : 'text-dark' }} " aria-hidden="true"></i>
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-truck opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('tables') ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Return Product</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('billing') ? 'active bg-gradient-warning' : '' }}"
+                <a class="nav-link {{ Request::is('billing') ? 'active bg-gradient-info' : '' }}"
                     href="{{ url('billing') }}">
                     <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-warning text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-thumbs-down fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('billing') ? 'text-white' : 'text-dark' }} " aria-hidden="true"></i>
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-thumbs-down fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('billing') ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Damaged Product</span>
                 </a>
