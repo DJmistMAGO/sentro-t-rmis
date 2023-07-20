@@ -1,15 +1,15 @@
 @push('links')
     <style>
         /* .sidenav .nav-link-text {
-                                color: #ffffff !important;
-                            } */
+                                        color: #ffffff !important;
+                                    } */
         .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
             background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
         }
 
         /* .navbar-vertical .navbar-nav>.nav-item .nav-link.active .nav-link-text {
-                                color: #434343 !important;
-                            } */
+                                        color: #434343 !important;
+                                    } */
     </style>
 @endpush
 
@@ -58,22 +58,22 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Examples</h6>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ Request::is(['product', 'product/create']) ? 'active bg-gradient-info' : '' }} "
+                <a class="nav-link {{ request()->routeIs('product.*') ? 'active bg-gradient-info' : '' }} "
                     href="{{ route('product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ Request::is(['product', 'product/create']) ? 'text-white' : 'text-dark' }} "
+                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Product</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is(['product-purchased']) ? 'active bg-gradient-info' : '' }} "
+                <a class="nav-link {{ request()->routeIs('product-purchased.*') ? 'active bg-gradient-info' : '' }} "
                     href="{{ route('product-pruchased.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ Request::is(['product-purchased']) ? 'text-white' : 'text-dark' }} "
+                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product-purchased.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Product Purchased</span>
