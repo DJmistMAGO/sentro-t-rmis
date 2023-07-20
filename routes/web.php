@@ -9,6 +9,7 @@ use App\Http\Controllers\SessionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('dashboard', function () {
 		return view('dashboard');
 	})->name('dashboard');
+
+
+    Route::controller(ProductController::class)->prefix('product')->group(function () {
+        Route::get('/', 'index')->name('product.index');
+        Route::get('/create', 'create')->name('product.create');
+    });
 
 	Route::get('billing', function () {
 		return view('billing');
