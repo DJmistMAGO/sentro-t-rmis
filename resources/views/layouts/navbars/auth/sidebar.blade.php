@@ -20,18 +20,18 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-            <img src="{{ asset('images/st1.png') }}" class="navbar-brand-img h-15   0" alt="logo">
-            <span class="ms-3 font-weight-bold text-center">Sentro Trading Record Inventory Management System</span>
+            <img src="{{ asset('images/st1.png') }}" class="navbar-brand-img h-100" alt="...">
+            <span class="ms-3 font-weight-bold">Sentro Trading <br> Record Inventory Management System</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main" style="height: 100vh;">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard') ? 'active bg-gradient-info' : '' }}"
+                <a class="nav-link {{ Request::is('dashboard') ? 'active bg-gradient-light' : '' }}"
                     href="{{ url('dashboard') }}">
-                    <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light -bottom-3 text-center me-2 d-flex align-items-center justify-content-center">
+
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>shop </title>
@@ -51,52 +51,51 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Dashboard</span>
+                    <span class="nav-link-text ms-1 {{ Request::is('dashboard') ? 'text-dark' : 'text-white'}}">Dashboard</span>
                 </a>
             </li>
             {{-- <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Examples</h6>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('product.*') ? 'active bg-gradient-info' : '' }} "
+                <a class="nav-link {{ request()->routeIs('product.*') ? 'active bg-gradient-light' : '' }} "
                     href="{{ route('product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Product</span>
+                    <span class="nav-link-text {{ request()->routeIs('product.*') ? 'text-dark' : 'text-white'}} ms-1">Product</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('product-purchased.*') ? 'active bg-gradient-info' : '' }} "
+                <a class="nav-link {{ request()->routeIs('product-purchased.*') ? 'active bg-gradient-light' : '' }} "
                     href="{{ route('product-purchased.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product-purchased.*') ? 'text-white' : 'text-dark' }} "
+                        <i class="fas fa-tags fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product-purchased.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Product Purchased</span>
+                    <span class="nav-link-text ms-1  {{ request()->routeIs('product-purchased.*') ? 'text-dark' : 'text-white' }} ">Purchased Product</span>
                 </a>
             </li>
             <li class="nav-item pb-2">
-                <a class="nav-link {{ Request::is('user-management') ? 'active bg-gradient-info' : '' }}"
+                <a class="nav-link {{ Request::is('user-management') ? 'active bg-gradient-light' : '' }}"
                     href="{{ url('user-management') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1rem;"
-                            class="fas fa-landmark fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('user-management') ? 'text-white' : 'text-dark' }} "
+                            class="fas fa-cubes fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('user-management') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text text-white ms-1">Stocks</span>
                 </a>
             </li>
-
             {{-- <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('tables') ? 'active bg-gradient-info' : '' }}"
+                <a class="nav-link {{ Request::is('tables') ? 'active bg-gradient-light' : '' }}"
                     href="{{ url('tables') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
@@ -107,7 +106,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('billing') ? 'active bg-gradient-info' : '' }}"
+                <a class="nav-link {{ Request::is('billing') ? 'active bg-gradient-light' : '' }}"
                     href="{{ url('billing') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
