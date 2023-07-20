@@ -5,13 +5,13 @@
     <div class="card col-md-12">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div class="card-title">
-                <h5>PRODUCT</h5>
+                <h5>RETURNED PRODUCT</h5>
             </div>
             <div class="card-tool d-flex justify-content-end">
                 <div class="col-md-5 me-2">
                     <input type="text" placeholder="Search..." class="form-control form-control-sm">
                 </div>
-                <a href="{{ url('product/create') }}" class="btn btn-sm bg-gradient-info">Add New Product</a>
+                <a href="{{ route('returned-product.create') }}" class="btn btn-sm bg-gradient-info">Add New Product</a>
             </div>
         </div>
         <div class="card-body pt-0">

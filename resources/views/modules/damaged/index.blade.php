@@ -2,7 +2,7 @@
 @livewireStyles()
 
 @section('content')
-    @livewire('purchased.index')
+    @livewire('damage.index')
 @endsection
 
 @livewireScripts()

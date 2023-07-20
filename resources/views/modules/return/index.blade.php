@@ -2,7 +2,7 @@
 @livewireStyles()
 
 @section('content')
-    @livewire('purchased.index')
+    @livewire('returned-prod.index')
 @endsection
 
 @livewireScripts()
