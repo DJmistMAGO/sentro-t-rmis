@@ -20,7 +20,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    @stack('links')
+    @livewireStyles
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="shortcut icon" href="{{ asset('images/st1.png') }}" type="image/x-icon">
     <title>
@@ -60,6 +61,10 @@
     <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/fullcalendar.min.js"></script>
     <script src="../assets/js/plugins/chartjs.min.js"></script>
+
+    @stack('scripts')
+    @livewireScripts
+
     @stack('dashboard')
     <script>
         var win = navigator.platform.indexOf('Win') > -1;

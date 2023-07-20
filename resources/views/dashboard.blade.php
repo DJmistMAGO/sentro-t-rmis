@@ -1,8 +1,71 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
-    <div class="row">
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+
+<div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header mx-4 p-3 text-center">
+          <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+            <i class="fas fa-shopping-cart opacity-10" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="card-body pt-0 p-3 text-center">
+          <h6 class="text-center mb-0">Product</h6>
+          <span class="text-xs">Total New Added</span>
+          <hr class="horizontal dark my-3">
+          <h5 class="mb-0">2000</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mt-md-0 mt-4">
+      <div class="card">
+        <div class="card-header mx-4 p-3 text-center">
+          <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+            <i class="fas fa-landmark opacity-10" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="card-body pt-0 p-3 text-center">
+          <h6 class="text-center mb-0">Stock Product</h6>
+          <span class="text-xs">This Month</span>
+          <hr class="horizontal dark my-3">
+          <h5 class="mb-0">455</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+          <div class="card-header mx-4 p-3 text-center">
+            <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+              <i class="fas fa-truck opacity-10" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="card-body pt-0 p-3 text-center">
+            <h6 class="text-center mb-0">Return Product</h6>
+            <span class="text-xs">This Month</span>
+            <hr class="horizontal dark my-3">
+            <h5 class="mb-0">2000</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-md-0 mt-4">
+        <div class="card">
+          <div class="card-header mx-4 p-3 text-center">
+            <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+              <i class="fas fa-thumbs-down opacity-10" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="card-body pt-0 p-3 text-center">
+            <h6 class="text-center mb-0">Damaged Product</h6>
+            <span class="text-xs">This Month</span>
+            <hr class="horizontal dark my-3">
+            <h5 class="mb-0">405</h5>
+          </div>
+        </div>
+      </div>
+  </div>
+{{-- <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
@@ -10,8 +73,9 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">TRANSACTIONS</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    Php. 53,000
+                                    53,000
                                     {{-- <span class="text-success text-sm font-weight-bolder">+55%</span> --}}
+
                                 </h5>
                             </div>
                         </div>
@@ -33,7 +97,6 @@
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">STOCKS</p>
                                 <h5 class="font-weight-bolder mb-0">
                                     2,300
-                                    {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
                                 </h5>
                             </div>
                         </div>
@@ -54,8 +117,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">ORDERS</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    +3,462
-                                    {{-- <span class="text-danger text-sm font-weight-bolder">-2%</span> --}}
+                                    3,462
                                 </h5>
                             </div>
                         </div>

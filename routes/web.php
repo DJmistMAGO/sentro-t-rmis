@@ -5,6 +5,8 @@ use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductPurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', function () {return view('profile');})->name('profile');
     Route::get('user-management', function () {return view('laravel-examples/user-management');})->name('user-management');
     Route::get('tables', function () {return view('tables');})->name('tables');
-
-    Route::get('/logout', [SessionsController::class, 'destroy']);
-    Route::get('/user-profile', [InfoUserController::class, 'create']);
-    Route::post('/user-profile', [InfoUserController::class, 'store']);
-    Route::get('/login', function () {return view('dashboard');})->name('sign-up');
-
+	
     Route::controller(ProductController::class)->prefix('product')->group(function () {
         Route::get('/', 'index')->name('product.index');
         Route::get('/create', 'create')->name('product.create');
@@ -38,6 +35,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', 'update')->name('product.update');
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
     });
+
+    Route::controller(ProductPurchaseController::class)->prefix('product-pruchased')->group(function () {
+        Route::get('/', 'index')->name('product-pruchased.index');
+        Route::get('/create', 'create')->name('product-pruchased.create');
+    });
+
+
+    Route::get('/logout', [SessionsController::class, 'destroy']);
+    Route::get('/user-profile', [InfoUserController::class, 'create']);
+    Route::post('/user-profile', [InfoUserController::class, 'store']);
+    Route::get('/login', function () {return view('dashboard');})->name('sign-up');
 });
 
 Route::group(['middleware' => 'guest'], function () {
