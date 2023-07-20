@@ -1,15 +1,8 @@
 @push('links')
     <style>
-        /* .sidenav .nav-link-text {
-                                                color: #ffffff !important;
-                                            } */
         .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
             background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
         }
-
-        /* .navbar-vertical .navbar-nav>.nav-item .nav-link.active .nav-link-text {
-                                                color: #434343 !important;
-                                            } */
     </style>
 @endpush
 
@@ -65,7 +58,7 @@
                         <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Product</span>
+                    <span class="nav-link-text text-white ms-1">Products</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -76,7 +69,7 @@
                         <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product-purchased.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Product Purchased</span>
+                    <span class="nav-link-text text-white ms-1">Purchased Products</span>
                 </a>
             </li>
             <li class="nav-item pb-2">
@@ -92,9 +85,6 @@
                 </a>
             </li>
 
-            {{-- <li class="nav-item mt-2">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
-            </li> --}}
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('tables') ? 'active bg-gradient-info' : '' }}"
                     href="{{ url('tables') }}">
@@ -103,7 +93,7 @@
                         <i class="fas fa-truck opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('tables') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Return Product</span>
+                    <span class="nav-link-text text-white ms-1">Returned Products</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -114,7 +104,7 @@
                         <i class="fas fa-thumbs-down fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('billing') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Damaged Product</span>
+                    <span class="nav-link-text text-white ms-1">Damaged Products</span>
                 </a>
             </li>
         </ul>
