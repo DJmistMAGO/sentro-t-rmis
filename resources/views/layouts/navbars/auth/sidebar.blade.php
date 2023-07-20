@@ -1,15 +1,8 @@
 @push('links')
     <style>
-        /* .sidenav .nav-link-text {
-                                                color: #ffffff !important;
-                                            } */
         .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
             background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
         }
-
-        /* .navbar-vertical .navbar-nav>.nav-item .nav-link.active .nav-link-text {
-                                                color: #434343 !important;
-                                            } */
     </style>
 @endpush
 
@@ -30,7 +23,8 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard') ? 'active bg-gradient-light' : '' }}"
                     href="{{ url('dashboard') }}">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light -bottom-3 text-center me-2 d-flex align-items-center justify-content-center">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light -bottom-3 text-center me-2 d-flex align-items-center justify-content-center">
 
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -51,7 +45,8 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1 {{ Request::is('dashboard') ? 'text-dark' : 'text-white'}}">Dashboard</span>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::is('dashboard') ? 'text-dark' : 'text-white' }}">Dashboard</span>
                 </a>
             </li>
             {{-- <li class="nav-item mt-2">
@@ -65,7 +60,8 @@
                         <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text {{ request()->routeIs('product.*') ? 'text-dark' : 'text-white'}} ms-1">Product</span>
+                    <span
+                        class="nav-link-text {{ request()->routeIs('product.*') ? 'text-dark' : 'text-white' }} ms-1">Product</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -77,6 +73,7 @@
                             aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1  {{ request()->routeIs('purchased-product.*') ? 'text-dark' : 'text-white' }} ">Purchased Product</span>
+
                 </a>
             </li>
             <li class="nav-item pb-2">
@@ -100,6 +97,7 @@
                             aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} " >Return Product</span>
+
                 </a>
             </li>
             <li class="nav-item">
@@ -111,6 +109,7 @@
                             aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} " >Damaged Product</span>
+
                 </a>
             </li>
         </ul>
