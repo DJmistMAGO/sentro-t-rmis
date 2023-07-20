@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductPurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(ProductController::class)->prefix('product')->group(function () {
         Route::get('/', 'index')->name('product.index');
         Route::get('/create', 'create')->name('product.create');
+    });
+
+    Route::controller(ProductPurchaseController::class)->prefix('product-pruchased')->group(function () {
+        Route::get('/', 'index')->name('product-pruchased.index');
+        Route::get('/create', 'create')->name('product-pruchased.create');
     });
 
 	Route::get('billing', function () {
