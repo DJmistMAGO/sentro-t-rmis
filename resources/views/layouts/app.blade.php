@@ -32,15 +32,14 @@
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 </head>
 
-<body
-    class="g-sidenav-show  bg-gray-100 {{ \Request::is('rtl') ? 'rtl' : (Request::is('virtual-reality') ? 'virtual-reality' : '') }} ">
+<body class="g-sidenav-show  bg-gray-100">
     @auth
         @yield('auth')
     @endauth
@@ -61,7 +60,6 @@
     <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/fullcalendar.min.js"></script>
     <script src="../assets/js/plugins/chartjs.min.js"></script>
-    @stack('rtl')
     @stack('dashboard')
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
@@ -81,11 +79,14 @@
                 month: 'long',
                 day: 'numeric',
                 year: 'numeric',
-                hour: 'numeric',
+                hour: '2-digit',
                 minute: 'numeric',
                 second: 'numeric',
-                hour12: true
+                hour12: true,
+                weekday: 'long'
             });
+            // replace at with space
+            formattedDateTime = formattedDateTime.replace("at", " - ");
 
             document.getElementById("currentDateTime").innerHTML = formattedDateTime;
         }

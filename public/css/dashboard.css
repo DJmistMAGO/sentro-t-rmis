@@ -1,0 +1,12 @@
+.navbar-vertical.navbar-expand-xs .navbar-collapse {
+    display: block !important;
+    height: 88% !important;
+    overflow: hidden !important;
+}
+
+.ps {
+    -ms-overflow-style: none;
+    overflow-anchor: none;
+    touch-action: auto;
+    -ms-touch-action: auto;
+}

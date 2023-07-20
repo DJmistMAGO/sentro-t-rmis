@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
@@ -10,8 +10,8 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">TRANSACTIONS</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    $53,000
-                                    <span class="text-success text-sm font-weight-bolder">+55%</span>
+                                    Php. 53,000
+                                    {{-- <span class="text-success text-sm font-weight-bolder">+55%</span> --}}
                                 </h5>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
@@ -33,7 +33,7 @@
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">STOCKS</p>
                                 <h5 class="font-weight-bolder mb-0">
                                     2,300
-                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
+                                    {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
                                 </h5>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
@@ -55,7 +55,7 @@
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">ORDERS</p>
                                 <h5 class="font-weight-bolder mb-0">
                                     +3,462
-                                    <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                                    {{-- <span class="text-danger text-sm font-weight-bolder">-2%</span> --}}
                                 </h5>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        {{-- <div class="col-xl-3 col-sm-6">
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
@@ -76,7 +76,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">INVENTORY</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    $103,430
+                                    Php. 103,430
                                     <span class="text-success text-sm font-weight-bolder">+5%</span>
                                 </h5>
                             </div>
@@ -89,18 +89,104 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
+        <div class="col-lg-8">
+            <div class="card z-index-2">
+                <div class="card-header pb-0">
+                    <h6>Sales overview</h6>
+                    <p class="text-sm">
+                        <i class="fa fa-arrow-up text-success"></i>
+                        <span class="font-weight-bold">4% more</span> in 2023
+                    </p>
+                </div>
+                <div class="card-body p-3">
+                    <div class="chart">
+                        <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100">
+                <div class="card-header pb-0">
+                    <h6>Orders overview</h6>
+                    <p class="text-sm">
+                        <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
+                        <span class="font-weight-bold">24%</span> this month
+                    </p>
+                </div>
+                <div class="card-body p-3">
+                    <div class="timeline timeline-one-side">
+                        <div class="timeline-block mb-3">
+                            <span class="timeline-step">
+                                <i class="ni ni-bell-55 text-success text-gradient"></i>
+                            </span>
+                            <div class="timeline-content">
+                                <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
+                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-block mb-3">
+                            <span class="timeline-step">
+                                <i class="ni ni-html5 text-danger text-gradient"></i>
+                            </span>
+                            <div class="timeline-content">
+                                <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
+                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-block mb-3">
+                            <span class="timeline-step">
+                                <i class="ni ni-cart text-info text-gradient"></i>
+                            </span>
+                            <div class="timeline-content">
+                                <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
+                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-block mb-3">
+                            <span class="timeline-step">
+                                <i class="ni ni-credit-card text-warning text-gradient"></i>
+                            </span>
+                            <div class="timeline-content">
+                                <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
+                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-block mb-3">
+                            <span class="timeline-step">
+                                <i class="ni ni-key-25 text-primary text-gradient"></i>
+                            </span>
+                            <div class="timeline-content">
+                                <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
+                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
+                            </div>
+                        </div>
+                        {{-- <div class="timeline-block">
+                            <span class="timeline-step">
+                                <i class="ni ni-money-coins text-dark text-gradient"></i>
+                            </span>
+                            <div class="timeline-content">
+                                <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
+                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="d-flex flex-column h-100">
                                 <p class="mb-1 pt-2 text-bold">Built by developers</p>
-                                <h5 class="font-weight-bolder">Soft UI Dashboard</h5>
-                                <p class="mb-5">From colors, cards, typography to complex elements, you will find the full
+                                <h5 class="font-weight-bolder">Sentro Trading Record Inventory </h5>
+                                <p class="mb-5">From colors, cards, typography to complex elements, you will find the
+                                    full
                                     documentation.</p>
                                 <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto"
                                     href="javascript:;">
@@ -130,7 +216,8 @@
                     <span class="mask bg-gradient-dark"></span>
                     <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
                         <h5 class="text-white font-weight-bolder mb-4 pt-2">Work with the rockets</h5>
-                        <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all about
+                        <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all
+                            about
                             who take the opportunity first.</p>
                         <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
                             Read More
@@ -139,9 +226,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
-    <div class="row mt-4">
+    {{-- <div class="row mt-4">
         <div class="col-lg-5 mb-lg-0 mb-4">
             <div class="card z-index-2">
                 <div class="card-body p-3">
@@ -296,24 +383,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-7">
-            <div class="card z-index-2">
-                <div class="card-header pb-0">
-                    <h6>Sales overview</h6>
-                    <p class="text-sm">
-                        <i class="fa fa-arrow-up text-success"></i>
-                        <span class="font-weight-bold">4% more</span> in 2021
-                    </p>
-                </div>
-                <div class="card-body p-3">
-                    <div class="chart">
-                        <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row my-4">
+    </div> --}}
+    {{-- <div class="row my-4">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
             <div class="card">
                 <div class="card-header pb-0">
@@ -626,145 +697,78 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card h-100">
-                <div class="card-header pb-0">
-                    <h6>Orders overview</h6>
-                    <p class="text-sm">
-                        <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-                        <span class="font-weight-bold">24%</span> this month
-                    </p>
-                </div>
-                <div class="card-body p-3">
-                    <div class="timeline timeline-one-side">
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-bell-55 text-success text-gradient"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
-                            </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-html5 text-danger text-gradient"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
-                            </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-cart text-info text-gradient"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
-                            </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-credit-card text-warning text-gradient"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
-                            </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-key-25 text-primary text-gradient"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
-                            </div>
-                        </div>
-                        <div class="timeline-block">
-                            <span class="timeline-step">
-                                <i class="ni ni-money-coins text-dark text-gradient"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    </div> --}}
 @endsection
+
 @push('dashboard')
     <script>
         window.onload = function() {
-            var ctx = document.getElementById("chart-bars").getContext("2d");
+            // var ctx = document.getElementById("chart-bars").getContext("2d");
 
-            new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                    datasets: [{
-                        label: "Sales",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        borderRadius: 4,
-                        borderSkipped: false,
-                        backgroundColor: "#fff",
-                        data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-                        maxBarThickness: 6
-                    }, ],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false,
-                        }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index',
-                    },
-                    scales: {
-                        y: {
-                            grid: {
-                                drawBorder: false,
-                                display: false,
-                                drawOnChartArea: false,
-                                drawTicks: false,
-                            },
-                            ticks: {
-                                suggestedMin: 0,
-                                suggestedMax: 500,
-                                beginAtZero: true,
-                                padding: 15,
-                                font: {
-                                    size: 14,
-                                    family: "Open Sans",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                                color: "#fff"
-                            },
-                        },
-                        x: {
-                            grid: {
-                                drawBorder: false,
-                                display: false,
-                                drawOnChartArea: false,
-                                drawTicks: false
-                            },
-                            ticks: {
-                                display: false
-                            },
-                        },
-                    },
-                },
-            });
+            // new Chart(ctx, {
+            //     type: "bar",
+            //     data: {
+            //         labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            //         datasets: [{
+            //             label: "Sales",
+            //             tension: 0.4,
+            //             borderWidth: 0,
+            //             borderRadius: 4,
+            //             borderSkipped: false,
+            //             backgroundColor: "#fff",
+            //             data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+            //             maxBarThickness: 6
+            //         }, ],
+            //     },
+            //     options: {
+            //         responsive: true,
+            //         maintainAspectRatio: false,
+            //         plugins: {
+            //             legend: {
+            //                 display: false,
+            //             }
+            //         },
+            //         interaction: {
+            //             intersect: false,
+            //             mode: 'index',
+            //         },
+            //         scales: {
+            //             y: {
+            //                 grid: {
+            //                     drawBorder: false,
+            //                     display: false,
+            //                     drawOnChartArea: false,
+            //                     drawTicks: false,
+            //                 },
+            //                 ticks: {
+            //                     suggestedMin: 0,
+            //                     suggestedMax: 500,
+            //                     beginAtZero: true,
+            //                     padding: 15,
+            //                     font: {
+            //                         size: 14,
+            //                         family: "Open Sans",
+            //                         style: 'normal',
+            //                         lineHeight: 2
+            //                     },
+            //                     color: "#fff"
+            //                 },
+            //             },
+            //             x: {
+            //                 grid: {
+            //                     drawBorder: false,
+            //                     display: false,
+            //                     drawOnChartArea: false,
+            //                     drawTicks: false
+            //                 },
+            //                 ticks: {
+            //                     display: false
+            //                 },
+            //             },
+            //         },
+            //     },
+            // });
 
 
             var ctx2 = document.getElementById("chart-line").getContext("2d");
