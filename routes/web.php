@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\SessionsController;
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductPurchaseController;
 
 /*
@@ -39,7 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('product-pruchased.index');
         Route::get('/create', 'create')->name('product-pruchased.create');
     });
-
 
     Route::get('/logout', [SessionsController::class, 'destroy']);
     Route::get('/user-profile', [InfoUserController::class, 'create']);
