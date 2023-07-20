@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title">
-                    <h6 class="">Purchased Product Information</h6>
+                    <h6 class="">Damage Product Information</h6>
                 </div>
             </div>
             <div class="card-body">

@@ -65,53 +65,51 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('product-purchased.*') ? 'active bg-gradient-light' : '' }} "
-                    href="{{ route('product-purchased.index') }}">
+                <a class="nav-link {{ request()->routeIs('purchased-product.*') ? 'active bg-gradient-light' : '' }} "
+                    href="{{ route('purchased-product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-tags fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product-purchased.*') ? 'text-white' : 'text-dark' }} "
+                        <i class="fas fa-tags fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('purchased-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span
-                        class="nav-link-text ms-1  {{ request()->routeIs('product-purchased.*') ? 'text-dark' : 'text-white' }} ">Purchased
-                        Product</span>
+                    <span class="nav-link-text ms-1  {{ request()->routeIs('purchased-product.*') ? 'text-dark' : 'text-white' }} ">Purchased Product</span>
+
                 </a>
             </li>
             <li class="nav-item pb-2">
-                <a class="nav-link {{ Request::is('user-management') ? 'active bg-gradient-light' : '' }}"
-                    href="{{ url('user-management') }}">
+                <a class="nav-link {{ request()->routeIs('stock-product.*') ? 'active bg-gradient-light' : '' }}"
+                    href="{{ route('stock-product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1rem;"
-                            class="fas fa-cubes fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('user-management') ? 'text-white' : 'text-dark' }} "
+                            class="fas fa-cubes fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('stock-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Stocks</span>
-                </a>
-            </li>
-            {{-- <li class="nav-item mt-2">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
-            </li> --}}
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('tables') ? 'active bg-gradient-light' : '' }}"
-                    href="{{ url('tables') }}">
-                    <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-truck opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('tables') ? 'text-white' : 'text-dark' }} "
-                            aria-hidden="true"></i>
-                    </div>
-                    <span class="nav-link-text text-white ms-1">Returned Products</span>
+                    <span class="nnav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('billing') ? 'active bg-gradient-light' : '' }}"
-                    href="{{ url('billing') }}">
+                <a class="nav-link {{ request()->routeIs('returned-product.*') ? 'active bg-gradient-light' : '' }}"
+                    href="{{ route('returned-product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-thumbs-down fa-lg ps-2 pe-2 text-center text-dark {{ Request::is('billing') ? 'text-white' : 'text-dark' }} "
+                        <i class="fas fa-truck opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('returned-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Damaged Products</span>
+                    <span class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} " >Return Product</span>
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('damaged-product.*') ? 'active bg-gradient-light' : '' }}"
+                    href="{{ route('damaged-product.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-thumbs-down opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('damaged-product.*') ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
+                    </div>
+                    <span class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} " >Damaged Product</span>
+
                 </a>
             </li>
         </ul>

@@ -6,6 +6,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductPurchaseController;
+use App\Http\Controllers\StockProductController;
+use App\Http\Controllers\ReturnProductController;
+use App\Http\Controllers\DamagedProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +38,23 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
     });
 
-    Route::controller(ProductPurchaseController::class)->prefix('product-purchased')->group(function () {
-        Route::get('/', 'index')->name('product-purchased.index');
-        Route::get('/create', 'create')->name('product-purchased.create');
+    Route::controller(ProductPurchaseController::class)->prefix('purchased-product')->group(function () {
+        Route::get('/', 'index')->name('purchased-product.index');
+        Route::get('/create', 'create')->name('purchased-product.create');
+    });
+
+    Route::controller(ReturnProductController::class)->prefix('returned-product')->group(function () {
+        Route::get('/', 'index')->name('returned-product.index');
+        Route::get('/create', 'create')->name('returned-product.create');
+    });
+
+    Route::controller(DamagedProductController::class)->prefix('damaged-product')->group(function () {
+        Route::get('/', 'index')->name('damaged-product.index');
+        Route::get('/create', 'create')->name('damaged-product.create');
+    });
+
+    Route::controller(StockProductController::class)->prefix('stock-product')->group(function () {
+        Route::get('/', 'index')->name('stock-product.index');
     });
 
     Route::get('/logout', [SessionsController::class, 'destroy']);

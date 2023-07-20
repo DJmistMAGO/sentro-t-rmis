@@ -1,27 +1,17 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
-    <div class="row">
-        <div class="card col-md-12">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <div class="card-title">
-                    <h5>PRODUCTS LIST</h5>
+<div class="row">
+    <div class="card col-md-12">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-title">
+                <h5>DAMAGED PRODUCT</h5>
+            </div>
+            <div class="card-tool d-flex justify-content-end">
+                <div class="col-md-5 me-2">
+                    <input type="text" placeholder="Search..." class="form-control form-control-sm">
                 </div>
-                <div class="card-tool d-flex justify-content-end">
-                    <form action="{{ route('product.index') }}" method="get">
-                        <div class="col-md-10 me-2">
-                            <div class="input-group input-group-sm">
-                                <!-- Add the name attribute to the input field -->
-                                <input type="text" name="search" placeholder="Search..." class="form-control">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-
-                    <a href="{{ route('product.create') }}" class="btn btn-sm bg-gradient-info">Add New Product</a>
-                </div>
+                <a href="{{ route('damaged-product.create') }}" class="btn btn-sm bg-gradient-info">Add New Product</a>
             </div>
         </div>
         <div class="card-body pt-0">
@@ -68,9 +58,9 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
