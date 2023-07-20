@@ -7,7 +7,7 @@
             <div class="page-header vh-100">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 d-flex flex-column mx-auto">
+                        <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center mx-auto">
                             <div class="card card-plain mt-0">
                                 <div class="card-header pb-0 text-center bg-transparent g-0">
                                     <img src="{{ asset('images/st2.png') }}" alt="logo" class="text- img-fluid pb-0 mb-0"
@@ -18,7 +18,6 @@
                                         <span class="d-none d-md-inline">Sentro Trading Record Inventory Management
                                             System</span>
                                     </h3>
-
                                 </div>
                                 <div class="card-body">
                                     <form role="form" method="POST" action="/session">
@@ -26,7 +25,7 @@
                                         <label>Email</label>
                                         <div class="mb-3">
                                             <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="Email" value="admin@softui.com" aria-label="Email"
+                                                placeholder="Email" value="admin@sentrotrading.com" aria-label="Email"
                                                 aria-describedby="email-addon">
                                             @error('email')
                                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
