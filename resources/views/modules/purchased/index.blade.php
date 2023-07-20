@@ -5,7 +5,7 @@
     <div class="card col-md-12">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div class="card-title">
-                <h5>PRODUCT</h5>
+                <h5>PRODUCT PURCHASED</h5>
             </div>
             <div class="card-tool d-flex justify-content-end">
                 <div class="col-md-5 me-2">
@@ -48,7 +48,7 @@
                                 <td class="align-middle text-center">
                                     <p class="mb-0 text-sm">test product</p>
                                 </td>
-                                <td class="align-middle d-flex justify-content-center"> 
+                                <td class="align-middle d-flex justify-content-center">
                                     <button class="btn btn-sm btn-success ms-1 me-1">View</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
