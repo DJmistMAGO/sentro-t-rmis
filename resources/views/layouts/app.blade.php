@@ -21,7 +21,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @stack('links')
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    @livewireStyles
     <link rel="shortcut icon" href="{{ asset('images/st1.png') }}" type="image/x-icon">
     <title>
         Sentro Trading Record Inventory Management System
@@ -62,7 +62,7 @@
     <script src="../assets/js/plugins/chartjs.min.js"></script>
 
     @stack('scripts')
-    {{-- @livewireScripts --}}
+    @livewireScripts
 
     @stack('dashboard')
     <script>
