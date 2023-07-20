@@ -5,7 +5,7 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-            <img src="{{ asset('images/st1.png') }}" class="navbar-brand-img h-120" alt="logo">
+            <img src="{{ asset('images/st1.png') }}" class="navbar-brand-img h-15   0" alt="logo">
             <span class="ms-3 font-weight-bold text-center">Sentro Trading Record Inventory Management System</span>
         </a>
     </div>
@@ -78,8 +78,8 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('tables') ? 'active bg-gradient-info' : '' }}"
-                    href="{{ url('tables') }}">
+                <a class="nav-link {{ request()->routeIs('product.*') ? 'active bg-gradient-info' : '' }}"
+                    href="{{ route('product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -101,10 +101,10 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text text-white ms-1">Tables</span>
+                    <span class="nav-link-text text-white ms-1">Products</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('billing') ? 'active bg-gradient-secondary' : '' }}"
                     href="{{ url('billing') }}">
                     <div
@@ -130,7 +130,7 @@
                     </div>
                     <span class="nav-link-text text-white ms-1">Billing</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item pb-2">
                 <a class="nav-link {{-- Request::is('user-management')?'activebg-gradient-info':'' --}}" href="{{-- url('user-management') --}}">
                     <div
