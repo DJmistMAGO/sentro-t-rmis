@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
-use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductPurchaseController;
@@ -35,9 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
     });
 
-    Route::controller(ProductPurchaseController::class)->prefix('product-pruchased')->group(function () {
-        Route::get('/', 'index')->name('product-pruchased.index');
-        Route::get('/create', 'create')->name('product-pruchased.create');
+    Route::controller(ProductPurchaseController::class)->prefix('product-purchased')->group(function () {
+        Route::get('/', 'index')->name('product-purchased.index');
+        Route::get('/create', 'create')->name('product-purchased.create');
     });
 
     Route::get('/logout', [SessionsController::class, 'destroy']);

@@ -70,7 +70,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('product-purchased.*') ? 'active bg-gradient-info' : '' }} "
-                    href="{{ route('product-pruchased.index') }}">
+                    href="{{ route('product-purchased.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product-purchased.*') ? 'text-white' : 'text-dark' }} "
