@@ -4,8 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionsController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\ProductPurchaseController;
 
 /*
@@ -26,7 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', function () {return view('profile');})->name('profile');
     Route::get('user-management', function () {return view('laravel-examples/user-management');})->name('user-management');
     Route::get('tables', function () {return view('tables');})->name('tables');
-	
+
     Route::controller(ProductController::class)->prefix('product')->group(function () {
         Route::get('/', 'index')->name('product.index');
         Route::get('/create', 'create')->name('product.create');
