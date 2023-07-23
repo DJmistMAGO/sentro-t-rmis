@@ -8,8 +8,8 @@
     <x-success></x-success>
     <x-errors></x-errors>
     <div class="row">
-        <div class="card col-md-12">
-            <div class="card-header d-flex justify-content-between align-items-center mb-0">
+        <div class="card bg-light col-md-12">
+            <div class="card-header d-flex justify-content-between align-items-center mb-0 bg-light">
                 <div class="card-title">
                     <h5 class="d-none d-md-inline">PRODUCTS LIST</h5>
                 </div>
@@ -29,11 +29,11 @@
                         <span><i class="fa fa-plus" aria-hidden="true"></i></span> Add New Product</a>
                 </div>
             </div>
-            <div class="card-body bg-white pt-0">
+            <div class="card-body bg-light pt-0">
                 <div class="row">
                     <div class="table-responsive p-0">
-                        <table class="table table-sm mb-0">
-                            <thead>
+                        <table class="table table-sm mb-0 table-hover">
+                            <thead class="thead-gray">
                                 <tr>
                                     <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
                                         Name</th>
@@ -57,18 +57,17 @@
                                 @forelse ($products as $product)
                                     <tr>
                                         <td class="text-sm align-middle">
-                                            @if ($product->image)
-                                                <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-3"
+                                            {{-- @if (!hasFile('/img/{{ $product->image }}')) --}}
+                                            {{-- <img src="../assets/img/prd.webp" class="avatar avatar-sm me-1" alt="user1"> --}}
+                                            {{-- @else --}}
+                                                <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-1"
                                                     alt="user1">
-                                            @else
-                                                <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-3"
-                                                    alt="user1">
-                                            @endif
+                                            {{-- @endif  --}}
                                             {{ $product->product_name }}
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
-                                        <td class="text-sm align-middle">
-                                            {{ Str::words($product->description, 5, $end = '...') }}</td>
+                                        <td class="text-sm align-middle" title="{{ $product->description }}">
+                                            {{ Str::words($product->description, 3, $end = '...') }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
                                         <td class="align-middle">

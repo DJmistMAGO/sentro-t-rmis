@@ -20,6 +20,16 @@ class UserSeeder extends Seeder
             'name' => 'Sentro Trading',
             'email' => 'admin@sentrotrading.com',
             'password' => Hash::make('secret'),
+            'role' => 'admin',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'id' => 2,
+            'name' => 'Staff 1 - Sentro Trading',
+            'email' => 'staff@sentrotrading.com',
+            'password' => Hash::make('secret'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);

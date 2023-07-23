@@ -3,11 +3,15 @@
         .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
             background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
         }
+
+        .sidenav {
+            overflow: hidden !important;
+        }
     </style>
 @endpush
 
 <aside
-    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-warning"
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-2 fixed-start ms-3 bg-gradient-warning"
     id="sidenav-main">
     <div class="sidenav-header mb-4">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
@@ -18,7 +22,7 @@
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main" style="height: 100vh;">
+    <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard') ? 'active bg-gradient-light' : '' }}"
@@ -72,7 +76,9 @@
                         <i class="fas fa-tags fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('purchased-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text ms-1  {{ request()->routeIs('purchased-product.*') ? 'text-dark' : 'text-white' }} ">Purchased Product</span>
+                    <span
+                        class="nav-link-text ms-1  {{ request()->routeIs('purchased-product.*') ? 'text-dark' : 'text-white' }} ">Purchased
+                        Product</span>
 
                 </a>
             </li>
@@ -85,7 +91,8 @@
                             class="fas fa-cubes fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('stock-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nnav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks</span>
+                    <span
+                        class="nnav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -96,7 +103,9 @@
                         <i class="fas fa-truck opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('returned-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} " >Return Product</span>
+                    <span
+                        class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} ">Return
+                        Product</span>
 
                 </a>
             </li>
@@ -108,10 +117,30 @@
                         <i class="fas fa-thumbs-down opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('damaged-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} " >Damaged Product</span>
+                    <span
+                        class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} ">Damaged
+                        Product</span>
 
                 </a>
             </li>
+            @if (auth()->user()->role == 'admin')
+                <li class="nav-item">
+                    <a href="{{ route('user-management') }}"
+                        class="nav-link {{ request()->routeIs('user-management') ? 'active bg-gradient-light' : '' }}">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa fa-users opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('user-management') ? 'text-white' : 'text-dark' }}"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span
+                            class="nav-link-text ms-1 {{ request()->routeIs('user-management') ? 'text-dark' : 'text-white' }}">User
+                            Management</span>
+                    </a>
+                </li>
+            @endif
         </ul>
+    </div>
+    <div>
+        {{ auth()->user()->name }}
     </div>
 </aside>

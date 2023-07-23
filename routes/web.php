@@ -1,14 +1,14 @@
 <?php
 
+use App\Http\Controllers\DamagedProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SessionsController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductPurchaseController;
-use App\Http\Controllers\StockProductController;
 use App\Http\Controllers\ReturnProductController;
-use App\Http\Controllers\DamagedProductController;
+use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\StockProductController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home']);
     Route::get('dashboard', function () {return view('dashboard');})->name('dashboard');
-    Route::get('profile', function () {return view('profile');})->name('profile');
+    // <!-- Route::get('profile', function () {return view('profile');})->name('profile'); -->
     Route::get('user-management', function () {return view('laravel-examples/user-management');})->name('user-management');
     Route::get('tables', function () {return view('tables');})->name('tables');
 
