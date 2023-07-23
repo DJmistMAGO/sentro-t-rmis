@@ -57,8 +57,13 @@
                                 @forelse ($products as $product)
                                     <tr>
                                         <td class="text-sm align-middle">
-                                            <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-3"
-                                                alt="user1">
+                                            @if ($product->image)
+                                                <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-3"
+                                                    alt="user1">
+                                            @else
+                                                <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-3"
+                                                    alt="user1">
+                                            @endif
                                             {{ $product->product_name }}
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
