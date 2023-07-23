@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\StoreRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,6 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-
         $search = $request->input('search');
 
         $query = Product::query();
@@ -29,5 +29,13 @@ class ProductController extends Controller
     public function create()
     {
         return view('modules.product.create');
+    }
+
+    public function store(StoreRequest $request)
+    {
+        $validated = $request->validated();
+        dd($validated);
+
+        return redirect()->route('product.index');
     }
 }
