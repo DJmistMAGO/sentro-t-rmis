@@ -1,18 +1,23 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
+const fs = require("fs");
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel applications. By default, we are compiling the CSS
- | file for the application as well as bundling up all the JS files.
- |
- */
+let getFiles = function (dir) {
+    return fs.readdirSync(dir).filter((file) => {
+        return fs.statSync(`${dir}/${file}`).isFile();
+    });
+};
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]).minify('public/assets/js/soft-ui-dashboard.js');
-mix.sass('public/assets/scss/soft-ui-dashboard.scss', 'public/assets/css');
+// TODO add the directories here relative to resources/js/
+var dirs = [
+    "", // for files under js
+];
+var resPath = "resources/js/";
+var pubPath = "public/js/";
+
+dirs.forEach(function (item, index) {
+    getFiles(resPath + item).forEach(function (filepath) {
+        mix.js(resPath + item + filepath, pubPath + item).version();
+    });
+});
+
+mix.disableNotifications();

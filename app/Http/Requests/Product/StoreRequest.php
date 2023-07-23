@@ -25,6 +25,7 @@ class StoreRequest extends FormRequest
             "product_name" => 'required',
             "product_code" => 'required',
             "description" => 'nullable',
+            'category' => 'required',
             "price" => 'required',
             "quantity" => 'required',
             "image" => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5048'],

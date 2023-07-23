@@ -1,6 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/assets/css/soft-ui-dashboard.css": "/assets/css/soft-ui-dashboard.css",
-    "/assets/js/soft-ui-dashboard.min.js": "/assets/js/soft-ui-dashboard.min.js"
+    "/js/app.js": "/js/app.js?id=b9c8f2c44a63e534e41c77d419a94cff",
+    "/js/bootstrap.js": "/js/bootstrap.js?id=cf639a25f3f664df99df095d9bf89384"
 }

@@ -21,7 +21,7 @@ class ProductController extends Controller
                 ->orWhere('category', 'like', '%' . $search . '%');
         }
 
-        $products = $query->paginate(10);
+        $products = $query->paginate(6);
 
         return view('modules.product.index', compact('products'));
     }
@@ -34,8 +34,25 @@ class ProductController extends Controller
     public function store(StoreRequest $request)
     {
         $validated = $request->validated();
-        dd($validated);
+        // dd($validated);
 
-        return redirect()->route('product.index');
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('img'), $imageName);
+
+        Product::create([
+            'product_name' => $validated['product_name'],
+            'product_code' => $validated['product_code'],
+            'description' => $validated['description'],
+            'category' => $validated['category'],
+            'price' => $validated['price'],
+            'quantity' => $validated['quantity'],
+            'image' => $imageName,
+            'status' => 'ok', //test data
+            'supplier_info' => 'Supplier_1', //test data
+        ]);
+
+        return redirect()->route('product.index')
+            ->with('success', 'Product record created successfully.');
     }
 }

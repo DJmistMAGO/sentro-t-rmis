@@ -19,35 +19,35 @@
                                     <input type="text" name="product_name"
                                         class="form-control @error('product_name') is-invalid @enderror" required
                                         placeholder="Enter Product name">
+                                    @error('product_name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                @error('product_name')
-                                    <span class="error invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
                                 <div class="form-group">
                                     <label class="form-label">Product Code</label>
                                     <input type="text" name="product_code"
                                         class="form-control @error('product_code') is-invalid @enderror" required
                                         placeholder="Enter Product Code (e.g., STRIMS_001)">
+                                    @error('product_code')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                @error('product_code')
-                                    <span class="error invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
                                 <div class="form-group">
                                     <label class="form-label">Product Description <span
                                             class="text-info font-italic">(Optional)</span></label>
                                     <input type="text" name="description"
                                         class="form-control @error('description') is-invalid @enderror"
                                         placeholder="Enter Product Description">
+                                    @error('description')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                @error('description')
-                                    <span class="error invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
                                 <div class="form-group">
                                     <label class="form-label">Category</label>
                                     <select name="category" class="form-control @error('category') is-invalid @enderror"
@@ -58,35 +58,35 @@
                                         <option value="Cat 3">Category Sample 3</option>
                                         <option value="Cat 4">Category Sample 4</option>
                                     </select>
+                                    @error('category')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                @error('category')
-                                    <span class="error invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="form-label">Product Price</label>
                                         <input type="number" step="0.01" min="1" name="price"
                                             class="form-control @error('price') is-invalid @enderror" required
                                             placeholder="0.00">
+                                        @error('price')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-                                    @error('price')
-                                        <span class="error invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
                                     <div class="form-group col-md-6">
                                         <label class="form-label">Product Quantity</label>
-                                        <input type="number" name="qty" step="0.01" min="1"
+                                        <input type="number" name="quantity" step="0.01" min="1"
                                             class="form-control @error('quantity') is-invalid @enderror" required
                                             placeholder="1">
+                                        @error('quantity')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-                                    @error('quantity')
-                                        <span class="error invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -95,13 +95,13 @@
                                     <input type="file" name="image"
                                         class="form-control @error('image') is-invalid @enderror"
                                         value="{{ old('image') }}" id="image" required>
+                                    @error('image')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <img src="" alt="" id="preview" class="img-fluid img-thumbnail">
                                 </div>
-                                @error('image')
-                                    <span class="error invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
                             </div>
                         </div>
                     </div>
