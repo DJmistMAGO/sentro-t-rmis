@@ -9,7 +9,7 @@
     <x-errors></x-errors>
     <div class="row">
         <div class="card col-md-12">
-            <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-header d-flex justify-content-between align-items-center mb-0">
                 <div class="card-title">
                     <h5 class="d-none d-md-inline">PRODUCTS LIST</h5>
                 </div>
@@ -35,20 +35,21 @@
                         <table class="table table-sm mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product
-                                        Name
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Product Code
+                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
+                                        Name</th>
+                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
+                                        Code</th>
+                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
+                                        Description</th>
+                                    <th
+                                        class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
+                                        Price
                                     </th>
                                     <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Price</th>
-                                    <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
                                         Quantity</th>
                                     <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
                                         Actions</th>
                                 </tr>
                             </thead>
@@ -61,12 +62,16 @@
                                             {{ $product->product_name }}
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
+                                        <td class="text-sm align-middle">
+                                            {{ Str::words($product->description, 5, $end = '...') }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
-                                        <td class="d-flex justify-content-center align-middle">
-                                            <button class="btn btn-sm btn-warning me-1 px-3">Restock</button>
-                                            <button class="btn btn-sm btn-success me-1 px-3">View</button>
-                                            <button class="btn btn-sm btn-danger px-3">Delete</button>
+                                        <td class="align-middle">
+                                            <div class="align-middle">
+                                                <button class="btn btn-sm btn-warning me-1 mb-0 px-3">Restock</button>
+                                                <button class="btn btn-sm btn-success me-1 mb-0 px-3">View</button>
+                                                <button class="btn btn-sm btn-danger mb-0 px-3">Delete</button>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty
@@ -78,7 +83,10 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $products->links() }}
+                        <hr>
+                        <div class="d-flex justify-content-center mb-0">
+                            {{ $products->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,13 +95,11 @@
 @endsection
 
 @push('scripts')
-    @livewireScripts()
-
-    <script>
+    {{-- <script>
         window.setTimeout(function() {
             $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
                 $(this).remove();
             });
         }, 5000);
-    </script>
+    </script> --}}
 @endpush

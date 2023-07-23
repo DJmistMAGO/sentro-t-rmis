@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $search = $request->input('search');
 
-        $query = Product::query();
+        $query = Product::query()->orderBy('product_name', 'asc');
 
         if ($search) {
             $query->where('product_name', 'like', '%' . $search . '%')
@@ -21,7 +21,7 @@ class ProductController extends Controller
                 ->orWhere('category', 'like', '%' . $search . '%');
         }
 
-        $products = $query->paginate(6);
+        $products = $query->paginate(7);
 
         return view('modules.product.index', compact('products'));
     }

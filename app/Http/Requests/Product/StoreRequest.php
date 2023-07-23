@@ -22,26 +22,27 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "product_name" => 'required',
-            "product_code" => 'required',
-            "description" => 'nullable',
+            'product_name' => 'required',
+            'product_code' => 'required',
+            'description' => 'nullable',
             'category' => 'required',
-            "price" => 'required',
-            "quantity" => 'required',
-            "image" => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5048'],
+            'price' => 'required',
+            'quantity' => 'required',
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5048'],
         ];
     }
 
-    // public function message()
-    // {
-    //     return [
-    //         "product_name.required" => "Product Name is required",
-    //         "Product_code.required" => "Product Code is required",
-    //         "price.required" => "Price is required",
-    //         "quantity.required" => "Quantity is required",
-    //         "image.required" => "Product Image is required",
-    //         "image.max" => "Image must not exceed 5mb",
-    //         "image.mimes" => "Image must be in formats accepted: jpeg, png, jpg, and/or gif",
-    //     ];
-    // }
+    public function messages()
+    {
+        return [
+            'product_name.required' => 'Product Name is required',
+            'Product_code.required' => 'Product Code is required',
+            'price.required' => 'Price is required',
+            'quantity.required' => 'Quantity is required',
+            'image.required' => 'Product Image is required',
+            'image.image' => 'Image must be a valid image',
+            'image.max' => 'Image must not exceed 5mb in filesize',
+            'image.mimes' => 'Image must be in formats accepted: jpeg, png, jpg, and/or gif',
+        ];
+    }
 }
