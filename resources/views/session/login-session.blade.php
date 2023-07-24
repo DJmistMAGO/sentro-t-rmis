@@ -24,20 +24,26 @@
                                         @csrf
                                         <label>Email</label>
                                         <div class="mb-3">
-                                            <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="Email" value="admin@sentrotrading.com" aria-label="Email"
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                                name="email" id="email" placeholder="Email"
+                                                value="admin@sentrotrading.com" aria-label="Email"
                                                 aria-describedby="email-addon">
                                             @error('email')
-                                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
                                             @enderror
                                         </div>
                                         <label>Password</label>
                                         <div class="mb-3">
-                                            <input type="password" class="form-control" name="password" id="password"
-                                                placeholder="Password" value="secret" aria-label="Password"
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror" name="password"
+                                                id="password" placeholder="Password" value="secret" aria-label="Password"
                                                 aria-describedby="password-addon">
                                             @error('password')
-                                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
                                             @enderror
                                         </div>
                                         <div class="text-center">

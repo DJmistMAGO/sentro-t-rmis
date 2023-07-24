@@ -27,19 +27,18 @@
         Sentro Trading Record Inventory Management System
     </title>
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> --}}
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/nucleo-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/soft-ui-dashboard.min.css') }}" id="pagestyle">
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show  bg-gray-400">
     @auth
         @yield('auth')
     @endauth
@@ -47,19 +46,19 @@
         @yield('guest')
     @endguest
 
-    @if (session()->has('success'))
+    {{-- @if (session()->has('success'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
-            class="position-fixed bg-success rounded right-3 text-sm py-2 px-4">
+            class="position-relative bg-success rounded me-3 text-sm py-2 px-4">
             <p class="m-0">{{ session('success') }}</p>
         </div>
-    @endif
+    @endif --}}
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/fullcalendar.min.js"></script>
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
 
     @stack('scripts')
     @livewireScripts
@@ -76,9 +75,9 @@
     </script>
     <script>
         function updateDateTime() {
-            var currentDate = new Date();
+            var currentDate = new Date(); //will get current date
 
-            // format currentDate as F d, Y h:i:s A
+            // format currentDate as Weekday, Month Day, Year - Hour:Minute:Second AM/PM
             var formattedDateTime = currentDate.toLocaleString('en-US', {
                 month: 'long',
                 day: 'numeric',
@@ -94,13 +93,13 @@
 
             document.getElementById("currentDateTime").innerHTML = formattedDateTime;
         }
-        setInterval(updateDateTime, 1000);
+        setInterval(updateDateTime, 1000); // updates the code every second
     </script>
 
     <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
 </body>
 
 </html>

@@ -146,9 +146,6 @@
 @push('dashboard')
     <script>
         window.onload = function() {
-
-
-
             var ctx2 = document.getElementById("chart-line").getContext("2d");
 
             var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);

@@ -1,6 +1,6 @@
 .navbar-vertical.navbar-expand-xs .navbar-collapse {
     display: block !important;
-    height: 88% !important;
+    height: auto !important;
     overflow: hidden !important;
 }
 
