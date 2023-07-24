@@ -84,7 +84,7 @@ class ProductController extends Controller
 
         $product = Product::findOrfail($id);
 
-        // check first if product has an image and if it exists at the public/img/ directory, if it has and exists, delete it
+        // delete old image
         if ($product->image && file_exists(public_path('img/' . $product->image))) {
             unlink(public_path('img/' . $product->image));
         }
