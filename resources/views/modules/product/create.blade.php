@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 mt-2">
-            <div class="card">
+            <div class="card" style="border-radius: 10px;">
                 <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-header">
+                    <div class="card-header border-radius-md">
                         <div class="card-title">
                             <h5 class="text-uppercase">Product Information</h5>
                         </div>

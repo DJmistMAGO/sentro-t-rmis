@@ -29,9 +29,9 @@
                         <span><i class="fa fa-plus" aria-hidden="true"></i></span> Add New Product</a>
                 </div>
             </div>
-            <div class="card-body bg-light pt-0">
+            <div class="card-body bg-light pt-0 pb-0 pe-0">
                 <div class="row">
-                    <div class="table-responsive p-0">
+                    <div class="table-responsive p-0 mb-0">
                         <table class="table table-sm mb-0 table-hover">
                             <thead class="thead-gray">
                                 <tr>
@@ -60,14 +60,14 @@
                                             {{-- @if (!hasFile('/img/{{ $product->image }}')) --}}
                                             {{-- <img src="../assets/img/prd.webp" class="avatar avatar-sm me-1" alt="user1"> --}}
                                             {{-- @else --}}
-                                                <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-1"
-                                                    alt="user1">
+                                            <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-1"
+                                                alt="user1">
                                             {{-- @endif  --}}
                                             {{ $product->product_name }}
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
-                                        <td class="text-sm align-middle" title="{{ $product->description }}">
-                                            {{ Str::words($product->description, 3, $end = '...') }}</td>
+                                        <td class="text-sm align-middle text-center" title="{{ $product->description }}">
+                                            {{ Str::words($product->description, 3, $end = '......') }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
                                         <td class="align-middle">
@@ -87,8 +87,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <hr>
-                        <div class="d-flex justify-content-center mb-0">
+                        <div class="d-flex justify-content-center mb-0 mt-1">
                             {{ $products->links() }}
                         </div>
                     </div>

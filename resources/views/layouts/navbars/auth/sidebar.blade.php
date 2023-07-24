@@ -7,6 +7,11 @@
         .sidenav {
             overflow: hidden !important;
         }
+
+        .nav-link:hover {
+            background-color: rgb(168, 167, 167);
+            border-radius: 10px;
+        }
     </style>
 @endpush
 
@@ -53,9 +58,6 @@
                         class="nav-link-text ms-1 {{ Request::is('dashboard') ? 'text-dark' : 'text-white' }}">Dashboard</span>
                 </a>
             </li>
-            {{-- <li class="nav-item mt-2">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Examples</h6>
-            </li> --}}
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('product.*') ? 'active bg-gradient-light' : '' }} "
                     href="{{ route('product.index') }}">
@@ -138,9 +140,13 @@
                     </a>
                 </li>
             @endif
+            <li class="nav-item mt-5 mb-0">
+                <a href="#"
+                    class="nav-link text-uppercase text-center text-sm font-weight-bolder text-white d-flex justify-content-center">
+                    <i class="fa fa-user ms-0 ps-0  " aria-hidden="true"></i>
+                    {{ auth()->user()->name }}
+                </a>
+            </li>
         </ul>
-    </div>
-    <div>
-        {{ auth()->user()->name }}
     </div>
 </aside>
