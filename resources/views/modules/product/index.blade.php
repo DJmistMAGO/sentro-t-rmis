@@ -1,4 +1,4 @@
-@extends('layouts.user_type.auth')
+@extends('layouts.app')
 
 @section('title')
     Product | Create
@@ -57,12 +57,16 @@
                                 @forelse ($products as $product)
                                     <tr>
                                         <td class="text-sm align-middle">
-                                            {{-- @if (!hasFile('/img/{{ $product->image }}')) --}}
-                                            {{-- <img src="../assets/img/prd.webp" class="avatar avatar-sm me-1" alt="user1"> --}}
-                                            {{-- @else --}}
-                                            <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-1"
-                                                alt="user1">
-                                            {{-- @endif  --}}
+                                            @php
+                                                $imagePath = '/img/' . $product->image;
+                                            @endphp
+
+                                            @if (file_exists(public_path($imagePath)))
+                                                <img src="{{ $imagePath }}" class="avatar avatar-sm me-1" alt="img">
+                                            @else
+                                                <img src="{{ asset('assets/img/prd.webp') }}" class="avatar avatar-sm me-1"
+                                                    alt="img">
+                                            @endif
                                             {{ $product->product_name }}
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>

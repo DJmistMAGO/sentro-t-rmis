@@ -1,17 +1,17 @@
-@extends('layouts.user_type.auth')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
         <div class="col-md-12 mt-2">
-            <div class="card" style="border-radius: 10px;">
+            <div class="card bg-light" style="border-radius: 10px;">
                 <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-header border-radius-md">
+                    <div class="card-header border-radius-md bg-light mb-0 pb-0">
                         <div class="card-title">
                             <h5 class="text-uppercase">Product Information</h5>
                         </div>
                     </div>
-                    <div class="card-body pt-0">
+                    <div class="card-body pt-0 bg-light">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Product Description <span
-                                            class="text-info font-italic">(Optional)</span></label>
+                                            class="text-danger font-italic">(Optional)</span></label>
                                     <textarea rows="4" name="description" class="form-control @error('description') is-invalid @enderror"
                                         placeholder="Enter a brief description of the product">{{ old('description') }}</textarea>
                                     @error('description')
@@ -53,10 +53,15 @@
                                     <select name="category" class="form-control @error('category') is-invalid @enderror"
                                         required>
                                         <option value="">--Please Select--</option>
-                                        <option value="Cat 1">Category Sample 1</option>
-                                        <option value="Cat 2">Category Sample 2</option>
-                                        <option value="Cat 3">Category Sample 3</option>
-                                        <option value="Cat 4">Category Sample 4</option>
+                                        <option value="Cat 1">Marine and Boating Supplies</option>
+                                        <option value="Cat 2">Home Improvement Materials</option>
+                                        <option value="Cat 3">Pumps and Plumbing Supplies</option>
+                                        <option value="Cat 4">Steel and Metal Products</option>
+                                        <option value="Cat 5">Wood and Timber Products</option>
+                                        <option value="Cat 5">Power Tools and Accessories</option>
+                                        <option value="Cat 6">Paints and Coatings</option>
+                                        <option value="Cat 7">Electrical and Lighting</option>
+                                        <option value="Cat 8">Hardware and others</option>
                                     </select>
                                     @error('category')
                                         <div class="invalid-feedback">
@@ -106,7 +111,7 @@
                         </div>
                     </div>
                     <div class="card-footer col-md-12 d-flex justify-content-end">
-                        {{-- <a href="{{ url('product') }}" class="btn btn-danger me-2 col-md-2">Cancel</a> --}}
+                        <a href="{{ route('product.index') }}" class="btn btn-danger me-2 col-md-2">Cancel</a>
                         <button class="btn btn-info col-md-2" type="submit">Submit</button>
                     </div>
                 </form>

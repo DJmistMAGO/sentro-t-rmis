@@ -37,28 +37,17 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-400">
-    @auth
-        @include('layouts.navbars.auth.sidebar')
-        <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
-            @include('layouts.navbars.auth.nav')
-            <div class="container-fluid py-4">
-                @yield('content')
-            </div>
-        </main>
-    @endauth
+    @guest
+        @yield('content')
+    @endguest
 
     {{-- Core JS files --}}
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
 
     @stack('scripts')
     @livewireScripts
 
-    @stack('dashboard')
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -68,30 +57,6 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    {{-- script for date on the navbar  --}}
-    <script>
-        function updateDateTime() {
-            var currentDate = new Date(); //will get current date
-
-            // format currentDate as Weekday, Month Day, Year - Hour:Minute:Second AM/PM
-            var formattedDateTime = currentDate.toLocaleString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: 'numeric',
-                second: 'numeric',
-                hour12: true,
-                weekday: 'long'
-            });
-            // replace at with space
-            formattedDateTime = formattedDateTime.replace("at", " - ");
-
-            document.getElementById("currentDateTime").innerHTML = formattedDateTime;
-        }
-        setInterval(updateDateTime, 1000); // updates the code every second
-    </script>
-
     <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
 </body>
 
