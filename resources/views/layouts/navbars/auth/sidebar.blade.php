@@ -1,20 +1,3 @@
-@push('links')
-    <style>
-        .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
-            background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
-        }
-
-        .sidenav {
-            overflow: hidden !important;
-        }
-
-        .nav-link:hover {
-            background-color: rgb(168, 167, 167);
-            border-radius: 10px;
-        }
-    </style>
-@endpush
-
 <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-2 fixed-start ms-3 bg-gradient-warning"
     id="sidenav-main">
@@ -30,8 +13,8 @@
     <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard') ? 'active bg-gradient-light' : '' }}"
-                    href="{{ url('dashboard') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active bg-gradient-light' : '' }}"
+                    href="{{ route('dashboard') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light -bottom-3 text-center me-2 d-flex align-items-center justify-content-center">
 
@@ -55,7 +38,7 @@
                         </svg>
                     </div>
                     <span
-                        class="nav-link-text ms-1 {{ Request::is('dashboard') ? 'text-dark' : 'text-white' }}">Dashboard</span>
+                        class="nav-link-text ms-1 {{ request()->routeIs('dashboard') ? 'text-dark' : 'text-white' }}">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">

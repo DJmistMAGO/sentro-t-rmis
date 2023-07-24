@@ -37,9 +37,11 @@
                                 <tr>
                                     <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
                                         Name</th>
-                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
+                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
+                                        Product
                                         Code</th>
-                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
+                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
+                                        Product
                                         Description</th>
                                     <th
                                         class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
@@ -70,7 +72,7 @@
                                             {{ $product->product_name }}
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
-                                        <td class="text-sm align-middle text-center" title="{{ $product->description }}">
+                                        <td class="text-sm align-middle text-justify" title="{{ $product->description }}">
                                             {{ Str::words($product->description, 3, $end = '......') }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
@@ -102,11 +104,11 @@
 @endsection
 
 @push('scripts')
-    {{-- <script>
+    <script>
         window.setTimeout(function() {
             $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
                 $(this).remove();
             });
         }, 5000);
-    </script> --}}
+    </script>
 @endpush

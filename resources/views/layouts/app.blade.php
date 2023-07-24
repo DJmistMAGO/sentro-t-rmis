@@ -34,22 +34,40 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/soft-ui-dashboard.min.css') }}" id="pagestyle">
+    <style>
+        .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
+            background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
+        }
+
+        .sidenav {
+            overflow: hidden !important;
+        }
+
+        .sidenav .nav-link:hover {
+            background-color: rgb(168, 167, 167);
+            border-radius: 10px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-400">
-    @auth
-        @include('layouts.navbars.auth.sidebar')
-        <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
-            @include('layouts.navbars.auth.nav')
-            <div class="container-fluid py-4">
-                @yield('content')
-            </div>
-        </main>
-    @endauth
+
+    @include('layouts.navbars.auth.sidebar')
+    <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
+        @include('layouts.navbars.auth.nav')
+        <div class="container-fluid py-4">
+            @yield('content')
+        </div>
+    </main>
 
     {{-- Core JS files --}}
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.3.7.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/fullcalendar.min.js') }}"></script>

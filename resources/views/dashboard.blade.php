@@ -1,4 +1,4 @@
-@extends('layouts.user_type.auth')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
@@ -13,7 +13,7 @@
                     <h6 class="text-center mb-0">Product</h6>
                     <span class="text-xs">Total New Added</span>
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">2000</h5>
+                    <h5 class="mb-0">{{ $productCount }}</h5>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                     <h6 class="text-center mb-0">Stock Product</h6>
                     <span class="text-xs">This Month</span>
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">455</h5>
+                    <h5 class="mb-0">{{ $products->count() }}</h5>
                 </div>
             </div>
         </div>
