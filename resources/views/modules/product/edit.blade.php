@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-12 mt-2">
-                <x-card title="Create Product Record" :back-url="route('product.index')">
+                <x-card title="Update Product Record" :back-url="route('product.index')">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Product Name</label>
                                 <input type="text" name="product_name"
                                     class="form-control @error('product_name') is-invalid @enderror"
-                                    value="{{ old('product_name') }}" required placeholder="Enter Product name">
+                                    value="{{ $product->product_name }}" required placeholder="Enter Product name">
                                 @error('product_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -23,7 +23,7 @@
                                 <label class="form-label">Product Code</label>
                                 <input type="text" name="product_code"
                                     class="form-control @error('product_code') is-invalid @enderror"
-                                    value="{{ old('product_code') }}" required
+                                    value="{{ $product->product_code }}" required
                                     placeholder="Enter Product Code (e.g., STRIMS_001)">
                                 @error('product_code')
                                     <div class="invalid-feedback">
@@ -35,7 +35,7 @@
                                 <label class="form-label">Product Description <span
                                         class="text-info font-italic">(Optional)</span></label>
                                 <textarea rows="3" name="description" class="form-control @error('description') is-invalid @enderror"
-                                    placeholder="Enter a brief description of the product">{{ old('description') }}</textarea>
+                                    placeholder="Enter a brief description of the product">{{ $product->description }}</textarea>
                                 @error('description')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -47,7 +47,7 @@
                                         class="text-info font-italic">(Optional)</span></label>
                                 <input type="text" name="supplier_info"
                                     class="form-control @error('supplier_info') is-invalid @enderror"
-                                    value="{{ old('supplier_info') }}" required placeholder="Enter Supplier Information">
+                                    value="{{ $product->supplier_info }}" required placeholder="Enter Supplier Information">
                                 @error('supplier_info')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -60,7 +60,7 @@
                                     required>
                                     <option value="">--Please Select--</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category }}" @selected(old('category') == $category)>
+                                        <option value="{{ $category }}" @selected($product->category == $category)>
                                             {{ $category }}</option>
                                     @endforeach
                                 </select>
@@ -77,7 +77,7 @@
                                     <label class="form-label">Product Price</label>
                                     <input type="number" step="0.01" min="1" name="price"
                                         class="form-control @error('price') is-invalid @enderror"
-                                        value="{{ old('price') }}" required placeholder="0.00">
+                                        value="{{ $product->price }}" required placeholder="0.00">
                                     @error('price')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -88,7 +88,7 @@
                                     <label class="form-label">Product Quantity</label>
                                     <input type="number" name="quantity" step="0.01" min="1"
                                         class="form-control @error('quantity') is-invalid @enderror"
-                                        value="{{ old('quantity') }}" required placeholder="1">
+                                        value="{{ $product->quantity }}" required placeholder="1">
                                     @error('quantity')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -99,14 +99,15 @@
                             <div class="form-group">
                                 <label class="form-label">Image</label>
                                 <input type="file" name="image"
-                                    class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}"
+                                    class="form-control @error('image') is-invalid @enderror" value="{{ $product->image }}"
                                     id="image" required>
                                 @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img src="" alt="" id="preview" class="img-fluid img-thumbnail">
+                                <img src="/img/{{ $product->image }}" alt="" id="preview"
+                                    class="img-fluid img-thumbnail height-300">
                             </div>
                         </div>
                     </div>

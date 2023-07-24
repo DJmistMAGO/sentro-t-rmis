@@ -78,8 +78,9 @@
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
                                         <td class="align-middle">
                                             <div class="align-middle">
-                                                <button class="btn btn-sm btn-warning me-1 mb-0 px-3">Restock</button>
-                                                <button class="btn btn-sm btn-success me-1 mb-0 px-3">View</button>
+                                                {{-- <button class="btn btn-sm btn-warning me-1 mb-0 px-3">Restock</button> --}}
+                                                <a href="{{ route('product.edit', $product->id) }}"
+                                                    class="btn btn-success btn-sm  me-1 mb-0 px-3">View</a>
                                                 <button class="btn btn-sm btn-danger mb-0 px-3">Delete</button>
                                             </div>
                                         </td>
@@ -104,6 +105,7 @@
 @endsection
 
 @push('scripts')
+    {{-- script to autoclose alerts in 5 seconds --}}
     <script>
         window.setTimeout(function() {
             $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
