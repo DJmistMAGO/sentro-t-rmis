@@ -47,7 +47,7 @@
                                         class="text-info font-italic">(Optional)</span></label>
                                 <input type="text" name="supplier_info"
                                     class="form-control @error('supplier_info') is-invalid @enderror"
-                                    value="{{ old('supplier_info') }}" required placeholder="Enter Supplier Information">
+                                    value="{{ old('supplier_info') }}" placeholder="Enter Supplier Information">
                                 @error('supplier_info')
                                     <div class="invalid-feedback">
                                         {{ $message }}

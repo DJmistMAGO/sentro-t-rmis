@@ -37,7 +37,6 @@
                                         Product
                                         Code</th>
                                     <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
-                                        Product
                                         Description</th>
                                     <th
                                         class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
@@ -46,6 +45,9 @@
                                     <th
                                         class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
                                         Quantity</th>
+                                    {{-- <th
+                                        class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
+                                        Unit</th> --}}
                                     <th
                                         class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
                                         Actions</th>
@@ -69,12 +71,18 @@
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
                                         <td class="text-sm align-middle text-justify" title="{{ $product->description }}">
-                                            {{ Str::words($product->description, 5, $end = '...') }}</td>
+                                            @if ($product->description == null)
+                                                <span class="text-muted">No description</span>
+                                            @endif
+                                            {{ Str::words($product->description, 5, $end = '...') }}
+                                        </td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
+                                        {{-- <td class="text-center text-sm align-middle">{{ $product->unit }}</td> --}}
                                         <td class="align-middle text-center">
                                             <div class="align-middle">
-                                                {{-- <button class="btn btn-sm btn-warning me-1 mb-0 px-3">Restock</button> --}}
+                                                <button
+                                                    class="btn btn-sm bg-gradient-warning me-1 mb-0 px-3">Restock</button>
                                                 <a href="{{ route('product.edit', $product->id) }}"
                                                     class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
                                                 @livewire('product.delete-product', ['product' => $product], key($product->id))

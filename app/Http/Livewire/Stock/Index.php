@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Stock;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class Index extends Component
 {
     public function render()
     {
-        return view('livewire.stock.index');
+        $products = Product::all();
+
+        return view('livewire.stock.index', compact('products'));
     }
 }
