@@ -67,7 +67,7 @@
 
                 </a>
             </li>
-            <li class="nav-item pb-2">
+            <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('stock-product.*') ? 'active bg-gradient-light' : '' }}"
                     href="{{ route('stock-product.index') }}">
                     <div
