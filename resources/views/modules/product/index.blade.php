@@ -16,12 +16,8 @@
                 <div class="card-tool d-flex justify-content-end">
                     <form action="{{ route('product.index') }}" method="get">
                         <div class="col-md-10 me-2">
-                            <div class="input-group input-group-sm">
-                                <input type="text" name="search" placeholder="Search..." class="form-control">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </div>
+                            <input type="text" name="search" placeholder="Search..."
+                                class="form-control form-control-sm">
                         </div>
                     </form>
 
@@ -76,12 +72,12 @@
                                             {{ Str::words($product->description, 3, $end = '......') }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
-                                        <td class="align-middle">
+                                        <td class="align-middle text-center">
                                             <div class="align-middle">
                                                 {{-- <button class="btn btn-sm btn-warning me-1 mb-0 px-3">Restock</button> --}}
                                                 <a href="{{ route('product.edit', $product->id) }}"
-                                                    class="btn btn-success btn-sm  me-1 mb-0 px-3">View</a>
-                                                <button class="btn btn-sm btn-danger mb-0 px-3">Delete</button>
+                                                    class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
+                                                @livewire('product.delete-product', ['product' => $product], key($product->id))
                                             </div>
                                         </td>
                                     </tr>
@@ -103,14 +99,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    {{-- script to autoclose alerts in 5 seconds --}}
-    <script>
-        window.setTimeout(function() {
-            $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
-                $(this).remove();
-            });
-        }, 5000);
-    </script>
-@endpush

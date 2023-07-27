@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <!-- Swwet Alert -->
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert/dist/sweetalert2.min.css') }}">
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/soft-ui-dashboard.min.css') }}" id="pagestyle">
@@ -72,6 +75,9 @@
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="{{ asset('assets/sweetalert/dist/sweetalert2.min.js') }}"></script>
+
+    <script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
     @livewireScripts
@@ -86,6 +92,8 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
+
     {{-- script for date on the navbar  --}}
     <script>
         function updateDateTime() {
@@ -110,7 +118,73 @@
         setInterval(updateDateTime, 1000); // updates the code every second
     </script>
 
-    <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
+    {{-- script to auto close alert --}}
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+                $(this).remove();
+            });
+        }, 5000);
+    </script>
+
+    <script>
+        if (window.livewire) {
+            window.livewire.on('hideModal', (modalId) => {
+                $(modalId).modal('hide');
+            });
+        }
+
+        window.addEventListener('SwalSuccess', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: event.detail.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
+
+        window.addEventListener('SwalError', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: event.detail.message,
+                showConfirmButton: true,
+            })
+        });
+
+        window.addEventListener('already-confirmed', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: event.detail.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
+
+        window.addEventListener('swal:confirm', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: event.detail.message,
+                showCancelButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `Cancel`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.livewire.emit('delete', event.detail.id)
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Successfully Deleted',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

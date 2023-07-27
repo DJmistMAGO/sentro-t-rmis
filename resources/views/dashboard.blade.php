@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <x-success></x-success>
     <div class="row">
         <div class="col-md-3">
             <div class="card">

@@ -4,7 +4,7 @@ use App\Http\Controllers\DamagedProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductPurchaseController;
+use App\Http\Controllers\PurchasedProductController;
 use App\Http\Controllers\ReturnProductController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\StockProductController;
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
     });
 
-    Route::controller(ProductPurchaseController::class)->prefix('purchased-product')->group(function () {
+    Route::controller(PurchasedProductController::class)->prefix('purchased-product')->group(function () {
         Route::get('/', 'index')->name('purchased-product.index');
         Route::get('/create', 'create')->name('purchased-product.create');
     });
