@@ -30,7 +30,8 @@ class ProductController extends Controller
             $query->where('product_name', 'like', '%' . $search . '%')
                 ->orWhere('product_code', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%')
-                ->orWhere('category', 'like', '%' . $search . '%');
+                ->orWhere('category', 'like', '%' . $search . '%')
+                ->orWhere('unit', 'like', '%' . $search . '%');
         }
 
         $products = $query->paginate(7);
@@ -57,12 +58,13 @@ class ProductController extends Controller
         Product::create([
             'product_name' => $validated['product_name'],
             'product_code' => $validated['product_code'],
-            'description' => $validated['description'],
+            'description' => $validated['description'] ?? '',
             'category' => $validated['category'],
             'price' => $validated['price'],
+            'unit' => $validated['unit'],
             'quantity' => $validated['quantity'],
             'image' => $imageName,
-            'supplier_info' => $validated['supplier_info'],
+            'supplier_info' => $validated['supplier_info'] ?? '',
             'status' => 'available', //default
         ]);
 
@@ -97,11 +99,12 @@ class ProductController extends Controller
         $product->update([
             'product_name' => $validated['product_name'],
             'product_code' => $validated['product_code'],
-            'description' => $validated['description'],
+            'description' => $validated['description'] ?? '',
             'category' => $validated['category'],
             'price' => $validated['price'],
             'quantity' => $validated['quantity'],
-            'supplier_info' => $validated['supplier_info'],
+            'unit' => $validated['unit'],
+            'supplier_info' => $validated['supplier_info'] ?? '',
             'image' => $imageName,
         ]);
 

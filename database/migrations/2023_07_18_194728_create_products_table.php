@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->string('product_code');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('category');
             $table->string('price');
             $table->string('quantity');
+            $table->string('unit');
             $table->string('image');
-            $table->string('status');
-            $table->string('supplier_info');
+            $table->string('status')->default('available');
+            $table->string('supplier_info')->nullablle();
             $table->softDeletes();
             $table->timestamps();
         });
