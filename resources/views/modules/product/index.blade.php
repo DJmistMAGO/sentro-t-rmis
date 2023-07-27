@@ -1,4 +1,4 @@
-@extends('layouts.user_type.auth')
+@extends('layouts.app')
 
 @section('title')
     Product | Create
@@ -16,12 +16,8 @@
                 <div class="card-tool d-flex justify-content-end">
                     <form action="{{ route('product.index') }}" method="get">
                         <div class="col-md-10 me-2">
-                            <div class="input-group input-group-sm">
-                                <input type="text" name="search" placeholder="Search..." class="form-control">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </div>
+                            <input type="text" name="search" placeholder="Search..."
+                                class="form-control form-control-sm">
                         </div>
                     </form>
 
@@ -37,9 +33,11 @@
                                 <tr>
                                     <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
                                         Name</th>
-                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
+                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
+                                        Product
                                         Code</th>
-                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">Product
+                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
+                                        Product
                                         Description</th>
                                     <th
                                         class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
@@ -57,24 +55,29 @@
                                 @forelse ($products as $product)
                                     <tr>
                                         <td class="text-sm align-middle">
-                                            {{-- @if (!hasFile('/img/{{ $product->image }}')) --}}
-                                            {{-- <img src="../assets/img/prd.webp" class="avatar avatar-sm me-1" alt="user1"> --}}
-                                            {{-- @else --}}
-                                            <img src="/img/{{ $product->image }}" class="avatar avatar-sm me-1"
-                                                alt="user1">
-                                            {{-- @endif  --}}
+                                            @php
+                                                $imagePath = '/img/' . $product->image;
+                                            @endphp
+
+                                            @if (file_exists(public_path($imagePath)))
+                                                <img src="{{ $imagePath }}" class="avatar avatar-sm me-1" alt="img">
+                                            @else
+                                                <img src="{{ asset('assets/img/prd.webp') }}" class="avatar avatar-sm me-1"
+                                                    alt="img">
+                                            @endif
                                             {{ $product->product_name }}
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
-                                        <td class="text-sm align-middle text-center" title="{{ $product->description }}">
+                                        <td class="text-sm align-middle text-justify" title="{{ $product->description }}">
                                             {{ Str::words($product->description, 3, $end = '......') }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
-                                        <td class="align-middle">
+                                        <td class="align-middle text-center">
                                             <div class="align-middle">
-                                                <button class="btn btn-sm btn-warning me-1 mb-0 px-3">Restock</button>
-                                                <button class="btn btn-sm btn-success me-1 mb-0 px-3">View</button>
-                                                <button class="btn btn-sm btn-danger mb-0 px-3">Delete</button>
+                                                {{-- <button class="btn btn-sm btn-warning me-1 mb-0 px-3">Restock</button> --}}
+                                                <a href="{{ route('product.edit', $product->id) }}"
+                                                    class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
+                                                @livewire('product.delete-product', ['product' => $product], key($product->id))
                                             </div>
                                         </td>
                                     </tr>
@@ -96,13 +99,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    {{-- <script>
-        window.setTimeout(function() {
-            $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
-                $(this).remove();
-            });
-        }, 5000);
-    </script> --}}
-@endpush

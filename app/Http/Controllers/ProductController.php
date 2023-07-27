@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public $categories = [
+        'Electrical and Lighting',
+        'Marine and Boating Supplies',
+        'Home Improvement Materials',
+        'Pumps and Plumbing Supplies',
+        'Steel and Metal Products',
+        'Wood and Timber Products',
+        'Power Tools and Accessories',
+        'Paints and Coatings',
+        'Hardware and others',
+    ];
+
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -28,7 +40,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('modules.product.create');
+        $categories = $this->categories;
+        return view('modules.product.create', compact('categories'));
     }
 
     public function store(StoreRequest $request)
@@ -37,7 +50,8 @@ class ProductController extends Controller
         // dd($validated);
 
         $image = $request->file('image');
-        $imageName = time() . '.' . $image->extension();
+        $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
+        // $imageName = time() . '.' . $image->extension();
         $image->move(public_path('img'), $imageName);
 
         Product::create([
@@ -48,11 +62,49 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'quantity' => $validated['quantity'],
             'image' => $imageName,
-            'status' => 'ok', //test data
-            'supplier_info' => 'Supplier_1', //test data
+            'supplier_info' => $validated['supplier_info'],
+            'status' => 'available', //default
         ]);
 
-        return redirect()->route('product.index')
-            ->with('success', 'Product record created successfully.');
+        return redirect()->route('product.index')->with('success', 'Product record created successfully.');
+    }
+
+    public function edit(Product $product, $id)
+    {
+        $product = Product::findOrfail($id);
+        $categories = $this->categories;
+
+        return view('modules.product.edit', compact('product', 'categories'));
+    }
+
+    public function update(StoreRequest $request, $id)
+    {
+        $validated = $request->validated();
+        // dd($validated);
+
+        $product = Product::findOrfail($id);
+
+        // delete old image
+        if ($product->image && file_exists(public_path('img/' . $product->image))) {
+            unlink(public_path('img/' . $product->image));
+        }
+
+        // upload new image
+        $image = $request->file('image');
+        $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
+        $image->move(public_path('img'), $imageName);
+
+        $product->update([
+            'product_name' => $validated['product_name'],
+            'product_code' => $validated['product_code'],
+            'description' => $validated['description'],
+            'category' => $validated['category'],
+            'price' => $validated['price'],
+            'quantity' => $validated['quantity'],
+            'supplier_info' => $validated['supplier_info'],
+            'image' => $imageName,
+        ]);
+
+        return redirect()->route('product.index')->with('success', 'Product record updated successfully.');
     }
 }

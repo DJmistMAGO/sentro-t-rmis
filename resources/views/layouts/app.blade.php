@@ -26,39 +26,58 @@
     <title>
         Sentro Trading Record Inventory Management System
     </title>
-    <!--     Fonts and icons     -->
-    {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> --}}
     <!-- Nucleo Icons -->
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <!-- Swwet Alert -->
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert/dist/sweetalert2.min.css') }}">
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/soft-ui-dashboard.min.css') }}" id="pagestyle">
+    <style>
+        .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
+            background-image: linear-gradient(310deg, #ff4000, #ff8400) !important;
+        }
+
+        .sidenav {
+            overflow: hidden !important;
+        }
+
+        .sidenav .nav-link:hover {
+            background-color: rgb(168, 167, 167);
+            border-radius: 10px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-400">
-    @auth
-        @yield('auth')
-    @endauth
-    @guest
-        @yield('guest')
-    @endguest
 
-    {{-- @if (session()->has('success'))
-        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
-            class="position-relative bg-success rounded me-3 text-sm py-2 px-4">
-            <p class="m-0">{{ session('success') }}</p>
+    @include('layouts.navbars.auth.sidebar')
+    <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
+        @include('layouts.navbars.auth.nav')
+        <div class="container-fluid py-4">
+            @yield('content')
         </div>
-    @endif --}}
-    <!--   Core JS Files   -->
+    </main>
+
+    {{-- Core JS files --}}
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.3.7.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="{{ asset('assets/sweetalert/dist/sweetalert2.min.js') }}"></script>
+
+    <script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
     @livewireScripts
@@ -73,6 +92,9 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
+
+    {{-- script for date on the navbar  --}}
     <script>
         function updateDateTime() {
             var currentDate = new Date(); //will get current date
@@ -96,10 +118,73 @@
         setInterval(updateDateTime, 1000); // updates the code every second
     </script>
 
-    <!-- Github buttons -->
-    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
+    {{-- script to auto close alert --}}
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+                $(this).remove();
+            });
+        }, 5000);
+    </script>
+
+    <script>
+        if (window.livewire) {
+            window.livewire.on('hideModal', (modalId) => {
+                $(modalId).modal('hide');
+            });
+        }
+
+        window.addEventListener('SwalSuccess', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: event.detail.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
+
+        window.addEventListener('SwalError', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: event.detail.message,
+                showConfirmButton: true,
+            })
+        });
+
+        window.addEventListener('already-confirmed', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: event.detail.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
+
+        window.addEventListener('swal:confirm', event => {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: event.detail.message,
+                showCancelButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `Cancel`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.livewire.emit('delete', event.detail.id)
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Successfully Deleted',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

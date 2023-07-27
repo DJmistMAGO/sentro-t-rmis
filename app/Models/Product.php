@@ -26,4 +26,9 @@ class Product extends Model
         'deleted_at',
     ];
 
+    public function purchasedProducts()
+    {
+        return $this->hasMany(PurchasedProduct::class);
+    }
+
 }

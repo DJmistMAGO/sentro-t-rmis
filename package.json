@@ -27,5 +27,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "alpinejs": "^3.12.3",
+    "sweetalert2": "^11.7.20"
+  }
 }
