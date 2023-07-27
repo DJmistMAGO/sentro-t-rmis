@@ -29,6 +29,7 @@ class StoreRequest extends FormRequest
             'category' => 'required',
             'price' => 'required',
             'quantity' => 'required',
+            'unit' => 'required',
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5048'],
         ];
     }
@@ -40,6 +41,7 @@ class StoreRequest extends FormRequest
             'product_code.required' => 'Product Code is required',
             'price.required' => 'Price is required',
             'quantity.required' => 'Quantity is required',
+            'unit.required' => 'Unit of measurement is required',
             'image.required' => 'Product Image is required',
             'image.image' => 'Image must be a valid image',
             'image.max' => 'Image must not exceed 5mb in file size',

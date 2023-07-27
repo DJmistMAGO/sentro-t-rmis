@@ -69,7 +69,7 @@
                                         </td>
                                         <td class="text-sm align-middle">{{ $product->product_code }}</td>
                                         <td class="text-sm align-middle text-justify" title="{{ $product->description }}">
-                                            {{ Str::words($product->description, 3, $end = '......') }}</td>
+                                            {{ Str::words($product->description, 5, $end = '...') }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
                                         <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
                                         <td class="align-middle text-center">
@@ -83,7 +83,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">
+                                        <td colspan="6" class="text-center">
                                             No Products found!
                                         </td>
                                     </tr>
