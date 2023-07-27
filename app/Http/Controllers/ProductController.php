@@ -53,6 +53,9 @@ class ProductController extends Controller
         $image = $request->file('image');
         $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
         // $imageName = time() . '.' . $image->extension();
+
+        // if public_path('img') does not exist, create it
+
         $image->move(public_path('img'), $imageName);
 
         Product::create([
