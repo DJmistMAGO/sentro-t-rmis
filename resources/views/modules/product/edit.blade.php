@@ -47,7 +47,7 @@
                                         class="text-info font-italic">(Optional)</span></label>
                                 <input type="text" name="supplier_info"
                                     class="form-control @error('supplier_info') is-invalid @enderror"
-                                    value="{{ $product->supplier_info }}" required placeholder="Enter Supplier Information">
+                                    value="{{ $product->supplier_info }}" placeholder="Enter Supplier Information">
                                 @error('supplier_info')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group">
                                     <label class="form-label">Product Price</label>
                                     <input type="number" step="0.01" min="1" name="price"
                                         class="form-control @error('price') is-invalid @enderror"
@@ -90,6 +90,17 @@
                                         class="form-control @error('quantity') is-invalid @enderror"
                                         value="{{ $product->quantity }}" required placeholder="1">
                                     @error('quantity')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label">Unit of Measurement</label>
+                                    <input type="text" name="unit"
+                                        class="form-control @error('unit') is-invalid @enderror"
+                                        value="{{ $product->unit }}" required placeholder="(e.g., kgs, boxex, etc.)">
+                                    @error('unit')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

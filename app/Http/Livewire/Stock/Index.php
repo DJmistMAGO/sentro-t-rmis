@@ -9,7 +9,7 @@ class Index extends Component
 {
     public function render()
     {
-        $products = Product::all();
+        $products = Product::orderBy('quantity', 'asc')->get();
 
         return view('livewire.stock.index', compact('products'));
     }

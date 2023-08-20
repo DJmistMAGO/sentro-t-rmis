@@ -1,14 +1,11 @@
 <div class="row">
-    <div class="card col-md-12">
-        <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="card bg-light col-md-12">
+        <div class="card-header bg-light d-flex pb-0 mb-0 justify-content-between align-items-center">
             <div class="card-title">
-                <h5>STOCK PRODUCT</h5>
+                <h5>STOCK PRODUCTS</h5>
             </div>
             <div class="card-tool d-flex justify-content-end">
-                {{-- <div class="col-md-5 me-2">
-                    <input type="text" placeholder="Search..." class="form-control form-control-sm">
-                </div>
-                <a href="{{ route('purchased-product.create') }}" class="btn btn-sm bg-gradient-info">ADD PURCHASED PRODUCT</a> --}}
+                
             </div>
         </div>
         <div class="card-body pt-0">
