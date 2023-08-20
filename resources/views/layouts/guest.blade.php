@@ -14,7 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -26,38 +25,23 @@
     <title>
         Sentro Trading Record Inventory Management System
     </title>
-    <!-- Nucleo Icons -->
-    <link rel="stylesheet" href="{{ asset('assets/css/nucleo-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bs5/css/bootstrap.min.css') }}">
     <!-- CSS Files -->
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/soft-ui-dashboard.min.css') }}" id="pagestyle">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 
 <body class="g-sidenav-show  bg-gray-400">
-    @guest
-        @yield('content')
-    @endguest
+    @yield('content')
 
     {{-- Core JS files --}}
-    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/bs5/js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/core/popper.min.js') }}"></script> --}}
 
     @stack('scripts')
     @livewireScripts
-
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
-    <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script> --}}
 </body>
 
 </html>

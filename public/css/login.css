@@ -1,0 +1,9 @@
+body {
+    background-image: url("../images/orangeblobanimation.svg"),
+        url("../images/blueblobanimation.svg");
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto, auto;
+    background-position: calc(50% - 50vw) calc(50% - 50vh),
+        calc(50% + 50vw) calc(50% + 50vh);
+    animation: blobanimation 10s infinite;
+}
