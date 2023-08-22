@@ -54,14 +54,19 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+
+        .form-control:focus {
+            border-color: #e97134 !important;
+            box-shadow: 0 0 0 2px #F87737 !important;
+        }
     </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-400">
 
-    @include('layouts.navbars.auth.sidebar')
+    @include('layouts.navbars.sidebar')
     <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
-        @include('layouts.navbars.auth.nav')
+        @include('layouts.navbars.nav')
         <div class="container-fluid py-4">
             @yield('content')
         </div>

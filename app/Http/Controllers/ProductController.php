@@ -113,4 +113,12 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('success', 'Product record updated successfully.');
     }
+
+    public function show(Product $product, $id)
+    {
+        $product = Product::findOrfail($id);
+        $categories = $this->categories;
+
+        return view('modules.product.view', compact('product', 'categories'));
+    }
 }

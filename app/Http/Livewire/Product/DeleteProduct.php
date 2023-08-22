@@ -23,7 +23,7 @@ class DeleteProduct extends Component
         $product = ModelProduct::where('id', $id)->first();
         if ($product != null) {
             $product->delete();
-            return redirect()->route('product.index');
+            return redirect()->route('product.index')->with('success', 'Product record deleted successfully.');
         }
         return redirect()->route('product.index')->with('error', 'Something went wrong');
     }

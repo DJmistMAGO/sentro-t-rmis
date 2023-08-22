@@ -18,7 +18,7 @@
                     <label>Email</label>
                     <div class="mb-3">
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            id="email" placeholder="Email" value="admin@sentrotrading.com" aria-label="Email"
+                            id="email" placeholder="Email" aria-label="Email"
                             aria-describedby="email-addon">
                         @error('email')
                             <div class="invalid-feedback">
@@ -29,7 +29,7 @@
                     <label>Password</label>
                     <div class="mb-3">
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                            id="password" placeholder="Password" value="secret" aria-label="Password"
+                            id="password" placeholder="Password" aria-label="Password"
                             aria-describedby="password-addon">
                         @error('password')
                             <div class="invalid-feedback">

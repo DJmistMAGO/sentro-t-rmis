@@ -1,17 +1,18 @@
 <div class="row">
     <div class="card bg-light col-md-12">
-        <div class="card-header d-flex justify-content-between align-items-center mb-0 bg-light">
-            <div class="card-title">
-                <h5>PURCHASED PRODUCT</h5>
-            </div>
-            <div class="card-tool d-flex justify-content-end">
-                <form action="{{ route('product.index') }}" method="get">
-                    <div class="col-md-10 me-2">
-                        <input type="text" placeholder="Search..." class="form-control form-control-sm">
+        <div class="card-header d-flex justify-content-between align-items-center bg-light">
+            <h5 class="my-0 text-uppercase">PURCHASED PRODUCTS</h5>
+            <div class="card-tool d-flex justify-content-end align-items-center align-middle">
+                <form action="{{ route('purchased-product.index') }}" method="get">
+                    @csrf
+                    <div class="form-group pt-3">
+                        <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search"
+                            placeholder="Search..." name="search" style="width: 300px;">
                     </div>
                 </form>
-                <a href="{{ route('purchased-product.create') }}" class="btn btn-sm bg-gradient-info"> <span><i
-                            class="fa fa-plus" aria-hidden="true"></i></span> ADD PURCHASED PRODUCT</a>
+
+                <a href="{{ route('purchased-product.create') }}" class="btn btn-sm bg-gradient-info align-middle">
+                    <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add Purchased Product</a>
             </div>
         </div>
         <div class="card-body bg-light pt-0 pb-0 pe-2 ps-2">

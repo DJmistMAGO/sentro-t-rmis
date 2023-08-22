@@ -9,20 +9,19 @@
     <x-errors></x-errors>
     <div class="row">
         <div class="card bg-light col-md-12">
-            <div class="card-header d-flex justify-content-between align-items-center mb-0 bg-light">
-                <div class="card-title">
-                    <h5 class="d-none d-md-inline">PRODUCTS LIST</h5>
-                </div>
-                <div class="card-tool d-flex justify-content-end">
+            <div class="card-header d-flex justify-content-between align-items-center bg-light">
+                <h5 class="mb-0 text-uppercase">PRODUCTS LIST</h5>
+                <div class="card-tool d-flex justify-content-end align-items-center align-middle">
                     <form action="{{ route('product.index') }}" method="get">
-                        <div class="col-md-10 me-2">
-                            <input type="text" name="search" placeholder="Search..."
-                                class="form-control form-control-sm">
+                        @csrf
+                        <div class="form-group pt-3">
+                            <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search"
+                                placeholder="Search..." name="search" style="width: 300px;">
                         </div>
                     </form>
 
-                    <a href="{{ route('product.create') }}" class="btn btn-sm bg-gradient-info">
-                        <span><i class="fa fa-plus" aria-hidden="true"></i></span> Add New Product</a>
+                    <a href="{{ route('product.create') }}" class="btn btn-sm bg-gradient-info mb-0 align-middle">
+                        <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add New Product</a>
                 </div>
             </div>
             <div class="card-body bg-light pt-0 pb-0 pe-0">
@@ -83,7 +82,7 @@
                                             <div class="align-middle">
                                                 <button
                                                     class="btn btn-sm bg-gradient-warning me-1 mb-0 px-3">Restock</button>
-                                                <a href="{{ route('product.edit', $product->id) }}"
+                                                <a href="{{ route('product.show', $product->id) }}"
                                                     class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
                                                 @livewire('product.delete-product', ['product' => $product], key($product->id))
                                             </div>

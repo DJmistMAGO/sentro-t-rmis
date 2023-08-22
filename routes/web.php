@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'home'])->name('dashboard');
     // Route::get('dashboard', function () {return view('dashboard');})->name('dashboard');
     // <!-- Route::get('profile', function () {return view('profile');})->name('profile'); -->
-    Route::get('user-management', function () {return view('laravel-examples/user-management');})->name('user-management');
+    Route::get('user-management', function () {return view('users/user-management');})->name('user-management');
     // Route::get('tables', function () {return view('tables');})->name('tables');
 
     Route::controller(ProductController::class)->prefix('product')->group(function () {
@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/create', 'create')->name('product.create');
         Route::post('/store', 'store')->name('product.store');
         Route::get('/edit/{id}', 'edit')->name('product.edit');
+        Route::get('/view/{id}', 'show')->name('product.show');
         Route::post('/update/{id}', 'update')->name('product.update');
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
     });
