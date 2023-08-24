@@ -51,8 +51,8 @@
             border-radius: 10px;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
+        body, p, div{
+            font-family: 'Poppins', sans-serif !important;
         }
 
         .form-control:focus {
