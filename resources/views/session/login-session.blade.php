@@ -4,15 +4,10 @@
     <div class="container-fluid my-5 d-flex justify-content-center align-items-center">
         <div class="rounded  col-xs-8 col-sm-8 col-md-4 shadow-lg p-5 bg-light">
             <div class="card-header pb-0 text-center bg-transparent g-0">
-                <img src="{{ asset('images/st2.png') }}" alt="logo" class="text- img-fluid pb-0 mb-0" height="200px">
-                <h3 class="font-weight-bolder text-primary text-center mt-0 text-gradient mb-0">
-                    <span class="d-sm-inline d-md-none">Record Inventory Management
-                        System</span>
-                    <span class="d-none d-md-inline">Sentro Trading Record Inventory Management
-                        System</span>
-                </h3>
+                <img src="{{ asset('images/st2.png') }}" alt="logo" class=" pb-0 mb-0" height="100">
             </div>
             <div class="card-body mt-5">
+            <h6 class="text-center">Enter email and password to log in.</h6>
                 <form role="form" method="POST" action="/session">
                     @csrf
                     <label>Email</label>

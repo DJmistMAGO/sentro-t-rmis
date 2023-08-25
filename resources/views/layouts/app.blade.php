@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Swwet Alert -->
     <link rel="stylesheet" href="{{ asset('assets/sweetalert/dist/sweetalert2.min.css') }}">
 
@@ -51,8 +52,8 @@
             border-radius: 10px;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
+        body, p, div{
+            font-family: 'Poppins', sans-serif !important;
         }
 
         .form-control:focus {
@@ -83,6 +84,12 @@
     <script src="{{ asset('assets/sweetalert/dist/sweetalert2.min.js') }}"></script>
 
     <script src="{{ mix('js/app.js') }}"></script>
+
+    <script>
+        var URL = '{{ config('app.url') }}'
+    </script>
+
+<script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
     @livewireScripts

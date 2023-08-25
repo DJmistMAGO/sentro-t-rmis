@@ -8,8 +8,8 @@
     <x-success></x-success>
     <x-errors></x-errors>
     <div class="row">
-        <div class="card bg-light col-md-12">
-            <div class="card-header d-flex justify-content-between align-items-center bg-light">
+        <div class="card">
+            <div class="card-header pb-0 d-flex justify-content-between align-items-center ">
                 <h5 class="mb-0 text-uppercase">PRODUCTS LIST</h5>
                 <div class="card-tool d-flex justify-content-end align-items-center align-middle">
                     <form action="{{ route('product.index') }}" method="get">
@@ -24,7 +24,7 @@
                         <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add New Product</a>
                 </div>
             </div>
-            <div class="card-body bg-light pt-0 pb-0 pe-0">
+            <div class="card-body p-3">
                 <div class="row">
                     <div class="table-responsive p-0 mb-0">
                         <table class="table table-sm mb-0 table-hover">
@@ -54,7 +54,7 @@
                             </thead>
                             <tbody>
                                 @forelse ($products as $product)
-                                    <tr>
+                                    <tr class="">
                                         <td class="text-sm align-middle">
                                             @php
                                                 $imagePath = '/img/' . $product->image;
