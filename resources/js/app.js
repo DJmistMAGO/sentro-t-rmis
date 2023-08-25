@@ -1,5 +1,4 @@
 import "./bootstrap";
-import Swal from "sweetalert2";
 import Alpine from "alpinejs";
 
 $(document).ready(function () {
@@ -59,4 +58,7 @@ $(document).ready(function () {
         let _parent = $(this).closest(".row");
         _parent.remove();
     });
+
+
+
 });
