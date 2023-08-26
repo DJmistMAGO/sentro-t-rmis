@@ -33,6 +33,27 @@ class PurchasedProductController extends Controller
             'date_preparation' => $validated['date_preparation'],
         ]);
 
+        //create product
+        foreach ($validated['product_name'] as $key => $value) {
+            $product = Product::find($value);
+
+            $product->purchaseProduct()->create([
+                'quantity' => $validated['quantity'][$key],
+                'price' => $validated['price'][$key],
+                'total' => $validated['total'][$key],
+                'purchase_product_info_id' => PurchaseProductInfo::latest()->first()->id,
+            ]);
+        }
+
+        //find product and update the quantity
+        foreach ($validated['product_id'] as $key => $value) {
+            $product = Product::find($value);
+
+            $product->update([
+                'quantity' => $product->quantity - $validated['quantity'][$key],
+            ]);
+        }
+
         return redirect()->route('purchased-product.index')->with('success', 'Purchased Product created successfully.');
     }
 }

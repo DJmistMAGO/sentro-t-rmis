@@ -19,5 +19,9 @@ class PurchaseProductInfo extends Model
         'date_preparation' => 'date',
     ];
 
-    
+    public function purchasedProducts()
+    {
+        return $this->hasMany(PurchasedProduct::class);
+    }
+
 }
