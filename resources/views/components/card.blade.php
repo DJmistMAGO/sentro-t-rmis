@@ -5,29 +5,30 @@
     'toolbar',
 ])
 
-<div class="card card-custom gutter-b">
-    <div class="card-header">
-        <div class="card-title">
+<div class="card bg-light" style="border-radius: 10px;">
+    <div class="card-header border-radius-md bg-light mb-0 pb-0">
+        <div class="card-title" style="display: flex; align-items: center;">
             @if ($backUrl)
-                <a href="{{ $backUrl }}" class="btn btn-sm btn-icon btn-light-primary mr-4">
-                    <i class="flaticon2-left-arrow-1"></i>
+                <a href="{{ $backUrl }}" class="btn btn-sm btn-icon bg-gradient-secondary px-3 me-3">
+                    <i class="fa fa-arrow-left h-5"></i>
                 </a>
             @endif
-            <h3 class="card-label">
+            <h5 class="card-label">
                 {{ $title }}
-            </h3>
+            </h5>
         </div>
+
         @isset($toolbar)
             <div class="card-toolbar">
                 {{ $toolbar }}
             </div>
         @endisset
     </div>
-    <div class="card-body" {{ $attributes }}>
+    <div class="card-body pt-0 bg-light" {{ $attributes }}>
         {{ $slot }}
     </div>
     @isset($footer)
-        <div class="card-footer">
+        <div class="card-footer col-md-12 d-flex justify-content-end pt-0 pb-0">
             {{ $footer }}
         </div>
     @endisset

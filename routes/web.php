@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/view/{id}', 'show')->name('product.show');
         Route::post('/update/{id}', 'update')->name('product.update');
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
+        Route::get('/sample', 'sample')->name('product.sample');
     });
 
     Route::controller(PurchasedProductController::class)->prefix('purchased-product')->group(function () {

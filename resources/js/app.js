@@ -58,7 +58,4 @@ $(document).ready(function () {
         let _parent = $(this).closest(".row");
         _parent.remove();
     });
-
-
-
 });

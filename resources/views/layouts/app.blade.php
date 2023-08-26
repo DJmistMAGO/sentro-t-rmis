@@ -52,7 +52,9 @@
             border-radius: 10px;
         }
 
-        body, p, div{
+        body,
+        p,
+        div {
             font-family: 'Poppins', sans-serif !important;
         }
 
@@ -88,8 +90,6 @@
     <script>
         var URL = '{{ config('app.url') }}'
     </script>
-
-<script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
     @livewireScripts
