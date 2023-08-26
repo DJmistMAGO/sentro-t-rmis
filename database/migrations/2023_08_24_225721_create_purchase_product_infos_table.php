@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('purchase_product_infos', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->string('reference_no');
             $table->string('prepared_by');
             $table->date('date_preparation');

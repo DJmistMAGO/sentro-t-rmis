@@ -22,4 +22,9 @@ class PurchasedProduct extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function purchaseProductInfo()
+    {
+        return $this->belongsTo(PurchaseProductInfo::class);
+    }
 }
