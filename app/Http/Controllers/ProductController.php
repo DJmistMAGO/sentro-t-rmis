@@ -20,6 +20,11 @@ class ProductController extends Controller
         'Hardware and others',
     ];
 
+    public function sample()
+    {
+        return view('modules.product.sample');
+    }
+
     public function index(Request $request)
     {
         $search = $request->input('search');
