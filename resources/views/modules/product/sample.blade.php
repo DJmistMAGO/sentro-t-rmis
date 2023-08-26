@@ -13,7 +13,6 @@
                 <div class="col-md-12 mt-5">
                     <x-card title="Item list" data-item-container>
 
-                        <button type="button" class="btn btn-primary mb-3" data-add-item>Add new item</button>
                         <div class="row border rounded-sm border-primary pt-3 m-1" data-parent>
                             <div class="form-group col-md-6">
                                 <label>sample input <span class="text-danger">*</span></label>
@@ -31,7 +30,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="mt-3" data-button-container>
+                            <button type="button" class="btn btn-primary" data-add-item>Add new</button>
+                        </div>
                         <x-slot:footer>
                             <button type="submit" class="btn btn-info">Create</button>
                         </x-slot:footer>

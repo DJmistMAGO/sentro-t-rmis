@@ -22879,10 +22879,14 @@ $(document).ready(function () {
           $(clone[0]).find("input, select").each(function (index, item) {
             item.value = "";
           });
-          _container.append($(clone[0]));
+          _container.find("[data-button-container]").before($(clone[0]));
         }
       }
     }
+  });
+  $(document).on("click", "[data-remove-item]", function () {
+    var _parent = $(this).closest(".row");
+    _parent.remove();
   });
 
   // data-calc-item => assign to input text that you want to include in sum
@@ -22901,10 +22905,6 @@ $(document).ready(function () {
       });
       _total_text.val("Php. " + total);
     }
-  });
-  $(document).on("click", "[data-remove-item]", function () {
-    var _parent = $(this).closest(".row");
-    _parent.remove();
   });
 });
 })();
