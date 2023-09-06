@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="card bg-light col-md-12">
-        <div class="card-header d-flex justify-content-between align-items-center bg-light">
+    <div class="card col-md-12">
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center ">
             <h5 class="my-0 text-uppercase">PURCHASED PRODUCTS</h5>
             <div class="card-tool d-flex justify-content-end align-items-center align-middle">
                 <form action="{{ route('purchased-product.index') }}" method="get">
@@ -15,13 +15,13 @@
                     <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add Purchased Product</a>
             </div>
         </div>
-        <div class="card-body bg-light pt-0 pb-0 pe-2 ps-2">
-            <div class="row">
-                <div class="table-responsive p-0 mb-0">
-                    <table class="table table-sm mb-0 table-hover">
-                        <thead class="thead-gray">
+        <div class="card-body pt-0">
+                <div class="row">
+                    <div class="table-responsive p-0 mb-0">
+                        <table class="table table-sm mb-0 table-hover">
+                            <thead class="thead-gray">
                             <tr>
-                                <th class="text-uppercase text-center text-secondary text-sm font-weight-bolder opacity-10">Reference No.</th>
+                                <th class="text-uppercase text-left text-secondary text-sm font-weight-bolder opacity-10">Reference No.</th>
                                 <th class="text-uppercase text-center text-secondary text-sm font-weight-bolder opacity-10">Prepared By</th>
                                 <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Date Preparation</th>
                                 <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Action</th>
@@ -30,13 +30,14 @@
                         <tbody>
                             @forelse ( $purchaseProdInfo as $prodPurInfo )
                             <tr>
-                                <td class="text-center">{{ $prodPurInfo->reference_no }}</td>
-                                <td class="text-center">{{ $prodPurInfo->prepared_by }}</td>
-                                <td class="text-center">{{ $prodPurInfo->date_preparation->format('m/d/y') }}</td>
+                                <td class="text-left ps-4 text-sm">{{ $prodPurInfo->reference_no }}</td>
+                                <td class="text-center text-sm">{{ $prodPurInfo->prepared_by }}</td>
+                                <td class="text-center text-sm">{{ $prodPurInfo->date_preparation->format('m/d/y') }}</td>
                                 <td class="align-middle text-center">
                                     <div class="align-middle">
-                                        <button class="btn btn-sm btn-success mb-0 mx-1">View</button>
-                                        <button class="btn btn-sm btn-danger mb-0">Delete</button>
+                                        <button class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</button>
+                                        <button class="btn bg-gradient-info btn-sm  me-1 mb-0 px-3">Edit</button>
+                                        <button class="btn bg-gradient-danger btn-sm  me-1 mb-0 px-3">Delete</button>
                                     </div>
                                 </td>
                             </tr>

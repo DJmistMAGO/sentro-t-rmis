@@ -69,7 +69,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Image</label>
+                            <label class="form-label">Product Image</label>
+                            <br>
                             {{-- <input type="file" name="image" class="form-control"  value="{{ $product->image }}" id="image" readonly>
                             @error('image')
                                 <div class="invalid-feedback">
@@ -81,12 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <x-slot:footer>
-                    {{-- <a href="{{ route('product.index') }}" class="btn bg-gradient-danger me-2 col-md-2">Cancel</a> --}}
-                    <a href="{{ route('product.edit', $product->id) }}"
-                        class="btn bg-gradient-info me-2 col-md-2">Update</a>
-                    {{-- <button class="btn bg-gradient-info col-md-2" type="submit">Update</button> --}}
-                </x-slot:footer>
+                
             </x-card>
         </div>
     </div>

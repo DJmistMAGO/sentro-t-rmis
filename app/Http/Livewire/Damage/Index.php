@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\Damage;
 
 use Livewire\Component;
+use App\Models\DamageProdInfo;
 
 class Index extends Component
 {
     public function render()
     {
-        return view('livewire.damage.index');
+        $damageProd = DamageProdInfo::get();
+
+        return view('livewire.damage.index', compact('damageProd'));
     }
 }

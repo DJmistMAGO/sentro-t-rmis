@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label class="form-label">Product Description <span
                                         class="text-info font-italic">(Optional)</span></label>
-                                <textarea rows="3" name="description" class="form-control @error('description') is-invalid @enderror"
+                                <textarea rows="2" name="description" class="form-control @error('description') is-invalid @enderror"
                                     placeholder="Enter a brief description of the product">{{ old('description') }}</textarea>
                                 @error('description')
                                     <div class="invalid-feedback">

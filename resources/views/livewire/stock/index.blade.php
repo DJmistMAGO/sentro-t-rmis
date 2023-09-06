@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="card bg-light col-md-12">
-        <div class="card-header bg-light d-flex pb-0 mb-0 justify-content-between align-items-center">
+    <div class="card col-md-12">
+        <div class="card-header  d-flex pb-0 mb-0 justify-content-between align-items-center">
             <div class="card-title">
                 <h5>STOCK PRODUCTS</h5>
             </div>
@@ -8,12 +8,12 @@
 
             </div>
         </div>
-        <div class="card-body pt-0">
+        <div class="card-body pt-3" s>
             <div class="row">
                 @forelse ($products as $product)
-                    <div class="col-md-3 mb-2">
-                        <div class="card" style="border: solid 1px">
-                            <div class="card-header mx-4 p-3 text-center">
+                    <div class="col-md-3 mb-2" >
+                        <div class="card" style="border: solid 1px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                            <div class="card-header  text-center">
                                 @php
                                     $imagePath = '/img/' . $product->image;
                                 @endphp
@@ -25,8 +25,8 @@
                                         alt="img">
                                 @endif
                             </div>
-                            <div class="card-body pt-0 p-3 text-center">
-                                <h6 class="text-center mb-0">{{ $product->product_name }}</h6>
+                            <div class="card-body pt-0  text-center">
+                                <h6 class="text-center mb-0" style="text-transform: uppercase;">{{ $product->product_name }}</h6>
                                 <span class="text-sm">{{ $product->product_code }}</span><br>
                                 <a href="{{ route('product.show', $product->id) }}" class="text-xs">View Info.</a>
                                 <hr class="horizontal dark my-2">

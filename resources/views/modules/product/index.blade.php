@@ -35,7 +35,7 @@
                                     <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
                                         Product
                                         Code</th>
-                                    <th class="text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
+                                    <th class="text-uppercase  text-sm text-secondary font-weight-bolder opacity-10">
                                         Description</th>
                                     <th
                                         class="text-center text-uppercase text-sm text-secondary font-weight-bolder opacity-10">
@@ -68,8 +68,8 @@
                                             @endif
                                             {{ $product->product_name }}
                                         </td>
-                                        <td class="text-sm align-middle">{{ $product->product_code }}</td>
-                                        <td class="text-sm align-middle text-justify" title="{{ $product->description }}">
+                                        <td class="text-sm text-center align-middle">{{ $product->product_code }}</td>
+                                        <td class="text-sm text-center  align-middle" title="{{ $product->description }}">
                                             @if ($product->description == null)
                                                 <span class="text-muted">No description</span>
                                             @endif
