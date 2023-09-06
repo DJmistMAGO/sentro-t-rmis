@@ -82,12 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <x-slot:footer>
-                    {{-- <a href="{{ route('product.index') }}" class="btn bg-gradient-danger me-2 col-md-2">Cancel</a> --}}
-                    <a href="{{ route('product.edit', $product->id) }}"
-                        class="btn bg-gradient-info me-2 col-md-2">Update</a>
-                    {{-- <button class="btn bg-gradient-info col-md-2" type="submit">Update</button> --}}
-                </x-slot:footer>
+                
             </x-card>
         </div>
     </div>
