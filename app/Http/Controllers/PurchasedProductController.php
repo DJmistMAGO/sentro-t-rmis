@@ -12,7 +12,7 @@ class PurchasedProductController extends Controller
 {
     public function index()
     {
-        
+
 
         return view('modules.purchased.index');
     }
@@ -30,7 +30,7 @@ class PurchasedProductController extends Controller
         $validated = $request->validated();
 
         //create the data
-        PurchaseProductInfo::create([
+        $purchased = PurchaseProductInfo::create([
             'user_id' => auth()->user()->id,
             'reference_no' => $validated['reference_no'],
             'prepared_by' => $validated['prepared_by'],

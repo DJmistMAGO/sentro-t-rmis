@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PurchasedProduct extends Model
+class ReturnProduct extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+
 
     protected $fillable = [
-        'purchase_product_info_id',
+        'return_prod_info_id',
         'product_id',
         'quantity',
         'price',
@@ -24,8 +24,8 @@ class PurchasedProduct extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public function purchaseProductInfo()
+    public function returnProdInfo()
     {
-        return $this->belongsTo(PurchaseProductInfo::class, 'purchase_product_info_id');
+        return $this->belongsTo(ReturnProdInfo::class, 'return_prod_info_id');
     }
 }

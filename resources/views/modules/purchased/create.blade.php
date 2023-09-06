@@ -28,7 +28,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 mb-1">
-            <x-card title="SKCC Items" data-item-container>
+            <x-card title="Purchased Items" data-item-container>
                 <button type="button" class="btn btn-primary mb-3" data-add-item>Add new item</button>
                     <div class="row border rounded-sm border-primary pt-3 m-1" data-parent>
                         <div class="form-group col-md-6">

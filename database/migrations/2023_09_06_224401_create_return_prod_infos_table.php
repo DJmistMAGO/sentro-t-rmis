@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchase_product_infos', function (Blueprint $table) {
+        Schema::create('return_prod_infos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->string('reference_no');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchase_product_infos');
+        Schema::dropIfExists('return_prod_infos');
     }
 };

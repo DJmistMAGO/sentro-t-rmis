@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(ReturnProductController::class)->prefix('returned-product')->group(function () {
         Route::get('/', 'index')->name('returned-product.index');
         Route::get('/create', 'create')->name('returned-product.create');
+        Route::post('/store', 'store')->name('returned-product.store');
     });
 
     Route::controller(DamagedProductController::class)->prefix('damaged-product')->group(function () {
