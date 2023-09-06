@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PurchaseProductInfo;
+use App\Models\PurchasedProduct;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\purchased_product\StoreRequest;
@@ -11,6 +12,8 @@ class PurchasedProductController extends Controller
 {
     public function index()
     {
+        
+
         return view('modules.purchased.index');
     }
 
@@ -28,6 +31,7 @@ class PurchasedProductController extends Controller
 
         //create the data
         PurchaseProductInfo::create([
+            'user_id' => auth()->user()->id,
             'reference_no' => $validated['reference_no'],
             'prepared_by' => $validated['prepared_by'],
             'date_preparation' => $validated['date_preparation'],
@@ -35,18 +39,20 @@ class PurchasedProductController extends Controller
 
         //create product
         foreach ($validated['product_name'] as $key => $value) {
+
             $product = Product::find($value);
 
-            $product->purchaseProduct()->create([
+            $product->purchasedProducts()->create([
+                'user_id' => auth()->user()->id,
                 'quantity' => $validated['quantity'][$key],
-                'price' => $validated['price'][$key],
-                'total' => $validated['total'][$key],
+                'price' => $product->price,
+                'total' =>  $validated['quantity'][$key] *  $product->price,
                 'purchase_product_info_id' => PurchaseProductInfo::latest()->first()->id,
             ]);
         }
 
         //find product and update the quantity
-        foreach ($validated['product_id'] as $key => $value) {
+        foreach ($validated['product_name'] as $key => $value) {
             $product = Product::find($value);
 
             $product->update([

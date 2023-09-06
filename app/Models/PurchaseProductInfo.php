@@ -10,6 +10,7 @@ class PurchaseProductInfo extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'reference_no',
         'prepared_by',
         'date_preparation',
@@ -23,5 +24,7 @@ class PurchaseProductInfo extends Model
     {
         return $this->hasMany(PurchasedProduct::class);
     }
+
+    
 
 }

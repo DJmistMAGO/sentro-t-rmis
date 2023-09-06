@@ -25,6 +25,12 @@ class StoreRequest extends FormRequest
             'reference_no' => 'required',
             'prepared_by' => 'required',
             'date_preparation' => 'required',
+
+            'product_name' => ['required', 'array'],
+            'product_name.*' =>  ['required'],
+
+            'quantity' => ['required', 'array'],
+            'quantity.*' => ['required'],
         ];
     }
 }

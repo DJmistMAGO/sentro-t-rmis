@@ -11,6 +11,7 @@ class PurchasedProduct extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'purchase_product_info_id',
         'product_id',
         'quantity',
         'price',
@@ -25,6 +26,6 @@ class PurchasedProduct extends Model
 
     public function purchaseProductInfo()
     {
-        return $this->belongsTo(PurchaseProductInfo::class);
+        return $this->belongsTo(PurchaseProductInfo::class, 'purchase_product_info_id');
     }
 }

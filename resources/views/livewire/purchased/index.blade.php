@@ -21,36 +21,18 @@
                     <table class="table table-sm mb-0 table-hover">
                         <thead class="thead-gray">
                             <tr>
-                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Product
-                                    Name</th>
-                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Brand
-                                </th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">
-                                    Price</th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">
-                                    Quantity</th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">
-                                    Action</th>
+                                <th class="text-uppercase text-center text-secondary text-sm font-weight-bolder opacity-10">Reference No.</th>
+                                <th class="text-uppercase text-center text-secondary text-sm font-weight-bolder opacity-10">Prepared By</th>
+                                <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Date Preparation</th>
+                                <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ( $purchaseProdInfo as $prodPurInfo )
                             <tr>
-                                <td class="text-sm align-middle">
-                                    <img src="../assets/img/prd.webp" class="avatar avatar-sm me-1" alt="img">
-                                    Product Name
-                                </td>
-                                <td class="text-sm align-middle">
-                                    <p class="mb-0 text-sm">test product</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <p class="mb-0 text-sm">test product</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="mb-0 text-sm">test product</p>
-                                </td>
+                                <td class="text-center">{{ $prodPurInfo->reference_no }}</td>
+                                <td class="text-center">{{ $prodPurInfo->prepared_by }}</td>
+                                <td class="text-center">{{ $prodPurInfo->date_preparation->format('m/d/y') }}</td>
                                 <td class="align-middle text-center">
                                     <div class="align-middle">
                                         <button class="btn btn-sm btn-success mb-0 mx-1">View</button>
@@ -58,6 +40,13 @@
                                     </div>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    No Record!
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-center mb-0 mt-1">
