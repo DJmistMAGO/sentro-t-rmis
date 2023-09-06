@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchase_product_infos', function (Blueprint $table) {
+        Schema::create('damage_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
-            $table->string('reference_no');
-            $table->string('prepared_by');
-            $table->date('date_preparation');
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchase_product_infos');
+        Schema::dropIfExists('damage_products');
     }
 };

@@ -28,22 +28,22 @@
         </div>
         <div class="row">
             <div class="col-md-12 mb-1">
-            <x-card title="SKCC Items" data-item-container>
+            <x-card title="Purchased Items" data-item-container>
                 <button type="button" class="btn btn-primary mb-3" data-add-item>Add new item</button>
                     <div class="row border rounded-sm border-primary pt-3 m-1" data-parent>
                         <div class="form-group col-md-6">
                             <label>Select Product.</label>
-                            <select name="" id="" class="form-control">
+                            <select name="product_name[]" id="" class="form-control">
                                 <option value="">Please Select</option>
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}">{{ $product->product_code . ' - '. $product->product_name .' - Php. '. $product->price  }}</option>
                                 @endforeach
-                            </select> 
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Quantity</label>
                             <div class="input-group">
-                                <input type="number" class="form-control">
+                                <input type="number" name="quantity[]" class="form-control">
                                 <button class="btn btn-outline-danger mb-0 input-group-append d-none" data-item-hide data-remove-item type="button" id="button-addon2"><span class="fa fa-trash"></span></button>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
                 <h5>STOCK PRODUCTS</h5>
             </div>
             <div class="card-tool d-flex justify-content-end">
-                
+
             </div>
         </div>
         <div class="card-body pt-0">
@@ -28,7 +28,7 @@
                             <div class="card-body pt-0 p-3 text-center">
                                 <h6 class="text-center mb-0">{{ $product->product_name }}</h6>
                                 <span class="text-sm">{{ $product->product_code }}</span><br>
-                                <a href="#" class="text-xs">View Info.</a>
+                                <a href="{{ route('product.show', $product->id) }}" class="text-xs">View Info.</a>
                                 <hr class="horizontal dark my-2">
                                 <h5 class="mb-0">{{ $product->quantity }}</h5>
                             </div>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseProductInfo extends Model
+class ReturnProdInfo extends Model
 {
     use HasFactory;
 
@@ -20,10 +20,9 @@ class PurchaseProductInfo extends Model
         'date_preparation' => 'date',
     ];
 
-    public function purchasedProducts()
+    public function returnProducts()
     {
-        return $this->hasMany(PurchasedProduct::class);
+        return $this->hasMany(ReturnProduct::class);
     }
-
 
 }

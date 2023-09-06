@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\Purchased;
 
 use Livewire\Component;
-
+use App\Models\PurchaseProductInfo;
 class Index extends Component
 {
     public function render()
     {
-        return view('livewire.purchased.index');
+
+        $purchaseProdInfo = PurchaseProductInfo::get();
+
+        return view('livewire.purchased.index', compact('purchaseProdInfo'));
     }
 }

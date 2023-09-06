@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\ReturnedProd;
 
 use Livewire\Component;
+use App\Models\ReturnProdInfo;
 
 class Index extends Component
 {
     public function render()
     {
-        return view('livewire.returned-prod.index');
+        $returnedProdInfo = ReturnProdInfo::get();
+
+        return view('livewire.returned-prod.index', compact('returnedProdInfo'));
     }
 }
