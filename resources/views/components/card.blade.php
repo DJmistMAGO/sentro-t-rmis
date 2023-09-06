@@ -5,8 +5,8 @@
     'toolbar',
 ])
 
-<div class="card bg-light" style="border-radius: 10px;">
-    <div class="card-header border-radius-md bg-light mb-0 pb-0">
+<div class="card " style="border-radius: 10px;">
+    <div class="card-header border-radius-md  mb-0 pb-0">
         <div class="card-title" style="display: flex; align-items: center;">
             @if ($backUrl)
                 <a href="{{ $backUrl }}" class="btn btn-sm btn-icon bg-gradient-secondary px-3 me-3">
@@ -24,7 +24,7 @@
             </div>
         @endisset
     </div>
-    <div class="card-body pt-0 bg-light" {{ $attributes }}>
+    <div class="card-body pt-0 " {{ $attributes }}>
         {{ $slot }}
     </div>
     @isset($footer)

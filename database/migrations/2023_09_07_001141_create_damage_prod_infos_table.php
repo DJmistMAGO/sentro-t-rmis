@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('damage_prod_infos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
+            $table->string('reference_no');
+            $table->string('prepared_by');
+            $table->date('date_preparation');
             $table->timestamps();
         });
     }

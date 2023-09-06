@@ -69,7 +69,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Image</label>
+                            <label class="form-label">Product Image</label>
+                            <br>
                             {{-- <input type="file" name="image" class="form-control"  value="{{ $product->image }}" id="image" readonly>
                             @error('image')
                                 <div class="invalid-feedback">

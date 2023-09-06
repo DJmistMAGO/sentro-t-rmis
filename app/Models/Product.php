@@ -37,4 +37,9 @@ class Product extends Model
         return $this->hasMany(ReturnProduct::class);
     }
 
+    public function damageProducts()
+    {
+        return $this->hasMany(DamageProduct::class);
+    }
+
 }

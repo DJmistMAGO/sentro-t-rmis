@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('damage_products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('damage_prod_info_id')->references('id')->on('damage_prod_infos')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->references('id')->on('products')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
+            $table->double('quantity');
+            $table->double('price');
+            $table->double('total');
             $table->timestamps();
         });
     }
