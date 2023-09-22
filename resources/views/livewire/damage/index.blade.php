@@ -11,7 +11,7 @@
                     </div>
                 </form>
 
-                <a href="{{ route('purchased-product.create') }}" class="btn btn-sm bg-gradient-info align-middle">
+                <a href="{{ route('damaged-product.create') }}" class="btn btn-sm bg-gradient-info align-middle">
                     <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add Purchased Product</a>
             </div>
         </div>

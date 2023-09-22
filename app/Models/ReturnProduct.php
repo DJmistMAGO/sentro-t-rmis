@@ -15,8 +15,7 @@ class ReturnProduct extends Model
         'product_id',
         'quantity',
         'price',
-        'total',
-        'user_id',
+        'total', 
     ];
 
     public function product()

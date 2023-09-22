@@ -3,7 +3,7 @@
         <div class="card-header pb-0 d-flex justify-content-between align-items-center ">
             <h5 class="my-0 text-uppercase">RETURNED PRODUCTS</h5>
             <div class="card-tool d-flex justify-content-end align-items-center align-middle">
-                <form action="{{ route('purchased-product.index') }}" method="get">
+                <form action="{{ route('returned-product.store') }}" method="get">
                     @csrf
                     <div class="form-group pt-3">
                         <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search"
@@ -11,7 +11,7 @@
                     </div>
                 </form>
 
-                <a href="{{ route('purchased-product.create') }}" class="btn btn-sm bg-gradient-info align-middle">
+                <a href="{{ route('returned-product.create') }}" class="btn btn-sm bg-gradient-info align-middle">
                     <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add Purchased Product</a>
             </div>
         </div>
