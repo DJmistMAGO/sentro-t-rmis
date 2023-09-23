@@ -44,7 +44,7 @@
                     <h6 class="text-center mb-0">Return Product</h6>
                     <span class="text-xs">This Month</span>
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">{{ $return->count() }}</h5>
+                    <h5 class="mb-0">{{ $return }}</h5>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     <h6 class="text-center mb-0">Damaged Product</h6>
                     <span class="text-xs">This Month</span>
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">{{ $damage->count() }}</h5>
+                    <h5 class="mb-0">{{ $damage }}</h5>
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
                             borderWidth: 3,
                             backgroundColor: gradientStroke1,
                             fill: true,
-                            data: [600, 700, 80, 50, 40, 300, 220, 500, 250, 400, 230, 500],
+                            data: [600, 700, 80, 50, 40, 300, 220, 500, 250, 0, 0, 0],
                             maxBarThickness: 6
 
                         },

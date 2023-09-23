@@ -39,7 +39,6 @@ class PurchasedProductController extends Controller
 
         //create product
         foreach ($validated['product_name'] as $key => $value) {
-
             $product = Product::find($value);
 
             $product->purchasedProducts()->create([

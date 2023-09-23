@@ -110,15 +110,15 @@
             </li>
             @if (auth()->user()->role == 'admin')
                 <li class="nav-item">
-                    <a href="{{ route('user-management') }}"
-                        class="nav-link {{ request()->routeIs('user-management') ? 'active bg-gradient-light' : '' }}">
+                    <a href="{{ route('user-management.index') }}"
+                        class="nav-link {{ request()->routeIs('user-management.*') ? 'active bg-gradient-light' : '' }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa fa-users opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('user-management') ? 'text-white' : 'text-dark' }}"
                                 aria-hidden="true"></i>
                         </div>
                         <span
-                            class="nav-link-text ms-1 {{ request()->routeIs('user-management') ? 'text-dark' : 'text-white' }}">User
+                            class="nav-link-text ms-1 {{ request()->routeIs('user-management.*') ? 'text-dark' : 'text-white' }}">User
                             Management</span>
                     </a>
                 </li>
