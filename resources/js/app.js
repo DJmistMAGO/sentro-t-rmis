@@ -36,6 +36,12 @@ $(document).ready(function () {
         }
     });
 
+    
+    $(document).on("click", "[data-remove-item]", function () {
+        let _parent = $(this).closest(".row");
+        _parent.remove();
+    });
+    
     // data-calc-item => assign to input text that you want to include in sum
     // data-calc-total => assign to input for displaying the total
     $(document).on("change", "[data-calc-item]", function () {
@@ -52,10 +58,5 @@ $(document).ready(function () {
             });
             _total_text.val("Php. " + total);
         }
-    });
-
-    $(document).on("click", "[data-remove-item]", function () {
-        let _parent = $(this).closest(".row");
-        _parent.remove();
     });
 });

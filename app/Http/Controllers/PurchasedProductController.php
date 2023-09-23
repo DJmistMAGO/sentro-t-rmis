@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PurchaseProductInfo;
-use App\Models\PurchasedProduct;
-use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Http\Requests\purchased_product\StoreRequest;
+use App\Models\Product;
+use App\Models\PurchaseProductInfo;
 
 class PurchasedProductController extends Controller
 {
     public function index()
     {
-
 
         return view('modules.purchased.index');
     }
@@ -20,7 +17,7 @@ class PurchasedProductController extends Controller
     public function create()
     {
         //get all products
-        $products = Product::get();
+        $products = Product::where('quantity', '>', 0)->get();
 
         return view('modules.purchased.create', compact('products'));
     }
@@ -41,24 +38,38 @@ class PurchasedProductController extends Controller
         foreach ($validated['product_name'] as $key => $value) {
             $product = Product::find($value);
 
+            //find product and update the quantity
+            $product->update([
+                'quantity' => $product->quantity - $validated['quantity'][$key],
+            ]);
+
             $product->purchasedProducts()->create([
                 'user_id' => auth()->user()->id,
                 'quantity' => $validated['quantity'][$key],
                 'price' => $product->price,
-                'total' =>  $validated['quantity'][$key] *  $product->price,
+                'total' => $validated['quantity'][$key] * $product->price,
                 'purchase_product_info_id' => PurchaseProductInfo::latest()->first()->id,
             ]);
         }
 
-        //find product and update the quantity
-        foreach ($validated['product_name'] as $key => $value) {
-            $product = Product::find($value);
-
-            $product->update([
-                'quantity' => $product->quantity - $validated['quantity'][$key],
-            ]);
-        }
-
         return redirect()->route('purchased-product.index')->with('success', 'Purchased Product created successfully.');
+    }
+
+    public function edit(PurchaseProductInfo $purchased)
+    {
+        $purchased->load(['purchasedProducts']);
+        $products = Product::all();
+        // dd($purchased);
+
+        return view('modules.purchased.edit', compact('purchased', 'products'));
+    }
+
+    public function update(StoreRequest $request, PurchaseProductInfo $purchased)
+    {
+        $validated = $request->validated();
+
+        dd($validated);
+
+        return redirect()->route('purchased-product.index')->with('success', 'Purchased Product record updated!');
     }
 }
