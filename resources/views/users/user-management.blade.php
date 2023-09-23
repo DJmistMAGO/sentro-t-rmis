@@ -10,7 +10,7 @@
                             <div>
                                 <h5 class="mb-0">All Users</h5>
                             </div>
-                            <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New
+                            <a href="{{ route('user-management.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New
                                 User</a>
                         </div>
                     </div>
@@ -19,9 +19,6 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            ID
-                                        </th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Name
@@ -32,11 +29,11 @@
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            role
+                                            Contact No
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Creation Date
+                                            role
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -45,21 +42,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($users as $user)
                                     <tr>
-                                        <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">1</p>
+                                        <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $user->name }}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Admin</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $user->email }}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">admin@email.com</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $user->contact_no }}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Admin</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">16/06/18</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{{ $user->role }}}</span>
                                         </td>
                                         <td class="text-center">
                                             <a href="#" class="mx-3" data-bs-toggle="tooltip"
@@ -71,6 +66,9 @@
                                             </span>
                                         </td>
                                     </tr>
+                                    @empty
+
+                                    @endforelse
 
                                 </tbody>
                             </table>

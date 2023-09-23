@@ -9,6 +9,7 @@ use App\Http\Controllers\ReturnProductController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\StockProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home'])->name('dashboard');
-    // Route::get('dashboard', function () {return view('dashboard');})->name('dashboard');
-    // <!-- Route::get('profile', function () {return view('profile');})->name('profile'); -->
-    Route::get('user-management', function () {return view('users/user-management');})->name('user-management');
-    // Route::get('tables', function () {return view('tables');})->name('tables');
+
+    Route::controller(UserManagementController::class)->prefix('user-management')->group(function (){
+        Route::get('/', 'index')->name('user-management.index');
+        Route::get('/create', 'create')->name('user-management.create');
+
+    });
 
     Route::controller(ProductController::class)->prefix('product')->group(function () {
         Route::get('/', 'index')->name('product.index');
