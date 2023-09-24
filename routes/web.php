@@ -29,6 +29,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(UserManagementController::class)->prefix('user-management')->group(function () {
         Route::get('/', 'index')->name('user-management.index');
         Route::get('/create', 'create')->name('user-management.create');
+        Route::post('/store', 'store')->name('user-management.store');
+        Route::get('/view-profile/{user}', 'viewProfile')->name('user-info.view-profile');
+        Route::get('/view-staff/{user}', 'viewStaff')->name('user-management.view-staff');
+
+
 
     });
 

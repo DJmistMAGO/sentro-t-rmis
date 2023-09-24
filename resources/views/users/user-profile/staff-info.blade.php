@@ -15,7 +15,7 @@
                                 <div class="form-group">
                                     <label for="" class="form-control-label">{{ __('Full Name') }}</label>
                                     <div class="@error('name')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" value="{{ old('name') }}" type="text"
+                                        <input class="form-control" value="{{ $user->name }}" type="text"
                                             placeholder="Juan Dela Cruz" id="" name="name">
                                         @error('name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label for="" class="form-control-label">{{ __('Birthdate') }}</label>
                                     <div class="@error('birthdate')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" value="{{ old('birthdate') }}" type="date"
+                                        <input class="form-control" value="{{ $user->birthdate->format('Y-m-d') }}" type="date"
                                             placeholder="juancruz@example.com" id="" name="birthdate">
                                         @error('birthdate')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label for="" class="form-control-label">{{ __('Email') }}</label>
                                     <div class="@error('email')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" value="{{ old('email') }}" type="email"
+                                        <input class="form-control" value="{{ $user->email }}" type="email"
                                             placeholder="juancruz@example.com" id="" name="email">
                                         @error('email')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -54,7 +54,7 @@
                                     <label for="" class="form-control-label">{{ __('Phone No.') }}</label>
                                     <div class="@error('contact_no')border border-danger rounded-3 @enderror">
                                         <input class="form-control" type="tel" placeholder="09123123122" id="number"
-                                            name="contact_no" value="{{ old('contact_no') }}">
+                                            name="contact_no" value="{{ $user->contact_no }}">
                                         @error('contact_no')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
@@ -67,7 +67,7 @@
                                     <div class="@error('address') border border-danger rounded-3 @enderror">
                                         <input class="form-control" type="text"
                                             placeholder="Barangay, City/Town, Province" id="name" name="address"
-                                            value="{{ old('address') }}">
+                                            value="{{ $user->address }}">
                                             @error('address')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
@@ -76,11 +76,12 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">SAVE NEW STAFF</button>
+                            <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">UPDATE PROFILE INFORMATION</button>
                         </div>
                     </form>
                 </div>
             </div>
+            
         </div>
     </div>
 @endsection
