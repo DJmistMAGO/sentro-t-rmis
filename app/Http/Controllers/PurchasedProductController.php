@@ -55,21 +55,21 @@ class PurchasedProductController extends Controller
         return redirect()->route('purchased-product.index')->with('success', 'Purchased Product created successfully.');
     }
 
-    public function edit(PurchaseProductInfo $purchased)
+    public function view(PurchaseProductInfo $purchased)
     {
         $purchased->load(['purchasedProducts']);
         $products = Product::all();
         // dd($purchased);
 
-        return view('modules.purchased.edit', compact('purchased', 'products'));
+        return view('modules.purchased.view', compact('purchased', 'products'));
     }
 
-    public function update(StoreRequest $request, PurchaseProductInfo $purchased)
-    {
-        $validated = $request->validated();
+    // public function update(StoreRequest $request, PurchaseProductInfo $purchased)
+    // {
+    //     $validated = $request->validated();
 
-        dd($validated);
+    //     dd($validated);
 
-        return redirect()->route('purchased-product.index')->with('success', 'Purchased Product record updated!');
-    }
+    //     return redirect()->route('purchased-product.index')->with('success', 'Purchased Product record updated!');
+    // }
 }

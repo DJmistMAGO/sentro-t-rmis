@@ -2,7 +2,7 @@
 @livewireStyles()
 
 @section('content')
-    <form action="{{ route('purchased-product.update', [$purchased]) }}" method="POST">
+    <form method="POST">
         @csrf
         {{-- @method('PUT') --}}
         <div class="row">
@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>Prepared by</label>
-                            <input type="text" name="prepared_by" value="{{ $purchased->prepared_by }}" required
+                            <input type="text" name="prepared_by" value="{{ $purchased->prepared_by }}" readonly
                                 class="form-control @error('prepared_by') is-invalid @enderror" placeholder="">
                             @error('prepared_by')
                                 <div class="invalid-feedback" style="display: inline-block !important;">
@@ -33,7 +33,7 @@
                         <div class="form-group col-md-4">
                             <label>Date Preparation</label>
                             <input type="date" name="date_preparation"
-                                value="{{ $purchased->date_preparation->format('Y-m-d') }}" required
+                                value="{{ $purchased->date_preparation->format('Y-m-d') }}" readonly
                                 class="form-control @error('date_preparation') is-invalid @enderror">
                             @error('date_preparation')
                                 <div class="invalid-feedback" style="display: inline-block !important;">
@@ -49,19 +49,19 @@
         <div class="row">
             <div class="col-md-12 mb-1">
                 <x-card title="Purchased Items" data-item-container>
-                    <button type="button" class="btn btn-primary mb-3" data-add-item>Add new item</button>
+                    {{-- <button type="button" class="btn btn-primary mb-3" data-add-item>Add new item</button> --}}
                     @foreach ($purchased->purchasedProducts as $product)
                         <div class="row border rounded-sm border-primary pt-3 m-1" {{ $loop->first ? 'data-parent' : '' }}>
                             <input type="hidden" name="productId[]" value="{{ $product->id }}">
                             <div class="form-group col-md-6">
                                 <label>Select Product.</label>
-                                <select name="product_name[]" required
+                                <select name="product_name[]" disabled
                                     class="form-control @error('product_name.0') is-invalid @enderror">
                                     <option value="">Please Select</option>
                                     @foreach ($products as $pd)
                                         <option value="{{ $pd->id }}" data-quantity="{{ $pd->quantity }}"
                                             @selected($product->product_id == $pd->id)>
-                                            {{ $pd->product_code . ' - ' . $pd->product_name . ' - Php. ' . $pd->price . ' (Remaining: ' . $pd->quantity . ' ' . $pd->unit . ')' }}
+                                            {{ $pd->product_code . ' - ' . $pd->product_name . ' - Php. ' . $pd->price }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -74,7 +74,7 @@
                             <div class="form-group col-md-6">
                                 <label>Quantity</label>
                                 <div class="input-group">
-                                    <input type="number" min="1" step="0.01" name="quantity[]" required
+                                    <input type="number" min="1" step="0.01" name="quantity[]" readonly
                                         value="{{ $product->quantity }}"
                                         class="form-control @error('quantity.0') is-invalid @enderror">
                                     <button type="button" id="button-addon2"
@@ -89,9 +89,9 @@
                             </div>
                         </div>
                     @endforeach
-                    <x-slot:footer>
+                    {{-- <x-slot:footer>
                         <button type="submit" class="btn btn-info col-md-4">Create</button>
-                    </x-slot:footer>
+                    </x-slot:footer> --}}
                 </x-card>
             </div>
         </div>

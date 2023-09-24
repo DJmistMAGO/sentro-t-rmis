@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('purchased-product.index');
         Route::get('/create', 'create')->name('purchased-product.create');
         Route::post('/store', 'store')->name('purchased-product.store');
-        // Route::get('/edit/{purchased}', 'edit')->name('purchased-product.edit');
+        Route::get('/view/{purchased}', 'view')->name('purchased-product.view');
         // Route::post('/update/{purchased}', 'update')->name('purchased-product.update');
 
     });
