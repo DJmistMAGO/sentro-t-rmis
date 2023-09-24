@@ -114,7 +114,7 @@
                         class="nav-link {{ request()->routeIs('user-management.*') ? 'active bg-gradient-light' : '' }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa fa-users opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('user-management') ? 'text-white' : 'text-dark' }}"
+                            <i class="fa fa-users opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('user-management.*') ? 'text-white' : 'text-dark' }}"
                                 aria-hidden="true"></i>
                         </div>
                         <span
@@ -124,10 +124,10 @@
                 </li>
             @endif
             <li class="nav-item mt-5 mb-0">
-                <a href="#"
-                    class="nav-link text-uppercase text-center text-sm font-weight-bolder text-white d-flex justify-content-center">
-                    <i class="fa fa-user ms-0 ps-0  " aria-hidden="true"></i>
-                    {{ auth()->user()->name }}
+                <a href="{{ route('user-info.view-profile', auth()->user()->id ) }}"
+                    class="nav-link text-uppercase text-center text-sm font-weight-bolder text-white d-flex justify-content-center {{ request()->routeIs('user-info.view-profile') ? 'active bg-gradient-light' : '' }}">
+                    <i class="fa fa-users opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('user-info.view-profile') ? 'text-dark' : 'text-white' }}" aria-hidden="true"></i>
+                    <span class="nav-link-text ms-1 {{ request()->routeIs('user-info.view-profile') ? 'text-dark' : 'text-white' }}">{{ auth()->user()->name }}</span>
                 </a>
             </li>
         </ul>
