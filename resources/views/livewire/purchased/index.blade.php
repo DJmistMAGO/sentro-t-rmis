@@ -16,37 +16,49 @@
             </div>
         </div>
         <div class="card-body pt-0">
-                <div class="row">
-                    <div class="table-responsive p-0 mb-0">
-                        <table class="table table-sm mb-0 table-hover">
-                            <thead class="thead-gray">
+            <div class="row">
+                <div class="table-responsive p-0 mb-0">
+                    <table class="table table-sm mb-0 table-hover">
+                        <thead class="thead-gray">
                             <tr>
-                                <th class="text-uppercase text-left text-secondary text-sm font-weight-bolder opacity-10">Reference No.</th>
-                                <th class="text-uppercase text-center text-secondary text-sm font-weight-bolder opacity-10">Prepared By</th>
-                                <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Date Preparation</th>
-                                <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Action</th>
+                                <th
+                                    class="text-uppercase text-left text-secondary text-sm font-weight-bolder opacity-10">
+                                    Reference No.</th>
+                                <th
+                                    class="text-uppercase text-center text-secondary text-sm font-weight-bolder opacity-10">
+                                    Prepared By</th>
+                                <th
+                                    class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">
+                                    Date of Preparation</th>
+                                <th
+                                    class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">
+                                    Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ( $purchaseProdInfo as $prodPurInfo )
-                            <tr>
-                                <td class="text-left ps-4 text-sm">{{ $prodPurInfo->reference_no }}</td>
-                                <td class="text-center text-sm">{{ $prodPurInfo->prepared_by }}</td>
-                                <td class="text-center text-sm">{{ $prodPurInfo->date_preparation->format('m/d/y') }}</td>
-                                <td class="align-middle text-center">
-                                    <div class="align-middle">
-                                        <button class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</button>
-                                        <button class="btn bg-gradient-info btn-sm  me-1 mb-0 px-3">Edit</button>
-                                        <button class="btn bg-gradient-danger btn-sm  me-1 mb-0 px-3">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @forelse ($purchaseProdInfo as $prodPurInfo)
+                                <tr>
+                                    <td class="text-left ps-4 text-sm">{{ $prodPurInfo->reference_no }}</td>
+                                    <td class="text-center text-sm">{{ $prodPurInfo->prepared_by }}</td>
+                                    <td class="text-center text-sm">
+                                        {{ $prodPurInfo->date_preparation->format('M. d, Y') }}</td>
+                                    <td class="align-middle text-center">
+                                        <div class="align-middle">
+                                            {{-- <button class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</button> --}}
+                                            <a href="{{ route('purchased-product.view', [$prodPurInfo]) }}"
+                                                class="btn bg-gradient-success btn-sm me-1 mb-0 px-3">View</a>
+                                            {{-- <button class="btn bg-gradient-info btn-sm  me-1 mb-0 px-3">Edit</button> --}}
+                                            <button
+                                                class="btn bg-gradient-danger btn-sm  me-1 mb-0 px-3">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
                             @empty
-                            <tr>
-                                <td colspan="4" class="text-center">
-                                    No Record!
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        No Record!
+                                    </td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>
