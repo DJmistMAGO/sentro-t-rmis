@@ -64,12 +64,10 @@ class PurchasedProductController extends Controller
         return view('modules.purchased.view', compact('purchased', 'products'));
     }
 
-    // public function update(StoreRequest $request, PurchaseProductInfo $purchased)
-    // {
-    //     $validated = $request->validated();
+    public function destroy(PurchaseProductInfo $purchased)
+    {
+        $purchased->delete();
 
-    //     dd($validated);
-
-    //     return redirect()->route('purchased-product.index')->with('success', 'Purchased Product record updated!');
-    // }
+        return redirect()->route('purchased-product.index')->with('success', 'Purchased product record deleted successfully.');
+    }
 }

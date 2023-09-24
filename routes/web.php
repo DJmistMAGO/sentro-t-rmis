@@ -29,7 +29,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(UserManagementController::class)->prefix('user-management')->group(function () {
         Route::get('/', 'index')->name('user-management.index');
         Route::get('/create', 'create')->name('user-management.create');
-
     });
 
     Route::controller(ProductController::class)->prefix('product')->group(function () {
@@ -48,6 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/create', 'create')->name('purchased-product.create');
         Route::post('/store', 'store')->name('purchased-product.store');
         Route::get('/view/{purchased}', 'view')->name('purchased-product.view');
+        Route::delete('/delete/{purchased}', 'destroy')->name('purchased-product.destroy');
+
         // Route::post('/update/{purchased}', 'update')->name('purchased-product.update');
 
     });
@@ -56,7 +57,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('returned-product.index');
         Route::get('/create', 'create')->name('returned-product.create');
         Route::post('/store', 'store')->name('returned-product.store');
-
     });
 
     Route::controller(DamagedProductController::class)->prefix('damaged-product')->group(function () {
@@ -72,7 +72,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [SessionsController::class, 'destroy']);
     Route::get('/user-profile', [InfoUserController::class, 'create']);
     Route::post('/user-profile', [InfoUserController::class, 'store']);
-    Route::get('/login', function () {return view('dashboard');})->name('sign-up');
+    Route::get('/login', function () {
+        return view('dashboard');
+    })->name('sign-up');
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -80,4 +82,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/session', [SessionsController::class, 'store']);
 });
 
-Route::get('/login', function () {return view('session/login-session');})->name('login');
+Route::get('/login', function () {
+    return view('session/login-session');
+})->name('login');

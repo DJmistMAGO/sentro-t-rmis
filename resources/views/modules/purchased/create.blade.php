@@ -7,7 +7,6 @@
         <div class="row">
             <div class="col-md-12 mb-2">
                 <x-card title="Purchased Product Information" :back-url="route('purchased-product.index')">
-                    {{-- <div class="card-body pt-0"> --}}
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label>Reference No.</label>
@@ -41,7 +40,6 @@
                             @enderror
                         </div>
                     </div>
-                    {{-- </div> --}}
                 </x-card>
             </div>
         </div>
@@ -55,11 +53,13 @@
                             <select name="product_name[]" required
                                 class="form-control @error('product_name.0') is-invalid @enderror">
                                 <option value="">Please Select</option>
-                                @foreach ($products as $product)
+                                @forelse ($products as $product)
                                     <option value="{{ $product->id }}" data-quantity="{{ $product->quantity }}">
                                         {{ $product->product_code . ' - ' . $product->product_name . ' - Php. ' . $product->price . ' (Remaining: ' . $product->quantity . ' ' . $product->unit . ')' }}
                                     </option>
-                                @endforeach
+                                @empty
+                                    <option value="">No Stocked Products Found</option>
+                                @endforelse
                             </select>
                             @error('product_name.0')
                                 <div class="invalid-feedback" style="display: inline-block !important;">
@@ -107,10 +107,13 @@
                     }
                 });
 
+                // if empty fields found, disable the button
                 if (empty) {
                     $('.btn-info').attr('disabled', 'disabled');
+                    $('.btn-info').attr('title', 'Please fill out all required fields.');
                 } else {
                     $('.btn-info').removeAttr('disabled');
+                    $('.btn-info').removeAttr('title');
                 }
             });
 
