@@ -86,6 +86,7 @@
                                                     class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
                                                 @livewire('product.delete-product', ['product' => $product], key($product->id))
                                             </div>
+                                            
                                         </td>
                                     </tr>
                                 @empty
