@@ -18,21 +18,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mt-md-0 mt-4">
-            <div class="card">
-                <div class="card-header mx-4 p-3 text-center">
-                    <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-cubes opacity-10" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="card-body pt-0 p-3 text-center">
-                    <h6 class="text-center mb-0">Stock Product</h6>
-                    <span class="text-xs">This Month</span>
-                    <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">{{ $products->count() }}</h5>
-                </div>
-            </div>
-        </div>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header mx-4 p-3 text-center">
@@ -63,16 +48,31 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3 mt-md-0 mt-4">
+            <div class="card">
+                <div class="card-header mx-4 p-3 text-center">
+                    <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+                        <i class="fas fa-cubes opacity-10" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="card-body pt-0 p-3 text-center">
+                    <h6 class="text-center mb-0">Out Of Stock Product</h6>
+                    <span class="text-xs">This Month</span>
+                    <hr class="horizontal dark my-3">
+                    <h5 class="mb-0">{{ $out_stock_product   }}</h5>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row mt-4">
         <div class="col-lg-12">
             <div class="card z-index-2">
                 <div class="card-header pb-0">
-                    <h6>Sales Overview this Year {{ date('Y') }}</h6>
+                    <h6>Net Income Overview this Year {{ date('Y') }}</h6>
                 </div>
                 <div class="card-body p-3">
                     <div class="chart">
-                        <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                        <canvas id="chart-line" class="chart-canvas" height="200"></canvas>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                 data: {
                     labels: months, // Use the months array here
                     datasets: [{
-                        label: "Total Purchase",
+                        label: "Net Income",
                         tension: 0,
                         borderWidth: 0,
                         pointRadius: 0,
