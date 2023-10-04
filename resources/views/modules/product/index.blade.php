@@ -86,10 +86,10 @@
                                                             Restock
                                                         </button>
                                                 <a href="{{ route('product.show', $product->id) }}" class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
-                                                @if(auth()->user()->role == 'admin')
+
                                                 <a href="{{ route('product.edit', $product->id) }}" class="btn bg-gradient-primary btn-sm  me-1 mb-0 px-3">Edit</a>
                                                 @livewire('product.delete-product', ['product' => $product], key($product->id))
-                                                @endif
+
                                             </div>
                                         </td>
                                     </tr>

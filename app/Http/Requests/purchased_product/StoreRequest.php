@@ -27,10 +27,24 @@ class StoreRequest extends FormRequest
             'date_preparation' => 'required',
 
             'product_name' => ['required', 'array'],
-            'product_name.*' =>  ['required'],
+            'product_name.*' => ['required'],
 
             'quantity' => ['required', 'array'],
             'quantity.*' => ['required'],
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'reference_no.required' => 'Reference Number is required',
+            'prepared_by.required' => 'Prepared by field is required',
+            'date_preparation.required' => 'Date of preparation is required',
+            'product_name.required' => 'Product Name is required',
+            'product_name.*.required' => 'Product Name is required',
+            'quantity.required' => 'Quantity is required',
+            'quantity.*.required' => 'Quantity is required',
+        ];
+
     }
 }
