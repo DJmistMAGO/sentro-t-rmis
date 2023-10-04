@@ -90,11 +90,9 @@ class ProductController extends Controller
     public function update(StoreRequest $request, $id)
     {
         $validated = $request->validated();
-        // dd($validated);
 
         $product = Product::findOrfail($id);
 
-        // delete old image
         if ($product->image && file_exists(public_path('img/' . $product->image))) {
             unlink(public_path('img/' . $product->image));
         }
@@ -104,6 +102,7 @@ class ProductController extends Controller
         $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
         $image->move(public_path('img'), $imageName);
 
+        
         $product->update([
             'product_name' => $validated['product_name'],
             'product_code' => $validated['product_code'],
@@ -125,5 +124,21 @@ class ProductController extends Controller
         $categories = $this->categories;
 
         return view('modules.product.view', compact('product', 'categories'));
+    }
+
+    public function restock(Product $product, Request $request)
+    {
+        $validated = $request->validate([
+            'restock' => 'required'
+        ]);
+
+        $product_qty = $validated['restock'] + $product->quantity;
+
+        $product->update([
+            'quantity' => $product_qty,
+        ]);
+
+        return redirect()->route('product.index')->with('success', 'Product restock updated successfully.');
+
     }
 }

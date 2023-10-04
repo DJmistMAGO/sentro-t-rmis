@@ -80,15 +80,47 @@
                                         {{-- <td class="text-center text-sm align-middle">{{ $product->unit }}</td> --}}
                                         <td class="align-middle text-center">
                                             <div class="align-middle">
-                                                <button
-                                                    class="btn btn-sm bg-gradient-warning me-1 mb-0 px-3">Restock</button>
-                                                <a href="{{ route('product.show', $product->id) }}"
-                                                    class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
+                                                <button type="button" class="btn btn-sm bg-gradient-warning me-1 mb-0 px-3" title="Delete"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#confirmationModal{{ $product->id }}">
+                                                            Restock
+                                                        </button>
+                                                <a href="{{ route('product.show', $product->id) }}" class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
+                                                <a href="{{ route('product.edit', $product->id) }}" class="btn bg-gradient-primary btn-sm  me-1 mb-0 px-3">Edit</a>
                                                 @livewire('product.delete-product', ['product' => $product], key($product->id))
+
                                             </div>
                                             
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="confirmationModal{{ $product->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true"
+                                        data-backdrop="static">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content modal-static">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmationModalLabel">Restock {{ $product->product_name }}
+                                                    </h5>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('product.restock', [$product->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                <div class="modal-body mt-2 mb-2">
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Input Quantity</label>
+                                                        <input type="number" name="restock" id="" class="form-control text-end">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                        <button type="submit" class="btn btn-sm btn-primary">Restock</button>
+                                                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @empty
                                     <tr>
                                         <td colspan="6" class="text-center">

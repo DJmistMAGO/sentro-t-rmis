@@ -17,7 +17,12 @@ class ReturnProductController extends Controller
     public function create()
     {
         $products = Product::get();
-        return view('modules.return.create', compact('products'));
+
+        $reference_no = ReturnProdInfo::latest()->first('reference_no');
+        $reference_no = $reference_no ? $reference_no->blotter_entry_no + 1 : 1;
+        $reference_no = str_pad($reference_no, 4, '0', STR_PAD_LEFT);
+
+        return view('modules.return.create', compact('products', 'reference_no'));
     }
 
     public function store(StoreRequest $request)

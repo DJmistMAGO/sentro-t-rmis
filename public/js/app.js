@@ -22884,6 +22884,10 @@ $(document).ready(function () {
       }
     }
   });
+  $(document).on("click", "[data-remove-item]", function () {
+    var _parent = $(this).closest(".row");
+    _parent.remove();
+  });
 
   // data-calc-item => assign to input text that you want to include in sum
   // data-calc-total => assign to input for displaying the total
@@ -22901,10 +22905,6 @@ $(document).ready(function () {
       });
       _total_text.val("Php. " + total);
     }
-  });
-  $(document).on("click", "[data-remove-item]", function () {
-    var _parent = $(this).closest(".row");
-    _parent.remove();
   });
 });
 })();
