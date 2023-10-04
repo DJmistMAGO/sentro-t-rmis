@@ -8,8 +8,8 @@ use App\Http\Controllers\PurchasedProductController;
 use App\Http\Controllers\ReturnProductController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\StockProductController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserManagementController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home'])->name('dashboard');
 
-    Route::controller(UserManagementController::class)->prefix('user-management')->group(function (){
+    Route::controller(UserManagementController::class)->prefix('user-management')->group(function () {
         Route::get('/', 'index')->name('user-management.index');
         Route::get('/create', 'create')->name('user-management.create');
         Route::post('/store', 'store')->name('user-management.store');
@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{id}', 'edit')->name('product.edit');
         Route::get('/view/{id}', 'show')->name('product.show');
         Route::post('/update/{id}', 'update')->name('product.update');
+        Route::put('/restock/{product}', 'restock')->name('product.restock');
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
         Route::get('/sample', 'sample')->name('product.sample');
     });
@@ -52,12 +53,18 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('purchased-product.index');
         Route::get('/create', 'create')->name('purchased-product.create');
         Route::post('/store', 'store')->name('purchased-product.store');
+        Route::get('/view/{purchased}', 'view')->name('purchased-product.view');
+        Route::get('/edit/{prodPurInfo}', 'edit')->name('purchased-product.edit');
+
+        // Route::post('/update/{purchased}', 'update')->name('purchased-product.update');
+
     });
 
     Route::controller(ReturnProductController::class)->prefix('returned-product')->group(function () {
         Route::get('/', 'index')->name('returned-product.index');
         Route::get('/create', 'create')->name('returned-product.create');
         Route::post('/store', 'store')->name('returned-product.store');
+
     });
 
     Route::controller(DamagedProductController::class)->prefix('damaged-product')->group(function () {
