@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{id}', 'edit')->name('product.edit');
         Route::get('/view/{id}', 'show')->name('product.show');
         Route::post('/update/{id}', 'update')->name('product.update');
+        Route::put('/restock/{product}', 'restock')->name('product.restock');
         Route::get('/delete/{id}', 'destroy')->name('product.destroy');
         Route::get('/sample', 'sample')->name('product.sample');
     });
@@ -53,6 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/create', 'create')->name('purchased-product.create');
         Route::post('/store', 'store')->name('purchased-product.store');
         Route::get('/view/{purchased}', 'view')->name('purchased-product.view');
+        Route::get('/edit/{prodPurInfo}', 'edit')->name('purchased-product.edit');
+
         // Route::post('/update/{purchased}', 'update')->name('purchased-product.update');
 
     });
