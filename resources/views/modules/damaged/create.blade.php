@@ -11,15 +11,15 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label>Reference No.</label>
-                            <input type="text" name="reference_no" value="{{ old('reference_no') }}" id="" class="form-control" placeholder="">
+                            <input type="text" name="reference_no" value="{{ $reference_no }}" id="" class="form-control" placeholder="">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Prepared by</label>
-                            <input type="text" name="prepared_by" value="{{ old('prepared_by') }}" id="" class="form-control" placeholder="">
+                            <input type="text" name="prepared_by" value="{{ auth()->user()->name }}" id="" class="form-control" placeholder="">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Date Preparation</label>
-                            <input type="date" name="date_preparation" value="{{ old('date_preparation') }}" id="" class="form-control" placeholder="">
+                            <input type="date" name="date_preparation" value="{{ old('date_preparation') ?? date('Y-m-d') }}"" id="" class="form-control" placeholder="">
                         </div>
                     </div>
                 {{-- </div> --}}

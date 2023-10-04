@@ -8,7 +8,6 @@ class Index extends Component
 {
     public function render()
     {
-
         $purchaseProdInfo = PurchaseProductInfo::get();
 
         return view('livewire.purchased.index', compact('purchaseProdInfo'));

@@ -44,12 +44,11 @@
                                         {{ $prodPurInfo->date_preparation->format('M. d, Y') }}</td>
                                     <td class="align-middle text-center">
                                         <div class="align-middle">
-                                            {{-- <button class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</button> --}}
-                                            <a href="{{ route('purchased-product.view', [$prodPurInfo]) }}"
-                                                class="btn bg-gradient-success btn-sm me-1 mb-0 px-3">View</a>
-                                            {{-- <button class="btn bg-gradient-info btn-sm  me-1 mb-0 px-3">Edit</button> --}}
-                                            <button
-                                                class="btn bg-gradient-danger btn-sm  me-1 mb-0 px-3">Delete</button>
+                                            <a href="{{ route('purchased-product.view', [$prodPurInfo]) }}" class="btn bg-gradient-success btn-sm me-1 mb-0 px-3">View</a>
+                                            @if(auth()->user()->role == 'admin')
+                                            <a href="{{ route('purchased-product.edit', [$prodPurInfo]) }}" class="btn bg-gradient-primary btn-sm me-1 mb-0 px-3">Edit</a>
+                                            @livewire('purchased.delete', ['prodPurInfo' => $prodPurInfo], key($prodPurInfo->id))
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

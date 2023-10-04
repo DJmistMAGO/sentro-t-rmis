@@ -19,7 +19,11 @@ class PurchasedProductController extends Controller
         //get all products
         $products = Product::where('quantity', '>', 0)->get();
 
-        return view('modules.purchased.create', compact('products'));
+        $reference_no = PurchaseProductInfo::latest()->first('reference_no');
+        $reference_no = $reference_no ? $reference_no->blotter_entry_no + 1 : 1;
+        $reference_no = str_pad($reference_no, 4, '0', STR_PAD_LEFT);
+
+        return view('modules.purchased.create', compact('products', 'reference_no'));
     }
 
     public function store(StoreRequest $request)
@@ -64,12 +68,15 @@ class PurchasedProductController extends Controller
         return view('modules.purchased.view', compact('purchased', 'products'));
     }
 
-    // public function update(StoreRequest $request, PurchaseProductInfo $purchased)
-    // {
-    //     $validated = $request->validated();
+    public function edit(PurchaseProductInfo $prodPurInfo)
+    {
+        $products = Product::all();
 
-    //     dd($validated);
+        return view('modules.purchased.edit', compact('prodPurInfo', 'products'));
+    }
 
-    //     return redirect()->route('purchased-product.index')->with('success', 'Purchased Product record updated!');
-    // }
+    public function update(PurchaseProductInfo $prodPurInfo)
+    {
+
+    }
 }

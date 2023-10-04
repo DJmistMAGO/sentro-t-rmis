@@ -17,7 +17,13 @@ class HomeController extends Controller
         // $return = ReturnProduct::all();
         // $damage = DamageProduct::all();
         $products = Product::all();
+
         $productCount = Product::whereMonth('created_at', date('m'))->count();
+
+        $out_stock_product = Product::whereMonth('created_at', date('m'))
+            ->where('quantity', '<=', 20)
+            ->count();
+
 
         $return = ReturnProduct::with('returnProdInfo')
             ->whereHas('returnProdInfo', function ($query) {
@@ -73,6 +79,7 @@ class HomeController extends Controller
 
 
 
-        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthlyTotals'));
+
+        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthlyTotals' , 'out_stock_product'));
     }
 }

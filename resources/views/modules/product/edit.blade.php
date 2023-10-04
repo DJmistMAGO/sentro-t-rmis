@@ -111,7 +111,7 @@
                                 <label class="form-label">Image</label>
                                 <input type="file" name="image"
                                     class="form-control @error('image') is-invalid @enderror" value="{{ $product->image }}"
-                                    id="image" required>
+                                    id="image">
                                 @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}
