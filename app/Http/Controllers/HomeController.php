@@ -44,20 +44,42 @@ class HomeController extends Controller
             ->count();
 
 
-        $purchasedProducts = PurchaseProductInfo::with('purchasedProducts')->get();
-        $year = date('Y');
-        $month = date('m');
-        $monthCounts = [];
+        $purchasedProductsInfo = PurchaseProductInfo::with('purchasedProducts')->whereYear('date_preparation', '=', date('Y'))->whereMonth('date_preparation', '=', date('m'))->get();
 
-        foreach (range(1, 12) as $monthNumber) {
-            $formattedMonth = str_pad($monthNumber, 2, '0', STR_PAD_LEFT);
-            $monthCounts[$formattedMonth] = $purchasedProducts->filter(function ($purchasedProduct) use ($year, $formattedMonth) {
-                return $purchasedProduct->date_preparation->format('Ym') == $year . $formattedMonth;
-            })->count();
+        $monthlyTotals = [];
+
+        // Filter purchasedProductsInfo by month and sum the total from the child model
+        foreach ($purchasedProductsInfo as $purchasedProductInfo) {
+            $month = date('F', strtotime($purchasedProductInfo->date_preparation)); // Get the month name
+            $total = $purchasedProductInfo->purchasedProducts->sum('total');
+
+            // Store the total in the array with the month name as the key
+            $monthlyTotals[$month] = $total;
         }
 
-        // dd($monthCounts);
+        // Create an array of month names
+        $monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July',
+            'August', 'September', 'October', 'November', 'December'
+        ];
 
-        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthCounts' , 'out_stock_product'));
+        // Create an array with all months and set the sales to 0 for missing months
+        foreach ($monthNames as $monthName) {
+            if (!isset($monthlyTotals[$monthName])) {
+                $monthlyTotals[$monthName] = 0;
+            }
+        }
+
+        // Sort the array by month name
+        // ksort($monthlyTotals);
+
+        // dd($monthlyTotals);
+
+
+
+
+
+
+        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthlyTotals' , 'out_stock_product'));
     }
 }
