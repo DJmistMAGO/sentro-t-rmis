@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\DamageProduct;
 use App\Models\ReturnProduct;
 use App\Models\ReturnProdInfo;
-use App\Models\DamageProduct;
 use Illuminate\Support\Carbon;
+use App\Models\PurchasedProduct;
+use App\Models\PurchaseProductInfo;
 
 class HomeController extends Controller
 {
@@ -22,19 +24,34 @@ class HomeController extends Controller
                 $currentMonth = Carbon::now()->format('m');
                 $currentYear = Carbon::now()->format('Y');
                 $query->whereMonth('date_preparation', '=', $currentMonth)
-                ->whereYear('date_preparation', '=', $currentYear); // Adjust the month and year as needed
+                    ->whereYear('date_preparation', '=', $currentYear); // Adjust the month and year as needed
             })
             ->count();
 
-            $damage = DamageProduct::with('damageProdInfo')
+        $damage = DamageProduct::with('damageProdInfo')
             ->whereHas('damageProdInfo', function ($query) {
                 $currentMonth = Carbon::now()->format('m');
                 $currentYear = Carbon::now()->format('Y');
                 $query->whereMonth('date_preparation', '=', $currentMonth)
-                ->whereYear('date_preparation', '=', $currentYear); // Adjust the month and year as needed
+                    ->whereYear('date_preparation', '=', $currentYear); // Adjust the month and year as needed
             })
-            ->count(); 
+            ->count();
 
-        return view('dashboard', compact('products', 'productCount', 'damage', 'return'));
+
+        $purchasedProducts = PurchaseProductInfo::with('purchasedProducts')->get();
+        $year = date('Y');
+        $month = date('m');
+        $monthCounts = [];
+
+        foreach (range(1, 12) as $monthNumber) {
+            $formattedMonth = str_pad($monthNumber, 2, '0', STR_PAD_LEFT);
+            $monthCounts[$formattedMonth] = $purchasedProducts->filter(function ($purchasedProduct) use ($year, $formattedMonth) {
+                return $purchasedProduct->date_preparation->format('Ym') == $year . $formattedMonth;
+            })->count();
+        }
+
+        // dd($monthCounts);
+
+        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthCounts'));
     }
 }
