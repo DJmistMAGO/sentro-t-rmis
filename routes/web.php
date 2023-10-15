@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/store', 'store')->name('purchased-product.store');
         Route::get('/view/{purchased}', 'view')->name('purchased-product.view');
         Route::get('/edit/{prodPurInfo}', 'edit')->name('purchased-product.edit');
+        Route::put('/edit/{prodPurInfo}', 'update')->name('purchased-product.update');
+
 
         // Route::post('/update/{purchased}', 'update')->name('purchased-product.update');
 

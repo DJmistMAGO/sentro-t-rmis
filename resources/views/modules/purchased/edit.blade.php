@@ -2,9 +2,9 @@
 @livewireStyles()
 
 @section('content')
-    <form method="POST">
+    <form action="{{ route('purchased-product.update', [$prodPurInfo]) }}" method="POST">
         @csrf
-        {{-- @method('PUT') --}}
+        @method('PUT')
         <div class="row">
             <div class="col-md-12 mb-2">
                 <x-card title="Edit Purchased Product Information" :back-url="route('purchased-product.index')">
@@ -52,10 +52,10 @@
                     <button type="button" class="btn btn-primary mb-3" data-add-item>Add new item</button>
                     @foreach ($prodPurInfo->purchasedProducts as $product)
                         <div class="row border rounded-sm border-primary pt-3 m-1" {{ $loop->first ? 'data-parent' : '' }}>
-                            <input type="hidden" name="productId[]" value="{{ $product->id }}">
+                            <input type="text" name="productId[]" value="{{ $product->id }}">
                             <div class="form-group col-md-6">
                                 <label>Select Product.</label>
-                                <select name="product_name[]" 
+                                <select name="product_name[]"
                                     class="form-control @error('product_name.0') is-invalid @enderror">
                                     <option value="">Please Select</option>
                                     @foreach ($products as $pd)

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\purchased_product\StoreRequest;
+use App\Http\Requests\PurchasedRequest\UpdateRequest;
 use App\Models\Product;
 use App\Models\PurchaseProductInfo;
+use Illuminate\Http\Request;
+use Arr;
 
 class PurchasedProductController extends Controller
 {
@@ -75,8 +78,56 @@ class PurchasedProductController extends Controller
         return view('modules.purchased.edit', compact('prodPurInfo', 'products'));
     }
 
-    public function update(PurchaseProductInfo $prodPurInfo)
+    public function update(UpdateRequest $request, PurchaseProductInfo $prodPurInfo)
     {
+        $validated = $request->validated();
+
+        // dd($validated);
+
+        $prodPurInfo->update(Arr::only($validated, [
+            'reference_no',
+            'prepared_by',
+            'date_preparation',
+        ]));
+
+        $purchased_items = $prodPurInfo->purchasedProducts()->pluck('id');
+
+        $deletedIds = $purchased_items->diff($validated['product_name'])->toArray();
+
+        if ($deletedIds) {
+            $prodPurInfo->purchasedProducts()->whereIn('id', $deletedIds)->delete();
+        }
+
+        foreach ($validated['product_name'] as $key => $product_item) {
+            $product = Product::find($product_item);
+
+            //find product and update the quantity
+            $product->update([
+                'quantity' => $product->quantity - $validated['quantity'][$key],
+            ]);
+
+
+            if (!$product_item) {
+                $prodPurInfo->purchasedProducts()->create([
+                    'product_id' => $validated['product_name'][$key],
+                    'quantity' => $validated['quantity'][$key],
+                    'price' => $product->price,
+                    'total' => $validated['quantity'][$key] * $product->price,
+                ]);
+            } else {
+                $prodPurInfo->purchasedProducts()->where('id', $product_item)->update([
+                    'product_id' => $validated['product_name'][$key],
+                    'quantity' => $validated['quantity'][$key],
+                    'price' => $product->price,
+                    'total' => $validated['quantity'][$key] * $product->price,
+                ]);
+            }
+
+
+        }
+
+        return redirect()->route('purchased-product.index')->with('success', 'Purchase Product updated successfully.');
+
 
     }
 }
