@@ -52,7 +52,9 @@
                     <button type="button" class="btn btn-primary mb-3" data-add-item>Add new item</button>
                     @foreach ($prodPurInfo->purchasedProducts as $product)
                         <div class="row border rounded-sm border-primary pt-3 m-1" {{ $loop->first ? 'data-parent' : '' }}>
-                            <input type="text" name="productId[]" value="{{ $product->id }}">
+                            
+                            <input type="hidden" name="productId[]" value="{{ $product->id }}">
+
                             <div class="form-group col-md-6">
                                 <label>Select Product.</label>
                                 <select name="product_name[]"
@@ -90,7 +92,7 @@
                         </div>
                     @endforeach
                     <x-slot:footer>
-                        <button type="submit" class="btn btn-info col-md-4">Create</button>
+                        <button type="submit" class="btn btn-info col-md-4">Update</button>
                     </x-slot:footer>
                 </x-card>
             </div>

@@ -7,6 +7,7 @@ use App\Http\Requests\PurchasedRequest\UpdateRequest;
 use App\Models\Product;
 use App\Models\PurchaseProductInfo;
 use Illuminate\Http\Request;
+use App\Models\PurchasedProduct;
 use Arr;
 
 class PurchasedProductController extends Controller
@@ -78,11 +79,11 @@ class PurchasedProductController extends Controller
         return view('modules.purchased.edit', compact('prodPurInfo', 'products'));
     }
 
-    public function update(UpdateRequest $request, PurchaseProductInfo $prodPurInfo)
+    public function update(Request $idRequest, UpdateRequest $request, PurchaseProductInfo $prodPurInfo)
     {
         $validated = $request->validated();
 
-        // dd($validated);
+        // dd($prodPurInfo->purchasedProducts->quantity);
 
         $prodPurInfo->update(Arr::only($validated, [
             'reference_no',
@@ -92,42 +93,68 @@ class PurchasedProductController extends Controller
 
         $purchased_items = $prodPurInfo->purchasedProducts()->pluck('id');
 
-        $deletedIds = $purchased_items->diff($validated['product_name'])->toArray();
+        $deletedIds = $purchased_items->diff($validated['productId'])->toArray();
 
         if ($deletedIds) {
-            $prodPurInfo->purchasedProducts()->whereIn('id', $deletedIds)->delete();
-        }
+            foreach ($deletedIds as $key => $value) {
+                $purchasedProd = PurchasedProduct::where('id', $deletedIds)->first();
 
-        foreach ($validated['product_name'] as $key => $product_item) {
-            $product = Product::find($product_item);
+                $product = Product::find($purchasedProd->product_id);
 
-            //find product and update the quantity
-            $product->update([
-                'quantity' => $product->quantity - $validated['quantity'][$key],
-            ]);
-
-
-            if (!$product_item) {
-                $prodPurInfo->purchasedProducts()->create([
-                    'product_id' => $validated['product_name'][$key],
-                    'quantity' => $validated['quantity'][$key],
-                    'price' => $product->price,
-                    'total' => $validated['quantity'][$key] * $product->price,
-                ]);
-            } else {
-                $prodPurInfo->purchasedProducts()->where('id', $product_item)->update([
-                    'product_id' => $validated['product_name'][$key],
-                    'quantity' => $validated['quantity'][$key],
-                    'price' => $product->price,
-                    'total' => $validated['quantity'][$key] * $product->price,
+                $product->update([
+                    'quantity' => $product->quantity + $purchasedProd->quantity,
                 ]);
             }
 
-
+            $prodPurInfo->purchasedProducts()->whereIn('id', $deletedIds)->delete();
         }
 
+        foreach ($validated['productId'] as $key => $product_item) {
+            $product = Product::find($validated['product_name'][$key]);
+
+            if (!$product) {
+                echo "Product not found for ID: " . $validated['product_name'][$key];
+                continue;
+            }
+
+            $quantityToSubtract = $validated['quantity'][$key];
+
+            if ($product_item) {
+                $purchasedProduct = $prodPurInfo->purchasedProducts()->find($product_item);
+
+                if ($purchasedProduct) {
+                    // Update the product quantity based on the difference
+                    $product->update([
+                        'quantity' => $product->quantity + $purchasedProduct->quantity - $quantityToSubtract,
+                    ]);
+
+                    // Update the purchased product information
+                    $purchasedProduct->update([
+                        'product_id' => $validated['product_name'][$key],
+                        'quantity' => $validated['quantity'][$key],
+                        'price' => $product->price,
+                        'total' => $validated['quantity'][$key] * $product->price,
+                    ]);
+                } else {
+                    echo "Purchased product not found for ID: $product_item";
+                }
+            } else {
+                // Create a new purchased product
+                $prodPurInfo->purchasedProducts()->create([
+                    'product_id' => $validated['product_name'][$key],
+                    'quantity' => $quantityToSubtract,
+                    'price' => $product->price,
+                    'total' => $quantityToSubtract * $product->price,
+                ]);
+
+                // Update the product quantity
+                $product->update([
+                    'quantity' => $product->quantity - $quantityToSubtract,
+                ]);
+            }
+        }
+
+
         return redirect()->route('purchased-product.index')->with('success', 'Purchase Product updated successfully.');
-
-
     }
 }
