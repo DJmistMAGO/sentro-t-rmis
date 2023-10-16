@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product\StoreRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Helpers\LogActivity;
 
 class ProductController extends Controller
 {
@@ -76,6 +77,8 @@ class ProductController extends Controller
             'status' => 'available', //default
         ]);
 
+        LogActivity::addToLog('Stored a New Product Named ' . $validated['product_name'] . ' with Product Code:' . $validated['product_code']);
+
         return redirect()->route('product.index')->with('success', 'Product record created successfully.');
     }
 
@@ -102,7 +105,7 @@ class ProductController extends Controller
         $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
         $image->move(public_path('img'), $imageName);
 
-        
+
         $product->update([
             'product_name' => $validated['product_name'],
             'product_code' => $validated['product_code'],
@@ -114,6 +117,9 @@ class ProductController extends Controller
             'supplier_info' => $validated['supplier_info'] ?? '',
             'image' => $imageName,
         ]);
+
+        LogActivity::addToLog('Updated Product Named ' . $validated['product_name'] . ' with Product Code:' . $validated['product_code']);
+
 
         return redirect()->route('product.index')->with('success', 'Product record updated successfully.');
     }
@@ -137,6 +143,9 @@ class ProductController extends Controller
         $product->update([
             'quantity' => $product_qty,
         ]);
+
+        LogActivity::addToLog('Restock Product ' . $product->product_name . ' with Product Code: ' . $product->product_code . ' | Quantity: ' . $validated['restock']);
+
 
         return redirect()->route('product.index')->with('success', 'Product restock updated successfully.');
 
