@@ -8,6 +8,7 @@ use App\Models\DamageProduct;
 use App\Models\Product;
 use App\Http\Requests\DamageProduct\StoreRequest;
 use App\Http\Requests\DamageProduct\UpdateRequest;
+use App\Helpers\LogActivity;
 use Arr;
 
 
@@ -63,6 +64,9 @@ class DamagedProductController extends Controller
                 'quantity' => $product->quantity - $validated['quantity'][$key],
             ]);
         }
+
+        LogActivity::addToLog('Stored a new Damaged product transaction Ref. No.: ' . $validated['reference_no']. ' by '. auth()->user()->name );
+
 
         return redirect()->route('damaged-product.index')->with('success', 'Damaged Product created successfully.');
     }

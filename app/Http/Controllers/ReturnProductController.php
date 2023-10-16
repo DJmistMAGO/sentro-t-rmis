@@ -9,6 +9,7 @@ use App\Models\ReturnProduct;
 use Arr;
 use App\Http\Requests\ReturnProduct\StoreRequest;
 use App\Http\Requests\ReturnProduct\UpdateRequest;
+use App\Helpers\LogActivity;
 
 class ReturnProductController extends Controller
 {
@@ -62,6 +63,9 @@ class ReturnProductController extends Controller
                 'quantity' => $product->quantity + $validated['quantity'][$key],
             ]);
         }
+
+        LogActivity::addToLog('Stored a new Returned product transaction Ref. No.: ' . $validated['reference_no']. ' by '. auth()->user()->name );
+
 
         return redirect()->route('returned-product.index')->with('success', 'Returned Product created successfully.');
     }

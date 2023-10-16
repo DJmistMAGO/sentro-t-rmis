@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\PurchaseProductInfo;
 use Illuminate\Http\Request;
 use App\Models\PurchasedProduct;
+use App\Helpers\LogActivity;
 use Arr;
 
 class PurchasedProductController extends Controller
@@ -59,6 +60,9 @@ class PurchasedProductController extends Controller
                 'purchase_product_info_id' => PurchaseProductInfo::latest()->first()->id,
             ]);
         }
+
+        LogActivity::addToLog('Stored a new purchase transaction Ref. No.: ' . $validated['reference_no']. ' by '. auth()->user()->name );
+
 
         return redirect()->route('purchased-product.index')->with('success', 'Purchased Product created successfully.');
     }

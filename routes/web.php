@@ -10,6 +10,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\StockProductController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login', [SessionsController::class, 'create']);
     Route::post('/session', [SessionsController::class, 'store']);
+});
+
+Route::controller(LogController::class)->prefix('logs')->group(function () {
+    Route::get('/', 'index')->name('logs.index');
 });
 
 Route::get('/login', function () {return view('session/login-session');})->name('login');

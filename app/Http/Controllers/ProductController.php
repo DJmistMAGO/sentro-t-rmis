@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product\StoreRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Helpers\LogActivity;
 
 class ProductController extends Controller
 {
@@ -76,6 +77,8 @@ class ProductController extends Controller
             'status' => 'available', //default
         ]);
 
+        LogActivity::addToLog('Stored a new product named ' . $validated['product_name'] . ' with Product Code:' . $validated['product_code'] . ' by '. auth()->user()->name );
+
         return redirect()->route('product.index')->with('success', 'Product record created successfully.');
     }
 
@@ -102,7 +105,7 @@ class ProductController extends Controller
         $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
         $image->move(public_path('img'), $imageName);
 
-        
+
         $product->update([
             'product_name' => $validated['product_name'],
             'product_code' => $validated['product_code'],

@@ -93,7 +93,6 @@
                     <span
                         class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} ">Damaged
                         Product</span>
-
                 </a>
             </li>
             <li class="nav-item">
@@ -107,6 +106,19 @@
                     </div>
                     <span
                         class="nnav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('logs.*') ? 'active bg-gradient-light' : '' }}"
+                    href="{{ route('logs.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i style="font-size: 1rem;"
+                            class="fas fa-cogs fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('logs.*') ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
+                    </div>
+                    <span
+                        class="nnav-link-text ms-1  {{ request()->routeIs('logs.*') ? 'text-dark' : 'text-white' }} ">Logs</span>
                 </a>
             </li>
             @if (auth()->user()->role == 'admin')
