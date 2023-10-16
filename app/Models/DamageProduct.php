@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DamageProduct extends Model
 {
-    use HasFactory;
-
+    use HasFactory, SoftDeletes;
 
 
     protected $fillable = [
@@ -16,7 +16,7 @@ class DamageProduct extends Model
         'product_id',
         'quantity',
         'price',
-        'total', 
+        'total',
     ];
 
     public function product()
