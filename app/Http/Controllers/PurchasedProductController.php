@@ -79,7 +79,7 @@ class PurchasedProductController extends Controller
         return view('modules.purchased.edit', compact('prodPurInfo', 'products'));
     }
 
-    public function update(Request $idRequest, UpdateRequest $request, PurchaseProductInfo $prodPurInfo)
+    public function update( UpdateRequest $request, PurchaseProductInfo $prodPurInfo)
     {
         $validated = $request->validated();
 
@@ -111,11 +111,6 @@ class PurchasedProductController extends Controller
 
         foreach ($validated['productId'] as $key => $product_item) {
             $product = Product::find($validated['product_name'][$key]);
-
-            if (!$product) {
-                echo "Product not found for ID: " . $validated['product_name'][$key];
-                continue;
-            }
 
             $quantityToSubtract = $validated['quantity'][$key];
 

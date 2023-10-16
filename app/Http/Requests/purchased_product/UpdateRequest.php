@@ -26,8 +26,8 @@ class UpdateRequest extends FormRequest
             'prepared_by' => 'required',
             'date_preparation' => 'required',
 
-            'productId' => ['required', 'array'],
-            'productId.*' => ['required', 'products:,id'],
+            'productId' => ['nullable', 'array'],
+            'productId.*' => ['nullable', 'products:,id'],
             'product_name' => ['required', 'array'],
             'product_name.*' => ['required'],
             'quantity' => ['required', 'array'],

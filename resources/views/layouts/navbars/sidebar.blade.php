@@ -46,7 +46,7 @@
                     href="{{ route('product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-shopping-cart fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product.*') ? 'text-white' : 'text-dark' }} "
+                        <i class="fas fa-tags fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
                     <span
@@ -58,11 +58,40 @@
                     href="{{ route('purchased-product.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-tags fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('purchased-product.*') ? 'text-white' : 'text-dark' }} "
+                        <i class="fas fa-shopping-basket fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('purchased-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
                     <span
                         class="nav-link-text ms-1  {{ request()->routeIs('purchased-product.*') ? 'text-dark' : 'text-white' }} ">Purchased
+                        Product</span>
+
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('returned-product.*') ? 'active bg-gradient-light' : '' }}"
+                    href="{{ route('returned-product.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-reply opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('returned-product.*') ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
+                    </div>
+                    <span
+                        class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} ">Return
+                        Product</span>
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('damaged-product.*') ? 'active bg-gradient-light' : '' }}"
+                    href="{{ route('damaged-product.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-trash opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('damaged-product.*') ? 'text-white' : 'text-dark' }} "
+                            aria-hidden="true"></i>
+                    </div>
+                    <span
+                        class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} ">Damaged
                         Product</span>
 
                 </a>
@@ -78,34 +107,6 @@
                     </div>
                     <span
                         class="nnav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('returned-product.*') ? 'active bg-gradient-light' : '' }}"
-                    href="{{ route('returned-product.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-truck opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('returned-product.*') ? 'text-white' : 'text-dark' }} "
-                            aria-hidden="true"></i>
-                    </div>
-                    <span
-                        class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} ">Return
-                        Product</span>
-
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('damaged-product.*') ? 'active bg-gradient-light' : '' }}"
-                    href="{{ route('damaged-product.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-thumbs-down opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('damaged-product.*') ? 'text-white' : 'text-dark' }} "
-                            aria-hidden="true"></i>
-                    </div>
-                    <span
-                        class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} ">Damaged
-                        Product</span>
-
                 </a>
             </li>
             @if (auth()->user()->role == 'admin')
