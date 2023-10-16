@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Purchased;
 
 use Livewire\Component;
 use App\Models\PurchaseProductInfo;
+use App\Models\PurchasedProduct;
+use App\Models\Product;
 
 class Delete extends Component
 {
@@ -20,9 +22,23 @@ class Delete extends Component
 
     public function delete($id)
     {
-        $prodPurInfo = PurchaseProductInfo::where('id', $id)->first();
-        if ($prodPurInfo != null) {
+        $prodPurInfo = PurchaseProductInfo::find($id);
+
+        if ($prodPurInfo) {
+            $product_items = PurchasedProduct::where('purchase_product_info_id', $id)->get();
+
+            foreach ($product_items as $product_item) {
+                $product = Product::find($product_item->product_id);
+
+                if ($product) {
+                    $product->update([
+                        'quantity' => $product->quantity + $product_item->quantity,
+                    ]);
+                }
+            }
+
             $prodPurInfo->delete();
+
             return redirect()->route('purchased-product.index')->with('success', 'Product record deleted successfully.');
         }
         return redirect()->route('purchased-product.index')->with('error', 'Something went wrong');

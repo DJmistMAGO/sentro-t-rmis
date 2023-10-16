@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('quantity');
             $table->double('price');
             $table->double('total');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

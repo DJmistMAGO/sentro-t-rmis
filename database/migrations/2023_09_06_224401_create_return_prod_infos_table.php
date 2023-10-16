@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('reference_no');
             $table->string('prepared_by');
             $table->date('date_preparation');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
