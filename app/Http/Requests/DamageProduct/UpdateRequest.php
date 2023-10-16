@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\PurchasedRequest;
+namespace App\Http\Requests\DamageProduct;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             'date_preparation' => 'required',
 
             'productId' => ['nullable', 'array'],
-            'productId.*' => ['nullable', 'exists:purchased_products,id'],
+            'productId.*' => ['nullable', 'exists:damage_products,id'],
 
             'product_name' => ['required', 'array'],
             'product_name.*' => ['required'],

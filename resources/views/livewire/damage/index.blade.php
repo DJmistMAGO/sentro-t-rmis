@@ -35,11 +35,9 @@
                                 <td class="text-center text-sm">{{ $prodPurInfo->date_preparation->format('m/d/y') }}</td>
                                 <td class="align-middle text-center">
                                     <div class="align-middle">
-                                        <button class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</button>
-                                        @if(auth()->user()->role == 'admin')
-                                        <button class="btn bg-gradient-info btn-sm  me-1 mb-0 px-3">Edit</button>
-                                        <button class="btn bg-gradient-danger btn-sm  me-1 mb-0 px-3">Delete</button>
-                                        @endif
+                                        <a href="{{ route('damaged-product.view', $prodPurInfo->id) }}" class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
+                                        <a href="{{ route('damaged-product.edit', $prodPurInfo->id) }}" class="btn bg-gradient-info btn-sm  me-1 mb-0 px-3">Edit</a>
+                                        @livewire('damage.delete', ['prodPurInfo' => $prodPurInfo], key($prodPurInfo->id))
                                     </div>
                                 </td>
                             </tr>

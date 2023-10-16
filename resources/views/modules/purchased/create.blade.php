@@ -99,20 +99,20 @@
         $(document).ready(function() {
 
             // remove disabled attribute on create button once all required fields are filled
-            $("input, select").on('input', function() {
-                var empty = false;
-                $('input, select').each(function() {
-                    if ($(this).val() == '') {
-                        empty = true;
-                    }
-                });
+            // $("input, select").on('input', function() {
+            //     var empty = false;
+            //     $('input, select').each(function() {
+            //         if ($(this).val() == '') {
+            //             empty = true;
+            //         }
+            //     });
 
-                if (empty) {
-                    $('.btn-info').attr('disabled', 'disabled');
-                } else {
-                    $('.btn-info').removeAttr('disabled');
-                }
-            });
+            //     if (empty) {
+            //         $('.btn-info').attr('disabled', 'disabled');
+            //     } else {
+            //         $('.btn-info').removeAttr('disabled');
+            //     }
+            // });
 
 
 

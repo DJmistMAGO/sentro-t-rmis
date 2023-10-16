@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/store', 'store')->name('purchased-product.store');
         Route::get('/view/{purchased}', 'view')->name('purchased-product.view');
         Route::get('/edit/{prodPurInfo}', 'edit')->name('purchased-product.edit');
+        Route::put('/edit/{prodPurInfo}', 'update')->name('purchased-product.update');
+
 
         // Route::post('/update/{purchased}', 'update')->name('purchased-product.update');
 
@@ -64,6 +66,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('returned-product.index');
         Route::get('/create', 'create')->name('returned-product.create');
         Route::post('/store', 'store')->name('returned-product.store');
+        Route::get('/view/{purchased}', 'view')->name('returned-product.view');
+        Route::get('/edit/{prodPurInfo}', 'edit')->name('returned-product.edit');
+        Route::put('/update/{prodPurInfo}', 'update')->name('returned-product.update');
 
     });
 
@@ -71,6 +76,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('damaged-product.index');
         Route::get('/create', 'create')->name('damaged-product.create');
         Route::post('/store', 'store')->name('damaged-product.store');
+        Route::get('/view/{purchased}', 'view')->name('damaged-product.view');
+        Route::get('/edit/{prodPurInfo}', 'edit')->name('damaged-product.edit');
+        Route::put('/update/{prodPurInfo}', 'update')->name('damaged-product.update');
     });
 
     Route::controller(StockProductController::class)->prefix('stock-product')->group(function () {

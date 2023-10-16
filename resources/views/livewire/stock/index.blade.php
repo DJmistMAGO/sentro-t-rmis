@@ -5,7 +5,9 @@
                 <h5>STOCK PRODUCTS</h5>
             </div>
             <div class="card-tool d-flex justify-content-end">
-
+                <select name="" class="form-control" id="">
+                    <option value="">Please Select Category</option>
+                </select>
             </div>
         </div>
         <div class="card-body pt-3" s>
