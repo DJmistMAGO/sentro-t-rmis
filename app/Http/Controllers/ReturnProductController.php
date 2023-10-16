@@ -64,8 +64,7 @@ class ReturnProductController extends Controller
             ]);
         }
 
-        LogActivity::addToLog('Stored a new Returned product transaction Ref. No.: ' . $validated['reference_no']. ' by '. auth()->user()->name );
-
+        LogActivity::addToLog('Stored a New Returned Product Transaction Ref. No.: ' . $validated['reference_no'] );
 
         return redirect()->route('returned-product.index')->with('success', 'Returned Product created successfully.');
     }
@@ -155,6 +154,7 @@ class ReturnProductController extends Controller
             }
         }
 
+        LogActivity::addToLog('Upodated Returned Product Transaction Ref. No.: ' . $validated['reference_no'] );
 
         return redirect()->route('purchased-product.index')->with('success', 'Purchase Product updated successfully.');
     }

@@ -16,15 +16,17 @@
                         <table class="table table-sm table-hover">
                             <thead class="thead-gray">
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Activity</th>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Date Activity</th>
+                                    <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ps-0">Activity</th>
+                                    <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ps-0">Author</th>
+                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ( $logs as $log )
                                 <tr>
-                                    <td class=" text-sm">{{$log->subject}}</td>
-                                    <td class="text-center text-sm">{{$log->created_at}}</td>
+                                    <td class="ps-0 text-sm">{{$log->subject}}</td>
+                                    <td class="ps-0 text-sm">{{$log->user_id}}</td>
+                                    <td class="text-center text-sm">{{$log->created_at->format('F d, Y')}} | {{ $log->created_at->format('h:i A') }}</td>
 
                                 </tr>
                                 @empty

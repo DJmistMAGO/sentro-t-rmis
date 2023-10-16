@@ -61,7 +61,7 @@ class PurchasedProductController extends Controller
             ]);
         }
 
-        LogActivity::addToLog('Stored a new purchase transaction Ref. No.: ' . $validated['reference_no']. ' by '. auth()->user()->name );
+        LogActivity::addToLog('Stored a New Purchase Transaction Ref. No.: ' . $validated['reference_no'] );
 
 
         return redirect()->route('purchased-product.index')->with('success', 'Purchased Product created successfully.');
@@ -152,6 +152,8 @@ class PurchasedProductController extends Controller
                 ]);
             }
         }
+
+        LogActivity::addToLog('Updated Purchased Transaction Ref. No.: ' . $validated['reference_no'] );
 
 
         return redirect()->route('purchased-product.index')->with('success', 'Purchase Product updated successfully.');

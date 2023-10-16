@@ -65,7 +65,7 @@ class DamagedProductController extends Controller
             ]);
         }
 
-        LogActivity::addToLog('Stored a new Damaged product transaction Ref. No.: ' . $validated['reference_no']. ' by '. auth()->user()->name );
+        LogActivity::addToLog('Stored a New Damaged Product Transaction Ref. No.: ' . $validated['reference_no'] );
 
 
         return redirect()->route('damaged-product.index')->with('success', 'Damaged Product created successfully.');
@@ -156,6 +156,8 @@ class DamagedProductController extends Controller
                 ]);
             }
         }
+        
+        LogActivity::addToLog('Updated a New Damaged Product Transaction Ref. No.: ' . $validated['reference_no'] );
 
 
         return redirect()->route('damaged-product.index')->with('success', 'Purchase Product updated successfully.');

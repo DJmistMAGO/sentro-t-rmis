@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\PurchaseProductInfo;
 use App\Models\PurchasedProduct;
 use App\Models\Product;
+use App\Helpers\LogActivity;
 
 class Delete extends Component
 {
@@ -24,6 +25,8 @@ class Delete extends Component
     {
         $prodPurInfo = PurchaseProductInfo::find($id);
 
+        $reference = $prodPurInfo->reference_no;
+
         if ($prodPurInfo) {
             $product_items = PurchasedProduct::where('purchase_product_info_id', $id)->get();
 
@@ -38,6 +41,9 @@ class Delete extends Component
             }
 
             $prodPurInfo->delete();
+
+            LogActivity::addToLog('Deleted Purchased Transaction Product Ref. No.: ' . $reference);
+
 
             return redirect()->route('purchased-product.index')->with('success', 'Product record deleted successfully.');
         }

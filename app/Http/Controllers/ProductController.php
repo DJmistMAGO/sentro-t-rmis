@@ -77,7 +77,7 @@ class ProductController extends Controller
             'status' => 'available', //default
         ]);
 
-        LogActivity::addToLog('Stored a new product named ' . $validated['product_name'] . ' with Product Code:' . $validated['product_code'] . ' by '. auth()->user()->name );
+        LogActivity::addToLog('Stored a New Product Named ' . $validated['product_name'] . ' with Product Code:' . $validated['product_code']);
 
         return redirect()->route('product.index')->with('success', 'Product record created successfully.');
     }
@@ -118,6 +118,9 @@ class ProductController extends Controller
             'image' => $imageName,
         ]);
 
+        LogActivity::addToLog('Updated Product Named ' . $validated['product_name'] . ' with Product Code:' . $validated['product_code']);
+
+
         return redirect()->route('product.index')->with('success', 'Product record updated successfully.');
     }
 
@@ -140,6 +143,9 @@ class ProductController extends Controller
         $product->update([
             'quantity' => $product_qty,
         ]);
+
+        LogActivity::addToLog('Restock Product ' . $product->product_name . ' with Product Code: ' . $product->product_code . ' | Quantity: ' . $validated['restock']);
+
 
         return redirect()->route('product.index')->with('success', 'Product restock updated successfully.');
 
