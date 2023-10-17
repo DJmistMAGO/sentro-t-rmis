@@ -59,8 +59,8 @@
                                 <select name="category" class="form-control @error('category') is-invalid @enderror"
                                     required>
                                     <option value="">--Please Select--</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category }}" @selected($product->category == $category)>
+                                    @foreach ($categories as $value => $category)
+                                        <option value="{{ $value }}" @selected($product->category == $value)>
                                             {{ $category }}</option>
                                     @endforeach
                                 </select>

@@ -39,8 +39,8 @@
                             <label class="form-label">Category</label>
                             <select name="category" class="form-control" disabled>
                                 <option value="">--Please Select--</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category }}" @selected($product->category == $category)>
+                                @foreach ($categories as $value => $category)
+                                    <option value="{{ $value }}" @selected($product->category == $value)>
                                         {{ $category }}</option>
                                 @endforeach
                             </select>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </x-card>
         </div>
     </div>

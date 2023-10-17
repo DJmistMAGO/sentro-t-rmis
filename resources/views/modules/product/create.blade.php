@@ -37,8 +37,8 @@
                                     <select name="category" class="form-control @error('category') is-invalid @enderror"
                                         required>
                                         <option value="">--Please Select--</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category }}" @selected(old('category') == $category)>
+                                        @foreach ($categories as $value => $category)
+                                            <option value="{{ $value }}" @selected(old('category') == $value)>
                                                 {{ $category }}</option>
                                         @endforeach
                                     </select>

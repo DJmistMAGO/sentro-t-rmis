@@ -10,15 +10,15 @@ use App\Helpers\LogActivity;
 class ProductController extends Controller
 {
     public $categories = [
-        'Electrical and Lighting',
-        'Marine and Boating Supplies',
-        'Home Improvement Materials',
-        'Pumps and Plumbing Supplies',
-        'Steel and Metal Products',
-        'Wood and Timber Products',
-        'Power Tools and Accessories',
-        'Paints and Coatings',
-        'Hardware and others',
+        'electrical' => 'Electrical and Lighting',
+        'marine' => 'Marine and Boating Supplies',
+        'home' => 'Home Improvement Materials',
+        'pumps' => 'Pumps and Plumbing Supplies',
+        'steel' => 'Steel and Metal Products',
+        'wood' => 'Wood and Timber Products',
+        'power' => 'Power Tools and Accessories',
+        'paints' => 'Paints and Coatings',
+        'hardware' => 'Hardware and others',
     ];
 
     public function sample()
@@ -41,8 +41,10 @@ class ProductController extends Controller
         }
 
         $products = $query->paginate(7);
+        $categories = $this->categories;
 
-        return view('modules.product.index', compact('products'));
+
+        return view('modules.product.index', compact('products', 'categories'));
     }
 
     public function create()
@@ -148,6 +150,5 @@ class ProductController extends Controller
 
 
         return redirect()->route('product.index')->with('success', 'Product restock updated successfully.');
-
     }
 }
