@@ -76,7 +76,11 @@
                                             {{ Str::words($product->description, 5, $end = '...') }}
                                         </td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
-                                        <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
+                                        @php
+                                            $textclass = $product->quantity <= 10 ? 'text-danger' : '';
+                                        @endphp
+                                        <td class="text-center text-sm {{ $textclass }} align-middle">
+                                            {{ $product->quantity }}</td>
                                         {{-- <td class="text-center text-sm align-middle">{{ $product->unit }}</td> --}}
                                         <td class="align-middle text-center">
                                             <div class="align-middle">
