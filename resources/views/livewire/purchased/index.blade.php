@@ -6,7 +6,7 @@
                 <form action="{{ route('purchased-product.index') }}" method="get">
                     @csrf
                     <div class="form-group pt-3">
-                        <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search" autofocus
+                        <input class="form-control form-control-sm d-none d-md-block me-3" type="search" autofocus
                             autocomplete="off" placeholder="Search..." name="search" style="width: 300px;">
                     </div>
                 </form>
@@ -16,6 +16,31 @@
             </div>
         </div>
         <div class="card-body pt-0">
+            <div class="row">
+                <div class="col-md-12 ms-auto">
+                    <div class="align-middle ">
+                        <form wire:submit.prevent="exportPurchasedProducts">
+                            <label for="dateInput">Select Date to export sales</label>
+                            <div class="form-group col-md-6">
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    <input type="date" class="form-control" wire:model="dateInput" required
+                                        id="dateInput">
+                                    <button type="submit" class="btn bg-gradient-dark btn-sm me-1 mb-0 px-4"
+                                        wire:loading.attr="disabled">
+                                        <span wire:loading.remove>Export</span>
+                                        <span wire:loading wire:target="exportPurchasedProducts">Loading...</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- {{-- <div class="col-md-12"> --}}
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">{{ session('message') }}</div>
+                    @endif
+                    {{-- </div> --}}
+                </div>
+            </div>
             <div class="row">
                 <div class="table-responsive p-0 mb-0">
                     <table class="table table-sm mb-0 table-hover">

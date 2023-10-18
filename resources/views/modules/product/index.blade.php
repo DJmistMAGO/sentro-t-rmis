@@ -15,7 +15,7 @@
                     <form action="{{ route('product.index') }}" method="get">
                         @csrf
                         <div class="form-group pt-3">
-                            <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search"
+                            <input class="form-control form-control-sm d-none d-md-block me-3" type="search"
                                 autocomplete="off" autofocus placeholder="Search..." name="search" style="width: 300px;">
                         </div>
                     </form>
@@ -76,7 +76,11 @@
                                             {{ Str::words($product->description, 5, $end = '...') }}
                                         </td>
                                         <td class="text-center text-sm align-middle">{{ $product->price }}</td>
-                                        <td class="text-center text-sm align-middle">{{ $product->quantity }}</td>
+                                        @php
+                                            $textclass = $product->quantity <= 10 ? 'text-danger' : '';
+                                        @endphp
+                                        <td class="text-center text-sm {{ $textclass }} align-middle">
+                                            {{ $product->quantity }}</td>
                                         {{-- <td class="text-center text-sm align-middle">{{ $product->unit }}</td> --}}
                                         <td class="align-middle text-center">
                                             <div class="align-middle">

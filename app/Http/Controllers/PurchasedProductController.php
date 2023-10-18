@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\purchased_product\StoreRequest;
-use App\Http\Requests\PurchasedRequest\UpdateRequest;
 use App\Models\Product;
-use App\Models\PurchaseProductInfo;
+use Illuminate\Support\Arr;
+use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use App\Models\PurchasedProduct;
-use App\Helpers\LogActivity;
-use Arr;
+use App\Models\PurchaseProductInfo;
+use App\Http\Requests\purchased_product\StoreRequest;
+use App\Http\Requests\PurchasedRequest\UpdateRequest;
 
 class PurchasedProductController extends Controller
 {
@@ -24,9 +24,15 @@ class PurchasedProductController extends Controller
         //get all products
         $products = Product::where('quantity', '>', 0)->get();
 
-        $reference_no = PurchaseProductInfo::latest()->first('reference_no');
-        $reference_no = $reference_no ? $reference_no->blotter_entry_no + 1 : 1;
-        $reference_no = str_pad($reference_no, 4, '0', STR_PAD_LEFT);
+        $purchased = PurchaseProductInfo::get();
+        $reference_no = $purchased->max('reference_no') ?? 'PUR-2023-0000';
+        $lastSeriesNo = substr($reference_no, 9, 4);
+        // dd($lastSeriesNo);
+        $seriesNo = str_pad($lastSeriesNo + 1, 4, '0', STR_PAD_LEFT);
+
+        $reference_no = 'PUR-' . date('Y-') . $seriesNo;
+
+        // dd($reference_no);
 
         return view('modules.purchased.create', compact('products', 'reference_no'));
     }
@@ -61,7 +67,7 @@ class PurchasedProductController extends Controller
             ]);
         }
 
-        LogActivity::addToLog('Stored a New Purchase Transaction Ref. No.: ' . $validated['reference_no'] );
+        LogActivity::addToLog('Stored a New Purchase Transaction Ref. No.: ' . $validated['reference_no']);
 
 
         return redirect()->route('purchased-product.index')->with('success', 'Purchased Product created successfully.');
@@ -83,7 +89,7 @@ class PurchasedProductController extends Controller
         return view('modules.purchased.edit', compact('prodPurInfo', 'products'));
     }
 
-    public function update( UpdateRequest $request, PurchaseProductInfo $prodPurInfo)
+    public function update(UpdateRequest $request, PurchaseProductInfo $prodPurInfo)
     {
         $validated = $request->validated();
 
@@ -153,7 +159,7 @@ class PurchasedProductController extends Controller
             }
         }
 
-        LogActivity::addToLog('Updated Purchased Transaction Ref. No.: ' . $validated['reference_no'] );
+        LogActivity::addToLog('Updated Purchased Transaction Ref. No.: ' . $validated['reference_no']);
 
 
         return redirect()->route('purchased-product.index')->with('success', 'Purchase Product updated successfully.');
