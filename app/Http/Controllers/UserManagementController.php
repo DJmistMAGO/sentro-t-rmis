@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Arr;
+use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,6 +44,7 @@ class UserManagementController extends Controller
             'password' => Hash::make('P@ssw0rd'),
         ]);
 
+        LogActivity::addToLog('Created a new staff account for ' . $validated['name']);
         return redirect()->route('user-management.index')->with('success', 'Successfully added new Staff!');
     }
     public function profileStore(Request $request)
@@ -57,7 +59,6 @@ class UserManagementController extends Controller
         ]);
 
         $user = User::where('id', $validated['user_id'])->first();
-
         $user->update(Arr::only($validated, [
             'name',
             'email',
@@ -65,8 +66,6 @@ class UserManagementController extends Controller
             'address',
             'birthdate',
         ]));
-
-
         return redirect()->back()->with('success', 'Successfully updated user-information!');
     }
 
@@ -121,6 +120,8 @@ class UserManagementController extends Controller
     {
         $user->password = Hash::make('P@ssw0rd');
         $user->save();
+
+        LogActivity::addToLog('Reset password for ' . $user->name);
 
         return redirect()->back()->with('success', 'Successfully reset password!');
     }
