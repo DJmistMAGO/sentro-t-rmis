@@ -44,8 +44,9 @@
                                 @endif
                             </div>
                             <div class="card-body pt-0  text-center">
-                                <h6 class="text-center mb-0" style="text-transform: uppercase;">
-                                    {{ $product->product_name }}</h6>
+                                <h6 class="text-center mb-0" style="text-transform: uppercase;"
+                                    title="{{ $product->product_name }}">
+                                    {{ Str::words($product->product_name, 2, $end = '...') }}</h6>
                                 <span class="text-sm">{{ $product->product_code }}</span><br>
                                 <a href="{{ route('product.show', $product->id) }}" class="text-sm">View Info <span><i
                                             class="fa fa-arrow-right" aria-hidden="true"></i></span> </a>
