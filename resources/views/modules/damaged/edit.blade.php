@@ -102,20 +102,5 @@
 
 {{-- @livewireScripts() --}}
 @push('scripts')
-    <script>
-        $(document).ready(function() {
-            // Listen for changes in the selected product
-            $("select[name='product_name[]']").change(function() {
-                // Get the selected product's quantity
-                var selectedProduct = $(this).find(":selected");
-                var productQuantity = selectedProduct.data("quantity");
-
-                // Update the max attribute of the quantity input field
-                $(this)
-                    .closest(".row")
-                    .find("input[name='quantity[]']")
-                    .attr("max", productQuantity);
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/js/clone.js') }}"></script>
 @endpush

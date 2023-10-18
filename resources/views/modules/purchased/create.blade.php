@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label>Reference No.</label>
-                            <input type="text"  name="reference_no" value="{{ $reference_no }}" required
+                            <input type="text" name="reference_no" value="{{ $reference_no }}" required
                                 class="form-control @error('reference_no') is-invalid @enderror" placeholder="">
                             @error('reference_no')
                                 <div class="invalid-feedback" style="display: inline-block !important;">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>Prepared by</label>
-                            <input type="text"  name="prepared_by" value="{{ auth()->user()->name }}" required
+                            <input type="text" name="prepared_by" value="{{ auth()->user()->name }}" required
                                 class="form-control @error('prepared_by') is-invalid @enderror" placeholder="">
                             @error('prepared_by')
                                 <div class="invalid-feedback" style="display: inline-block !important;">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>Date Preparation</label>
-                            <input type="date"  name="date_preparation"
+                            <input type="date" name="date_preparation"
                                 value="{{ old('date_preparation') ?? date('Y-m-d') }}" required
                                 class="form-control @error('date_preparation') is-invalid @enderror">
                             @error('date_preparation')
@@ -96,38 +96,90 @@
 @livewireScripts()
 @push('scripts')
     <script>
-        $(document).ready(function() {
-
-            // remove disabled attribute on create button once all required fields are filled
-            // $("input, select").on('input', function() {
-            //     var empty = false;
-            //     $('input, select').each(function() {
-            //         if ($(this).val() == '') {
-            //             empty = true;
-            //         }
-            //     });
-
-            //     if (empty) {
-            //         $('.btn-info').attr('disabled', 'disabled');
-            //     } else {
-            //         $('.btn-info').removeAttr('disabled');
-            //     }
-            // });
-
-
-
-            // Listen for changes in the selected product
-            $("select[name='product_name[]']").change(function() {
-                // Get the selected product's quantity
-                var selectedProduct = $(this).find(":selected");
-                var productQuantity = selectedProduct.data("quantity");
-
-                // Update the max attribute of the quantity input field
-                $(this)
-                    .closest(".row")
-                    .find("input[name='quantity[]']")
-                    .attr("max", productQuantity);
-            });
+        $(document).on("click", "[data-add-item]", function() {
+            let _container = $(this).closest("[data-item-container]");
+            if (_container) {
+                let _template = _container.find("[data-parent]").first();
+                if (_template) {
+                    let clone = _template.clone();
+                    $(clone)
+                        .find(".row")
+                        .each((index, item) => {
+                            let attr = $(item).attr("data-parent");
+                            if (typeof attr === "undefined" || attr === false) {
+                                $(item).remove();
+                            }
+                        });
+                    if ($(clone[0]).attr("data-parent") !== undefined) {
+                        $(clone[0]).removeAttr("data-parent");
+                        $(clone[0])
+                            .find("[data-item-hide]")
+                            .first()
+                            .removeClass("d-none");
+                        $(clone[0])
+                            .find("input, select")
+                            .each(function(index, item) {
+                                item.value = "";
+                            });
+                        _container.append($(clone[0]));
+                        updateProductList(clone);
+                    }
+                }
+            }
         });
+
+        $(document).on("click", "[data-remove-item]", function() {
+            let _parent = $(this).closest(".row");
+            _parent.remove();
+        });
+
+        $(document).on("change", "[name='product_name[]']", function() {
+            let _this = $(this);
+            let _parent = _this.closest(".row");
+            let _quantity = _parent.find("[name='quantity[]']");
+            let _selectedOption = _this.find("option:selected");
+            let _max = _selectedOption.attr("data-quantity");
+            _quantity.attr("max", _max);
+            _quantity.val(1);
+        });
+
+        function updateProductList($dropdown) {
+            var selectedProducts = [];
+            $("select[name='product_name[]']").not($dropdown).each(function() {
+                var selectedProduct = $(this).find(":selected").val();
+                if (selectedProduct) {
+                    selectedProducts.push(selectedProduct);
+                }
+            });
+
+            $dropdown.find("option").each(function() {
+                var optionValue = $(this).val();
+
+                // Enable or disable options based on selected products
+                if (selectedProducts.includes(optionValue)) {
+                    $(this).prop("disabled", true);
+                } else {
+                    $(this).prop("disabled", false);
+                }
+            });
+        }
+
+        function updateProductListAndMaxAttribute(clone) {
+            let _this = $(clone).find("[name='product_name[]']");
+            let _parent = _this.closest(".row");
+            let _quantity = _parent.find("[name='quantity[]']");
+            let _selectedOption = _this.find("option:selected");
+            let _max = _selectedOption.attr("data-quantity");
+            _quantity.attr("max", _max);
+            _quantity.val(1);
+
+            let _selectedProductId = _selectedOption.val();
+            let _productList = $("[name='product_name[]']");
+            _productList.each(function(index, item) {
+                if (item.value == _selectedProductId) {
+                    $(item).remove();
+                }
+            });
+        }
     </script>
 @endpush

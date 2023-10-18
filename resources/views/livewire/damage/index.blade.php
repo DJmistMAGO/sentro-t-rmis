@@ -6,7 +6,7 @@
                 <form action="{{ route('purchased-product.index') }}" method="get">
                     @csrf
                     <div class="form-group pt-3">
-                        <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search"
+                        <input class="form-control form-control-sm d-none d-md-block me-3" type="search"
                             autocomplete="off" autofocus placeholder="Search..." name="search" style="width: 300px;">
                     </div>
                 </form>
