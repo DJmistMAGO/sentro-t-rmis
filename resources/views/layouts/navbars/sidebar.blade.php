@@ -104,8 +104,21 @@
                             class="fas fa-cubes fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('stock-product.*') ? 'text-white' : 'text-dark' }} "
                             aria-hidden="true"></i>
                     </div>
-                    <span
-                        class="nnav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks</span>
+                    {{-- get count of products with quantity less than or equal to 10 --}}
+                    @php
+                        $count = App\Models\Product::where('quantity', '<=', 10)->count();
+                    @endphp
+
+                    @if (!$count)
+                        <span
+                            class="nav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks
+                        </span>
+                    @else
+                        <span
+                            class="nav-link-text ms-1  {{ request()->routeIs('stock-product.*') ? 'text-dark' : 'text-white' }} ">Stocks
+                            <span class="badge badge-danger">{{ $count }}</span>
+                        </span>
+                    @endif
                 </a>
             </li>
             <li class="nav-item">
@@ -137,10 +150,12 @@
                 </li>
             @endif
             <li class="nav-item mt-5 mb-0">
-                <a href="{{ route('user-info.view-profile', auth()->user()->id ) }}"
+                <a href="{{ route('user-info.view-profile', auth()->user()->id) }}"
                     class="nav-link text-uppercase text-center text-sm font-weight-bolder text-white d-flex justify-content-center {{ request()->routeIs('user-info.view-profile') ? 'active bg-gradient-light' : '' }}">
-                    <i class="fa fa-users opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('user-info.view-profile') ? 'text-dark' : 'text-white' }}" aria-hidden="true"></i>
-                    <span class="nav-link-text ms-1 {{ request()->routeIs('user-info.view-profile') ? 'text-dark' : 'text-white' }}">{{ auth()->user()->name }}</span>
+                    <i class="fa fa-users opacity-10 fa-lg ps-2 pe-2 text-center text-dark {{ request()->routeIs('user-info.view-profile') ? 'text-dark' : 'text-white' }}"
+                        aria-hidden="true"></i>
+                    <span
+                        class="nav-link-text ms-1 {{ request()->routeIs('user-info.view-profile') ? 'text-dark' : 'text-white' }}">{{ auth()->user()->name }}</span>
                 </a>
             </li>
         </ul>

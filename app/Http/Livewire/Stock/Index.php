@@ -11,6 +11,12 @@ class Index extends Component
     {
         $products = Product::orderBy('quantity', 'asc')->get();
 
-        return view('livewire.stock.index', compact('products'));
+        $near_end = $products->filter(function ($product) {
+            return $product->quantity <= 10;
+        });
+
+        $near_end_count = $near_end->count();
+
+        return view('livewire.stock.index', compact('products', 'near_end_count'));
     }
 }

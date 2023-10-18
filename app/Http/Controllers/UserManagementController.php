@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserManagementController extends Controller
@@ -27,7 +28,9 @@ class UserManagementController extends Controller
             'email' => 'required',
             'contact_no' => 'required',
             'address' => 'required',
-            'birthdate' => 'required'
+            'birthdate' => 'required',
+            // 'user_id' => 'required',
+            // 'password' => ['required', 'confirmed', 'min:8'],
         ]);
 
         User::create([
@@ -36,22 +39,61 @@ class UserManagementController extends Controller
             'contact_no' => $validated['contact_no'],
             'address' => $validated['address'],
             'birthdate' => $validated['birthdate'],
-            'password' => Hash::make($validated['contact_no']),
+            // 'user_id' => $validated['user_id'],
+            'password' => Hash::make('P@ssw0rd'),
         ]);
 
-        return redirect()->route('user-management.index')->with('success', 'Successfuly added new staff account!');
+        return redirect()->route('user-management.index')->with('success', 'Successfully added new Staff!');
+    }
+    public function profileStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'contact_no' => 'required',
+            'address' => 'required',
+            'birthdate' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        $user = User::where('id', $validated['user_id'])->first();
+
+        $user->update(Arr::only($validated, [
+            'name',
+            'email',
+            'contact_no',
+            'address',
+            'birthdate',
+        ]));
+
+
+        return redirect()->back()->with('success', 'Successfully updated user-information!');
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $validated = $request->validate([
+            'password' => ['required', 'confirmed', 'min:8'],
+            'user_id' => 'required',
+        ]);
+
+        $user = User::where('id', $validated['user_id'])->first();
+        $user->password = Hash::make($validated['password']);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Successfully updated password!');
     }
 
     public function viewProfile(User $user)
     {
 
-    return view('users.user-profile.user-info');
+        return view('users.user-profile.user-info');
     }
 
     public function viewStaff(User $user)
     {
 
-    return view('users.user-profile.staff-info' , compact('user'));
+        return view('users.user-profile.staff-info', compact('user'));
     }
 
     public function updateStaff(User $user, Request $request)
@@ -63,7 +105,30 @@ class UserManagementController extends Controller
             'address' => 'required',
             'birthdate' => 'required'
         ]);
+
+        $user->update(Arr::only($validated, [
+            'name',
+            'email',
+            'contact_no',
+            'address',
+            'birthdate',
+        ]));
+
+        return redirect()->route('user-management.index')->with('success', 'Successfully updated Staff information!');
     }
 
+    public function resetPass(User $user, Request $request)
+    {
+        $user->password = Hash::make('P@ssw0rd');
+        $user->save();
 
+        return redirect()->back()->with('success', 'Successfully reset password!');
+    }
+
+    public function destroy(User $user, Request $request)
+    {
+        $user->delete();
+
+        return redirect()->route('user-management.index')->with('success', 'Successfully deleted Staff!');
+    }
 }

@@ -31,11 +31,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('user-management.index');
         Route::get('/create', 'create')->name('user-management.create');
         Route::post('/store', 'store')->name('user-management.store');
+        Route::put('/update/{user}', 'updateStaff')->name('user-management.update');
         Route::get('/view-profile/{user}', 'viewProfile')->name('user-info.view-profile');
+        Route::post('/profile', 'profileStore')->name('user-management.profile-update');
+        Route::post('/password', 'passwordUpdate')->name('user-management.password-update');
         Route::get('/view-staff/{user}', 'viewStaff')->name('user-management.view-staff');
-
-
-
+        Route::delete('/delete/{user}', 'destroy')->name('user-management.delete');
+        Route::post('/pass-reset/{user}', 'resetPass')->name('user-management.reset-pass');
     });
 
     Route::controller(ProductController::class)->prefix('product')->group(function () {
@@ -70,7 +72,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/view/{purchased}', 'view')->name('returned-product.view');
         Route::get('/edit/{prodPurInfo}', 'edit')->name('returned-product.edit');
         Route::put('/update/{prodPurInfo}', 'update')->name('returned-product.update');
-
     });
 
     Route::controller(DamagedProductController::class)->prefix('damaged-product')->group(function () {
@@ -89,7 +90,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [SessionsController::class, 'destroy']);
     Route::get('/user-profile', [InfoUserController::class, 'create']);
     Route::post('/user-profile', [InfoUserController::class, 'store']);
-    Route::get('/login', function () {return view('dashboard');})->name('sign-up');
+    Route::get('/login', function () {
+        return view('dashboard');
+    })->name('sign-up');
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -101,4 +104,6 @@ Route::controller(LogController::class)->prefix('logs')->group(function () {
     Route::get('/', 'index')->name('logs.index');
 });
 
-Route::get('/login', function () {return view('session/login-session');})->name('login');
+Route::get('/login', function () {
+    return view('session/login-session');
+})->name('login');
