@@ -6,8 +6,8 @@
                 <form action="{{ route('purchased-product.index') }}" method="get">
                     @csrf
                     <div class="form-group pt-3">
-                        <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search"
-                            placeholder="Search..." name="search" style="width: 300px;">
+                        <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search" autofocus
+                            autocomplete="off" placeholder="Search..." name="search" style="width: 300px;">
                     </div>
                 </form>
 
@@ -44,9 +44,11 @@
                                         {{ $prodPurInfo->date_preparation->format('M. d, Y') }}</td>
                                     <td class="align-middle text-center">
                                         <div class="align-middle">
-                                            <a href="{{ route('purchased-product.view', [$prodPurInfo]) }}" class="btn bg-gradient-success btn-sm me-1 mb-0 px-3">View</a>
-                                            {{-- @if(auth()->user()->role == 'admin') --}}
-                                            <a href="{{ route('purchased-product.edit', [$prodPurInfo]) }}" class="btn bg-gradient-primary btn-sm me-1 mb-0 px-3">Edit</a>
+                                            <a href="{{ route('purchased-product.view', [$prodPurInfo]) }}"
+                                                class="btn bg-gradient-success btn-sm me-1 mb-0 px-3">View</a>
+                                            {{-- @if (auth()->user()->role == 'admin') --}}
+                                            <a href="{{ route('purchased-product.edit', [$prodPurInfo]) }}"
+                                                class="btn bg-gradient-primary btn-sm me-1 mb-0 px-3">Edit</a>
                                             @livewire('purchased.delete', ['prodPurInfo' => $prodPurInfo], key($prodPurInfo->id))
                                             {{-- @endif --}}
                                         </div>
@@ -62,7 +64,7 @@
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-center mb-0 mt-1">
-                        ..
+                        {{ $purchaseProdInfo->links() }}
                     </div>
                 </div>
             </div>

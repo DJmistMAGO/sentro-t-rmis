@@ -21,7 +21,7 @@ class HomeController extends Controller
         $productCount = Product::whereMonth('created_at', date('m'))->count();
 
         $out_stock_product = Product::whereMonth('created_at', date('m'))
-            ->where('quantity', '<=', 20)
+            ->where('quantity', '<=', 10)
             ->count();
 
 
@@ -80,6 +80,6 @@ class HomeController extends Controller
 
 
 
-        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthlyTotals' , 'out_stock_product'));
+        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthlyTotals', 'out_stock_product'));
     }
 }
