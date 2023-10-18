@@ -15,8 +15,8 @@
                     <form action="{{ route('product.index') }}" method="get">
                         @csrf
                         <div class="form-group pt-3">
-                            <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search" autocomplete="off" autofocus
-                                placeholder="Search..." name="search" style="width: 300px;">
+                            <input class="form-control form-control-sm d-sm-none d-md-block me-3" type="search"
+                                autocomplete="off" autofocus placeholder="Search..." name="search" style="width: 300px;">
                         </div>
                     </form>
 
@@ -80,17 +80,19 @@
                                         {{-- <td class="text-center text-sm align-middle">{{ $product->unit }}</td> --}}
                                         <td class="align-middle text-center">
                                             <div class="align-middle">
-                                                <button type="button" class="btn btn-sm bg-gradient-warning me-1 mb-0 px-3" title="Delete"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#confirmationModal{{ $product->id }}">
-                                                            Restock
-                                                        </button>
-                                                <a href="{{ route('product.show', $product->id) }}" class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
-                                                <a href="{{ route('product.edit', $product->id) }}" class="btn bg-gradient-primary btn-sm  me-1 mb-0 px-3">Edit</a>
+                                                <button type="button" class="btn btn-sm bg-gradient-warning me-1 mb-0 px-3"
+                                                    title="Delete" data-bs-toggle="modal"
+                                                    data-bs-target="#confirmationModal{{ $product->id }}">
+                                                    Restock
+                                                </button>
+                                                <a href="{{ route('product.show', $product->id) }}"
+                                                    class="btn bg-gradient-success btn-sm  me-1 mb-0 px-3">View</a>
+                                                <a href="{{ route('product.edit', $product->id) }}"
+                                                    class="btn bg-gradient-primary btn-sm  me-1 mb-0 px-3">Edit</a>
                                                 @livewire('product.delete-product', ['product' => $product], key($product->id))
 
                                             </div>
-                                            
+
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="confirmationModal{{ $product->id }}" tabindex="-1"
@@ -99,7 +101,8 @@
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content modal-static">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="confirmationModalLabel">Restock {{ $product->product_name }}
+                                                    <h5 class="modal-title" id="confirmationModalLabel">Restock
+                                                        {{ $product->product_name }}
                                                     </h5>
                                                     </button>
                                                 </div>
@@ -107,35 +110,38 @@
                                                     method="post">
                                                     @csrf
                                                     @method('PUT')
-                                                <div class="modal-body mt-2 mb-2">
-                                                    <div class="form-group">
-                                                        <label for="" class="form-label">Input Quantity</label>
-                                                        <input type="number" name="restock" id="" class="form-control text-end">
+                                                    <div class="modal-body mt-2 mb-2">
+                                                        <div class="form-group">
+                                                            <label for="" class="form-label">Input Quantity</label>
+                                                            <input type="number" name="restock" id=""
+                                                                min="1" class="form-control text-end" required>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer d-flex justify-content-center">
-                                                        <button type="submit" class="btn btn-sm btn-primary">Restock</button>
-                                                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Cancel</button>
-                                                    </form>
-                                                </div>
+                                                    <div class="modal-footer d-flex justify-content-center">
+                                                        <button type="submit"
+                                                            class="btn btn-sm btn-primary">Restock</button>
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            data-bs-dismiss="modal">Cancel</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center">
-                                            No Products found!
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        <div class="d-flex justify-content-center mb-0 mt-1">
-                            {{ $products->links() }}
-                        </div>
+                    </div>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            No Products found!
+                        </td>
+                    </tr>
+                    @endforelse
+                    </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center mb-0 mt-1">
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
