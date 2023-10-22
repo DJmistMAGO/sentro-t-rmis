@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header mx-4 p-3 text-center">
                     <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-shopping-cart opacity-10" aria-hidden="true"></i>
+                        <i class="fas fa-shopping-basket opacity-10" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="card-body pt-0 p-3 text-center">
@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header mx-4 p-3 text-center">
                     <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-truck opacity-10" aria-hidden="true"></i>
+                        <i class="fas fa-reply opacity-10" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="card-body pt-0 p-3 text-center">
@@ -37,7 +37,7 @@
             <div class="card">
                 <div class="card-header mx-4 p-3 text-center">
                     <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-thumbs-down opacity-10" aria-hidden="true"></i>
+                        <i class="fas fa-trash opacity-10" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="card-body pt-0 p-3 text-center">
