@@ -121,6 +121,7 @@
                     @endif
                 </a>
             </li>
+            @if (auth()->user()->role == 'admin')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('logs.*') ? 'active bg-gradient-light' : '' }}"
                     href="{{ route('logs.index') }}">
@@ -134,7 +135,7 @@
                         class="nnav-link-text ms-1  {{ request()->routeIs('logs.*') ? 'text-dark' : 'text-white' }} ">Logs</span>
                 </a>
             </li>
-            @if (auth()->user()->role == 'admin')
+
                 <li class="nav-item">
                     <a href="{{ route('user-management.index') }}"
                         class="nav-link {{ request()->routeIs('user-management.*') ? 'active bg-gradient-light' : '' }}">
