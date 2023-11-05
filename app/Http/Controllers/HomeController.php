@@ -206,7 +206,7 @@ class HomeController extends Controller
                 ->whereBetween('date_preparation', ['2023-01-01', '2023-11-01'])
                 ->get();
 
-            dd($custom_sales);
+            // dd($custom_sales);
 
             // // Initialize an array to store sales data for each date
             // $salesDataByDate = [];

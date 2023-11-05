@@ -3,6 +3,13 @@
         <div class="card-header  d-flex pb-0 mb-0 justify-content-between align-items-center">
             <div class="card-title">
                 <h5>STOCK PRODUCTS</h5>
+            </div>
+            <div class="card-tool">
+                <button class="btn btn-primary mb-0" wire:click="export" wire:loading.attr="disabled">Export Stocks</button>
+            </div>
+        </div>
+        <div class="card-body pt-3">
+            <div class="mb-3 col-md-3">
                 <span class="align-middle fw-bold">Select category:
                     <select id="categorySelect" class="form-control filter-select">
                         <option value="*">Show All</option>
@@ -19,8 +26,6 @@
                     </select>
                 </span>
             </div>
-        </div>
-        <div class="card-body pt-3">
             <div class="row grid">
                 @forelse ($products as $product)
                     @php
