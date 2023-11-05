@@ -6,7 +6,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
             <img src="{{ asset('images/st1.png') }}" class="navbar-brand-img h-100" alt="...">
-            <span class="ms-3 font-weight-bold">Sentro Trading <br> Record Inventory Management System</span>
+            <span class="ms-3 font-weight-bold text-center">Sentro Trading <br> Inventory Management System</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -50,7 +50,7 @@
                             aria-hidden="true"></i>
                     </div>
                     <span
-                        class="nav-link-text {{ request()->routeIs('product.*') ? 'text-dark' : 'text-white' }} ms-1">Product</span>
+                        class="nav-link-text {{ request()->routeIs('product.*') ? 'text-dark' : 'text-white' }} ms-1">Products</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -62,8 +62,8 @@
                             aria-hidden="true"></i>
                     </div>
                     <span
-                        class="nav-link-text ms-1  {{ request()->routeIs('purchased-product.*') ? 'text-dark' : 'text-white' }} ">Purchased
-                        Product</span>
+                        class="nav-link-text ms-1  {{ request()->routeIs('purchased-product.*') ? 'text-dark' : 'text-white' }} ">Sold
+                        Products</span>
 
                 </a>
             </li>
@@ -77,8 +77,8 @@
                             aria-hidden="true"></i>
                     </div>
                     <span
-                        class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} ">Return
-                        Product</span>
+                        class="nav-link-text ms-1  {{ request()->routeIs('returned-product.*') ? 'text-dark' : 'text-white' }} ">Returned
+                        Products</span>
 
                 </a>
             </li>
@@ -92,7 +92,7 @@
                     </div>
                     <span
                         class="nav-link-text ms-1  {{ request()->routeIs('damaged-product.*') ? 'text-dark' : 'text-white' }} ">Damaged
-                        Product</span>
+                        Products</span>
                 </a>
             </li>
             <li class="nav-item">

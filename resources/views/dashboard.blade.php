@@ -3,76 +3,125 @@
 @section('content')
     <x-success></x-success>
     <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header mx-4 p-3 text-center">
-                    <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-shopping-cart opacity-10" aria-hidden="true"></i>
+        <div class="col-md-3 mt-md-0 mt-4">
+            <a href="{{ route('product.index') }}">
+                <div class="card">
+                    <div class="card-header mx-4 p-3 text-center">
+                        <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+                            <i class="fas fa-shopping-cart opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 p-3 text-center">
+                        <h6 class="text-center mb-0">Products</h6>
+                        <span class="text-xs">Total New Added</span>
+                        <hr class="horizontal dark my-3">
+                        <h5 class="mb-0">{{ $productCount }}</h5>
                     </div>
                 </div>
-                <div class="card-body pt-0 p-3 text-center">
-                    <h6 class="text-center mb-0">Product</h6>
-                    <span class="text-xs">Total New Added</span>
-                    <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">{{ $productCount }}</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header mx-4 p-3 text-center">
-                    <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-truck opacity-10" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="card-body pt-0 p-3 text-center">
-                    <h6 class="text-center mb-0">Return Product</h6>
-                    <span class="text-xs">This Month</span>
-                    <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">{{ $return }}</h5>
-                </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-3 mt-md-0 mt-4">
-            <div class="card">
-                <div class="card-header mx-4 p-3 text-center">
-                    <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-thumbs-down opacity-10" aria-hidden="true"></i>
+            <a href="{{ route('returned-product.index') }}">
+                <div class="card">
+                    <div class="card-header mx-4 p-3 text-center">
+                        <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+                            <i class="fas fa-truck opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 p-3 text-center">
+                        <h6 class="text-center mb-0">Returned Products</h6>
+                        <span class="text-xs">This Month</span>
+                        <hr class="horizontal dark my-3">
+                        <h5 class="mb-0">{{ $return }}</h5>
                     </div>
                 </div>
-                <div class="card-body pt-0 p-3 text-center">
-                    <h6 class="text-center mb-0">Damaged Product</h6>
-                    <span class="text-xs">This Month</span>
-                    <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">{{ $damage }}</h5>
-                </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-3 mt-md-0 mt-4">
-            <div class="card">
-                <div class="card-header mx-4 p-3 text-center">
-                    <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
-                        <i class="fas fa-cubes opacity-10" aria-hidden="true"></i>
+            <a href="{{ route('damaged-product.index') }}">
+                <div class="card">
+                    <div class="card-header mx-4 p-3 text-center">
+                        <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+                            <i class="fas fa-thumbs-down opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 p-3 text-center">
+                        <h6 class="text-center mb-0">Damaged Products</h6>
+                        <span class="text-xs">This Month</span>
+                        <hr class="horizontal dark my-3">
+                        <h5 class="mb-0">{{ $damage }}</h5>
                     </div>
                 </div>
-                <div class="card-body pt-0 p-3 text-center">
-                    <h6 class="text-center mb-0">Out Of Stock Product</h6>
-                    <span class="text-xs">This Month</span>
-                    <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">{{ $out_stock_product   }}</h5>
+            </a>
+        </div>
+        <div class="col-md-3 mt-md-0 mt-4">
+            <a href="{{ route('stock-product.index') }}">
+                <div class="card">
+                    <div class="card-header mx-4 p-3 text-center">
+                        <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+                            <i class="fas fa-cubes opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 p-3 text-center">
+                        <h6 class="text-center mb-0">Out Of Stock Products</h6>
+                        <span class="text-xs">This Month</span>
+                        <hr class="horizontal dark my-3">
+                        <h5 class="mb-0">{{ $out_stock_product }}</h5>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col-lg-12">
-            <div class="card z-index-2">
-                <div class="card-header pb-0">
-                    <h6>Net Income Overview this Year {{ date('Y') }}</h6>
-                </div>
-                <div class="card-body p-3">
-                    <div class="chart">
-                        <canvas id="chart-line" class="chart-canvas" height="200"></canvas>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card z-index-2">
+                        <div class="card-header pb-0">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Net Income</h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="float-end">
+                                        <div class="d-flex align-items-center">
+                                            <div class="dropdown me-2">
+                                                <button class="btn btn-sm bg-gradient-success dropdown-toggle"
+                                                    type="button" id="dateRangeDropdown" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Date Range
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dateRangeDropdown">
+                                                    <form class="px-4 py-3">
+                                                        <div class="form-group">
+                                                            <label for="fromDate">From Date</label>
+                                                            <input type="date" class="form-control" id="fromDate"
+                                                                required placeholder="From Date">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="toDate">To Date</label>
+                                                            <input type="date" class="form-control" id="toDate"
+                                                                required placeholder="To Date">
+                                                        </div>
+                                                        <button type="button" class="btn btn-primary"
+                                                            id="applyDateRange">Apply</button>
+                                                    </form>
+                                                </ul>
+                                            </div>
+                                            <button type="button" class="btn btn-sm bg-gradient-primary me-2"
+                                                data-filter="thisWeek">This Week</button>
+                                            <button type="button" class="btn btn-sm bg-gradient-secondary"
+                                                data-filter="thisYear" data-default="true">This Year</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="chart">
+                                <canvas id="salesChart" class="chart-canvas" height="200"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,55 +132,32 @@
 @push('dashboard')
     <script>
         window.onload = function() {
-            var ctx2 = document.getElementById("chart-line").getContext("2d");
+            var ctx = document.getElementById("salesChart").getContext("2d");
+            var chart;
+            var defaultFilter = "thisYear";
 
-            var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+            // Initialize the chart with default data
+            var gradient = ctx.createLinearGradient(0, 230, 0, 50);
+            gradient.addColorStop(1, 'rgba(203,12,159,0.2)');
+            gradient.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+            gradient.addColorStop(0, 'rgba(203,12,159,0)'); // End color
 
-            gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-            gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-            gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-            var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-            gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-            gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-            gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-            var monthlyTotals = <?php echo json_encode($monthlyTotals); ?>;
-
-            // set monthlyTotals for each month, for example onthCounts[01] is for January
-            var counts = [];
-            counts[0] = monthlyTotals['January'];
-            counts[1] = monthlyTotals['February'];
-            counts[2] = monthlyTotals['March'];
-            counts[3] = monthlyTotals['April'];
-            counts[4] = monthlyTotals['May'];
-            counts[5] = monthlyTotals['June'];
-            counts[6] = monthlyTotals['July'];
-            counts[7] = monthlyTotals['August'];
-            counts[8] = monthlyTotals['September'];
-            counts[9] = monthlyTotals['October'];
-            counts[10] = monthlyTotals['November'];
-            counts[11] = monthlyTotals['December'];
-
-            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-            new Chart(ctx2, {
-                type: "line",
+            chart = new Chart(ctx, {
+                type: 'line',
                 data: {
-                    labels: months, // Use the months array here
+                    labels: [],
                     datasets: [{
-                        label: "Net Income",
+                        label: 'Sales Data',
+                        data: [],
                         tension: 0,
                         borderWidth: 0,
                         pointRadius: 0,
                         borderColor: "#cb0c9f",
                         borderWidth: 3,
-                        backgroundColor: gradientStroke1,
+                        backgroundColor: gradient,
                         fill: true,
-                        data: counts, // Use the counts array here
                         maxBarThickness: 6
-                    }],
+                    }]
                 },
                 options: {
                     responsive: true,
@@ -145,49 +171,43 @@
                         intersect: false,
                         mode: 'index',
                     },
-                    scales: {
-                        y: {
-                            grid: {
-                                drawBorder: false,
-                                display: true,
-                                drawOnChartArea: true,
-                                drawTicks: false,
-                                borderDash: [5, 5]
-                            },
-                            ticks: {
-                                display: true,
-                                padding: 10,
-                                color: '#b2b9bf',
-                                font: {
-                                    size: 11,
-                                    family: "Open Sans",
-                                    style: 'normal',
-                                    lineHeight: 1
-                                },
-                            }
-                        },
-                        x: {
-                            grid: {
-                                drawBorder: false,
-                                display: false,
-                                drawOnChartArea: false,
-                                drawTicks: false,
-                                borderDash: [5, 5]
-                            },
-                            ticks: {
-                                display: true,
-                                color: '#b2b9bf',
-                                padding: 20,
-                                font: {
-                                    size: 11,
-                                    family: "Open Sans",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                            }
-                        },
-                    },
-                },
+                }
+            });
+
+            function loadData(dateFilter) {
+                $.get('/chart-data', {
+                    dateFilter: dateFilter,
+                }, function(data) {
+                    chart.data.labels = data.labels;
+                    chart.data.datasets[0].data = data.salesData;
+                    chart.update();
+                });
+            }
+
+            var defaultButton = $('button[data-filter="' + defaultFilter + '"]');
+            defaultButton.addClass('active');
+
+            loadData(defaultFilter);
+
+            $('#applyDateRange').click(function() {
+                var fromDate = $('#fromDate').val();
+                var toDate = $('#toDate').val();
+                var selectedFilter = 'custom';
+
+                console.log(fromDate, toDate);
+
+                if (fromDate && toDate) {
+                    loadData(selectedFilter);
+                    $('button').removeClass('active');
+                }
+            });
+
+            $('button').click(function() {
+                var selectedFilter = $(this).data('filter');
+                loadData(selectedFilter);
+
+                $('button').removeClass('active');
+                $(this).addClass('active');
             });
         }
     </script>

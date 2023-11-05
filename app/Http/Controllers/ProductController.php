@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Product\StoreRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Helpers\LogActivity;
+use Illuminate\Http\Request;
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 
 class ProductController extends Controller
 {
@@ -66,12 +67,15 @@ class ProductController extends Controller
 
         $image->move(public_path('img'), $imageName);
 
+        // format first the price to remove the comma if it exist and convert it to float
+        $formattedPrice = floatval(str_replace(',', '', $validated['price']));
+
         Product::create([
             'product_name' => $validated['product_name'],
             'product_code' => $validated['product_code'],
             'description' => $validated['description'] ?? '',
             'category' => $validated['category'],
-            'price' => $validated['price'],
+            'price' => $formattedPrice,
             'unit' => $validated['unit'],
             'quantity' => $validated['quantity'],
             'image' => $imageName,
@@ -92,28 +96,35 @@ class ProductController extends Controller
         return view('modules.product.edit', compact('product', 'categories'));
     }
 
-    public function update(StoreRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $validated = $request->validated();
 
         $product = Product::findOrfail($id);
 
-        if ($product->image && file_exists(public_path('img/' . $product->image))) {
-            unlink(public_path('img/' . $product->image));
+        if ($request->file('image') === null) {
+            // Use the old image
+            $imageName = $product->image; // Assuming the old image filename is stored in the database
+        } else {
+            // Delete the old image if it exists
+            if ($product->image && file_exists(public_path('img/' . $product->image))) {
+                unlink(public_path('img/' . $product->image));
+            }
+
+            // Upload new image
+            $image = $request->file('image');
+            $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
+            $image->move(public_path('img'), $imageName);
         }
 
-        // upload new image
-        $image = $request->file('image');
-        $imageName = substr($image->getClientOriginalName(), 0, 5) . '.' . $image->extension();
-        $image->move(public_path('img'), $imageName);
-
+        $formattedPrice = floatval(str_replace(',', '', $validated['price']));
 
         $product->update([
             'product_name' => $validated['product_name'],
             'product_code' => $validated['product_code'],
             'description' => $validated['description'] ?? '',
             'category' => $validated['category'],
-            'price' => $validated['price'],
+            'price' => $formattedPrice,
             'quantity' => $validated['quantity'],
             'unit' => $validated['unit'],
             'supplier_info' => $validated['supplier_info'] ?? '',
