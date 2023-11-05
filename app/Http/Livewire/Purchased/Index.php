@@ -16,7 +16,7 @@ class Index extends Component
     public function render(Request $request)
     {
         $search = $request->input('search');
-        $query = PurchaseProductInfo::with('purchasedProducts')->orderBy('reference_no', 'asc');
+        $query = PurchaseProductInfo::with('purchasedProducts')->orderBy('reference_no', 'desc');
         if ($search) {
             $query->where(function ($query) use ($search) {
                 $query->where('reference_no', 'like', '%' . $search . '%')

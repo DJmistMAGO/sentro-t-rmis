@@ -24,19 +24,20 @@
     @livewireStyles
     <link rel="shortcut icon" href="{{ asset('images/st1.png') }}" type="image/x-icon">
     <title>
-        Sentro Trading Record Inventory Management System
+        Sentro Trading Inventory Management System
     </title>
     <!-- Nucleo Icons -->
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
     <!-- Swwet Alert -->
     <link rel="stylesheet" href="{{ asset('assets/sweetalert/dist/sweetalert2.min.css') }}">
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bs5/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/soft-ui-dashboard.min.css') }}" id="pagestyle">
     <style>
         .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
@@ -62,6 +63,16 @@
             border-color: #e97134 !important;
             box-shadow: 0 0 0 2px #F87737 !important;
         }
+
+        .card:hover .icon-shape {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* hide the scrollbar on the sidebar */
+        body::-webkit-scrollbar {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -76,7 +87,7 @@
     </main>
 
     {{-- Core JS files --}}
-    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script> --}}
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.3.7.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
@@ -84,8 +95,6 @@
     <script src="{{ asset('assets/js/plugins/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
     <script src="{{ asset('assets/sweetalert/dist/sweetalert2.min.js') }}"></script>
-
-    <script src="{{ mix('js/app.js') }}"></script>
 
     <script>
         var URL = '{{ config('app.url') }}'
@@ -105,6 +114,9 @@
         }
     </script>
     <script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>
+    <script src="{{ asset('assets/bs5/js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ mix('js/app.js') }}"></script>
 
     {{-- script for date on the navbar  --}}
     <script>

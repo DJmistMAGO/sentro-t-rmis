@@ -75,7 +75,10 @@
                                             @endif
                                             {{ Str::words($product->description, 5, $end = '...') }}
                                         </td>
-                                        <td class="text-center text-sm align-middle">{{ $product->price }}</td>
+                                        <td class="text-end pe-2 text-sm align-middle">
+                                            {{ number_format((float) $product->price, 2) }}</td>
+
+                                        </td>
                                         @php
                                             $textclass = $product->quantity <= 10 ? 'text-danger' : '';
                                         @endphp

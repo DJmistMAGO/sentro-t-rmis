@@ -26,6 +26,7 @@ use App\Http\Controllers\LogController;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home'])->name('dashboard');
+    Route::get('/chart-data', [HomeController::class, 'getChartData']);
 
     Route::controller(UserManagementController::class)->prefix('user-management')->group(function () {
         Route::get('/', 'index')->name('user-management.index');

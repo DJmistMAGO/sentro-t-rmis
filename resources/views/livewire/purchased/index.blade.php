@@ -1,7 +1,7 @@
 <div class="row">
     <div class="card col-md-12">
         <div class="card-header pb-0 d-flex justify-content-between align-items-center ">
-            <h5 class="my-0 text-uppercase">PURCHASED PRODUCTS</h5>
+            <h5 class="my-0 text-uppercase">SOLD PRODUCTS</h5>
             <div class="card-tool d-flex justify-content-end align-items-center align-middle">
                 <form action="{{ route('purchased-product.index') }}" method="get">
                     @csrf
@@ -12,7 +12,7 @@
                 </form>
 
                 <a href="{{ route('purchased-product.create') }}" class="btn btn-sm bg-gradient-info align-middle">
-                    <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add Purchased Product</a>
+                    <span><i class="fa fa-plus me-1" aria-hidden="true"></i></span> Add Sold Product</a>
             </div>
         </div>
         <div class="card-body pt-0">
@@ -57,6 +57,10 @@
                                     Date of Preparation</th>
                                 <th
                                     class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">
+                                    Total Amount
+                                </th>
+                                <th
+                                    class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">
                                     Action</th>
                             </tr>
                         </thead>
@@ -67,6 +71,10 @@
                                     <td class="text-center text-sm">{{ $prodPurInfo->prepared_by }}</td>
                                     <td class="text-center text-sm">
                                         {{ $prodPurInfo->date_preparation->format('M. d, Y') }}</td>
+                                    <td class="text-end pe-4 text-sm">
+                                        Php. {{ number_format($prodPurInfo->purchasedProducts->sum('total'), 2) }}
+                                    </td>
+
                                     <td class="align-middle text-center">
                                         <div class="align-middle">
                                             <a href="{{ route('purchased-product.view', [$prodPurInfo]) }}"
