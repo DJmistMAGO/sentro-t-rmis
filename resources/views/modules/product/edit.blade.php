@@ -73,17 +73,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="form-group">
-                                    <label class="form-label">Product Price</label>
-                                    <input type="number" step="0.01" min="1" name="price"
-                                        class="form-control @error('price') is-invalid @enderror"
-                                        value="{{ $product->price }}" required placeholder="0.00">
-                                    @error('price')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
                                 <div class="form-group col-md-6">
                                     <label class="form-label">Product Quantity</label>
                                     <input type="number" name="quantity" step="0.01" min="1"
@@ -101,6 +90,17 @@
                                         class="form-control @error('unit') is-invalid @enderror"
                                         value="{{ $product->unit }}" required placeholder="(e.g., kgs, boxex, etc.)">
                                     @error('unit')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Product Price</label>
+                                    <input type="text" name="price"
+                                        class="form-control text-end @error('price') is-invalid @enderror"
+                                        value="{{ $product->price }}" required placeholder="0.00">
+                                    @error('price')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -152,5 +152,25 @@
 
         var imageInput = document.querySelector('#image');
         imageInput.addEventListener('change', previewImage);
+    </script>
+    <script>
+        const priceInput = document.querySelector('input[name="price"]');
+        let cursorPosition = 0;
+
+        priceInput.addEventListener('input', function() {
+            // Get the cursor position before the input changes
+            cursorPosition = this.selectionStart;
+
+            // Remove any non-numeric characters (except dot)
+            let inputValue = this.value.replace(/[^0-9.]/g, '');
+
+            // Format as currency (PHP) with two decimal places
+            inputValue = parseFloat(inputValue).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+            this.value = inputValue;
+
+            // Set the cursor position back to where it was
+            this.setSelectionRange(cursorPosition, cursorPosition);
+        });
     </script>
 @endpush

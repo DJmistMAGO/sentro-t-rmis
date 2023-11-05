@@ -15,6 +15,7 @@
                         <option value=".power">Power Tools and Accessories</option>
                         <option value=".paints">Paints and Coatings</option>
                         <option value=".hardware">Hardware and others</option>
+                        <option value=".out-of-stock">Low/Out of Stock</option>
                     </select>
                 </span>
             </div>
@@ -22,13 +23,14 @@
         <div class="card-body pt-3">
             <div class="row grid">
                 @forelse ($products as $product)
-                    <div class="col-md-3 mb-2 grid-item {{ $product->category }}">
-                        @php
-                            $borderClass = $product->quantity <= 10 ? 'border-danger' : 'border-secondary';
-                            $boxShadow = $product->quantity <= 10 ? 'rgba(248, 67, 67, 0.35) 0px 5px 15px' : 'rgba(0, 0, 0, 0.35) 0px 5px 15px';
-                            $textclass = $product->quantity <= 10 ? 'text-danger' : 'text-secondary';
-                            $title = $product->quantity <= 10 ? 'Low Stock' : '';
-                        @endphp
+                    @php
+                        $borderClass = $product->quantity <= 10 ? 'border-danger' : 'border-secondary';
+                        $boxShadow = $product->quantity <= 10 ? 'rgba(248, 67, 67, 0.35) 0px 5px 15px' : 'rgba(0, 0, 0, 0.35) 0px 5px 15px';
+                        $textclass = $product->quantity <= 10 ? 'text-danger' : 'text-secondary';
+                        $title = $product->quantity <= 10 ? 'Low Stock' : '';
+                        $out_of_stock = $product->quantity <= 10 ? 'out-of-stock' : '';
+                    @endphp
+                    <div class="col-md-3 mb-2 grid-item {{ $product->category }} {{ $out_of_stock }}">
                         <div class="card border {{ $borderClass }}" title="{{ $title }}"
                             style="box-shadow: {{ $boxShadow }}">
                             <div class="card-header  text-center">

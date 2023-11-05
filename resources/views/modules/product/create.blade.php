@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
         @csrf
         <div class="row">
             <div class="col-md-12 mt-2">
@@ -91,7 +91,7 @@
                                     <label class="form-label">Unit of Measurement</label>
                                     <input type="text" name="unit"
                                         class="form-control @error('unit') is-invalid @enderror"
-                                        value="{{ old('unit') }}" required placeholder="(e.g., kgs, boxex, etc.)">
+                                        value="{{ old('unit') }}" required placeholder="(e.g., kgs, boxes, etc.)">
                                     @error('unit')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Product Price</label>
-                                    <input type="number" step="0.01" min="1" name="price"
+                                    <input type="text" name="price"
                                         class="form-control text-end @error('price') is-invalid @enderror"
                                         value="{{ old('price') }}" required placeholder="0.00">
                                     @error('price')
@@ -154,5 +154,25 @@
 
         var imageInput = document.querySelector('#image');
         imageInput.addEventListener('change', previewImage);
+    </script>
+    <script>
+        const priceInput = document.querySelector('input[name="price"]');
+        let cursorPosition = 0;
+
+        priceInput.addEventListener('input', function() {
+            // Get the cursor position before the input changes
+            cursorPosition = this.selectionStart;
+
+            // Remove any non-numeric characters (except dot)
+            let inputValue = this.value.replace(/[^0-9.]/g, '');
+
+            // Format as currency (PHP) with two decimal places
+            inputValue = parseFloat(inputValue).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+            this.value = inputValue;
+
+            // Set the cursor position back to where it was
+            this.setSelectionRange(cursorPosition, cursorPosition);
+        });
     </script>
 @endpush
