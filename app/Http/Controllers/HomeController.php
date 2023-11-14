@@ -13,10 +13,28 @@ use App\Models\PurchaseProductInfo;
 
 class HomeController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        // $return = ReturnProduct::all();
-        // $damage = DamageProduct::all();
+
+        $from = $request->input('from');
+        $to = $request->input('to');
+
+        $custom_sale = PurchaseProductInfo::with('purchasedProducts')
+            ->whereBetween('date_preparation', [$from, $to])
+            ->get();
+
+
+        $monthlyTotals = [];
+
+        foreach ($custom_sale as $cs) {
+            $month = $cs->date_preparation->format('Y-m-d'); // Get the month abbreviation
+            $total = $cs->purchasedProducts->sum('total');
+            $monthlyTotals[$month] = ($monthlyTotals[$month] ?? 0) + $total;
+        }
+
+        $dataDatePrep = array_keys($monthlyTotals); // Month names
+        $dataTotal = array_values($monthlyTotals);
+
         $products = Product::all();
 
         $productCount = Product::whereMonth('created_at', date('m'))->count();
@@ -86,7 +104,7 @@ class HomeController extends Controller
         }
 
 
-        return view('dashboard', compact('products', 'productCount', 'damage', 'return', 'monthlyTotals', 'out_stock_product'));
+        return view('dashboard', compact('dataTotal', 'dataDatePrep' ,'custom_sale', 'products', 'productCount', 'damage', 'return', 'monthlyTotals', 'out_stock_product'));
     }
 
     public function getChartData(Request $request)
@@ -186,6 +204,22 @@ class HomeController extends Controller
             return $data;
         } elseif ($dateFilter === 'custom') {
 
+            $from = $request->input('fromDate');
+            $to = $request->input('toDate');
+
+            $custom_sales = PurchaseProductInfo::with('purchasedProducts')
+                ->whereBetween('date_preparation', [$from, $to])
+                ->get();
+
+            dd($custom_sales);
+
+            $data['labels'] = array_keys($custom_sales->date_preparation); // Month names
+            $data['salesData'] = array_values($custom_sales->purchasedProducts->sum('total'));
+
+            // Rest of your code for processing custom sales data
+
+
+
             // $fromDate = $request->input('fromDate');
             // $toDate = $request->input('toDate');
 
@@ -202,9 +236,9 @@ class HomeController extends Controller
             //     $startDate->modify('+1 day');
             // }
 
-            $custom_sales = PurchaseProductInfo::with('purchasedProducts')
-                ->whereBetween('date_preparation', ['2023-01-01', '2023-11-01'])
-                ->get();
+            // $custom_sales = PurchaseProductInfo::with('purchasedProducts')
+            //     ->whereBetween('date_preparation', ['2023-01-01', '2023-11-01'])
+            //     ->get();
 
             // dd($custom_sales);
 
