@@ -19,20 +19,38 @@
             <div class="row">
                 <div class="col-md-12 ms-auto">
                     <div class="align-middle ">
-                        <form wire:submit.prevent="exportPurchasedProducts">
-                            <label for="dateInput">Select Date to export sales</label>
-                            <div class="form-group col-md-6">
-                                <div class="input-group mb-3 d-flex justify-content-end">
-                                    <input type="date" class="form-control" wire:model="dateInput" required
-                                        id="dateInput">
-                                    <button type="submit" class="btn bg-gradient-dark btn-sm me-1 mb-0 px-4"
-                                        wire:loading.attr="disabled">
+                        @if(auth()->user()->role === 'admin')
+                        <form wire:submit.prevent="exportPurchasedProducts" class="">
+                            <div class="form-group col-md-4">
+                                <div class="input-group">
+                                    <select wire:model="selectedDay" class="form-control col-md-3">
+                                        <option value="">Please Select</option>
+                                        <option value="today">Today</option>
+                                        <option value="week">Weekly</option>
+                                        <option value="month">Monthly</option>
+                                        <option value="year">Yearly</option>
+                                        <option value="selectDate">Select Date</option>
+                                    </select>
+                                    <button type="submit" class="btn bg-gradient-dark btn-sm me-1 mb-0 px-4" wire:loading.attr="disabled">
                                         <span wire:loading.remove>Export</span>
                                         <span wire:loading wire:target="exportPurchasedProducts">Loading...</span>
                                     </button>
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-3 d-flex" id="range">
+                                @if($selectedDay === 'selectDate')
+                                    <input type="date" class="form-control col-md-1" wire:model="from" id="dateInputFrom">
+                                    <input type="date" class="form-control col-md-1 ms-2 me-1" wire:model="to" id="dateInputTo">
+                                    <button type="submit" class="btn bg-gradient-dark btn-sm mb-0 px-4" wire:loading.attr="disabled">
+                                        <span wire:loading.remove>Export</span>
+                                        <span wire:loading wire:target="exportPurchasedProducts">Loading...</span>
+                                    </button>
+                                @endif
+                            </div>
                         </form>
+                        @endif
+
                     </div>
                     {{-- {{-- <div class="col-md-12"> --}}
                     @if (session()->has('message'))
@@ -104,3 +122,4 @@
         </div>
     </div>
 </div>
+

@@ -4,9 +4,11 @@
             <div class="card-title">
                 <h5>STOCK PRODUCTS</h5>
             </div>
+            @if(auth()->user()->role === 'admin')
             <div class="card-tool">
                 <button class="btn btn-primary mb-0" wire:click="export" wire:loading.attr="disabled">Export Stocks</button>
             </div>
+            @endif
         </div>
         <div class="card-body pt-3">
             <div class="mb-3 col-md-3">
